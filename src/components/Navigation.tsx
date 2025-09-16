@@ -92,7 +92,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-ps-primary border-b border-ps-primary-dark shadow-sm">
+    <nav className="bg-ps-primary-dark border-b border-ps-primary shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Left side - Brand and Menu */}
@@ -185,7 +185,7 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-ps-primary border-t border-ps-primary-dark">
+        <div className="lg:hidden bg-ps-primary-dark border-t border-ps-primary">
           <div className="px-4 py-2 space-y-1 max-h-96 overflow-y-auto">
             {menuItems.map((menu, index) => (
               <div key={index} className="py-2">
