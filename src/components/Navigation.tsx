@@ -93,7 +93,7 @@ export function Navigation() {
 
   return (
     <nav className="bg-ps-primary-dark border-b border-ps-primary shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto pl-0 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex justify-between h-16">
           {/* Left side - Brand and Menu */}
           <div className="flex items-center">
