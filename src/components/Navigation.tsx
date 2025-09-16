@@ -92,21 +92,21 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-b border-border shadow-sm">
+    <nav className="bg-ps-primary border-b border-ps-primary-dark shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Left side - Brand and Menu */}
           <div className="flex items-center">
             {/* Brand/Logo */}
             <div className="flex items-center space-x-3">
-              <div className="ps-hero-gradient rounded-lg p-2">
-                <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center">
-                  <span className="text-primary font-bold text-lg">PS</span>
+              <div className="bg-white rounded-lg p-2">
+                <div className="w-8 h-8 bg-ps-primary rounded-sm flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">PS</span>
                 </div>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-primary">Orbitra AI</h1>
-                <p className="text-sm text-muted-foreground">PS Training</p>
+                <h1 className="text-xl font-bold text-white">PS Training</h1>
+                <p className="text-sm text-ps-primary-light">Training Management System</p>
               </div>
             </div>
 
@@ -117,10 +117,10 @@ export function Navigation() {
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="menu-item text-foreground hover:text-primary hover:bg-accent px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1"
+                      className="menu-item text-white hover:text-ps-primary-light hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1"
                     >
                       <span>{menu.title}</span>
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4 text-white" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
@@ -147,7 +147,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="sm"
-              className="lg:hidden"
+              className="lg:hidden text-white hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <Menu className="h-5 w-5" />
@@ -156,15 +156,15 @@ export function Navigation() {
             {/* User Profile Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-2 hover:bg-accent">
+                <Button variant="ghost" className="flex items-center space-x-2 hover:bg-white/10">
                   <div className="w-8 h-8 ps-gradient-bg rounded-full flex items-center justify-center">
                     <User className="h-4 w-4 text-white" />
                   </div>
                   <div className="hidden sm:block text-left">
-                    <p className="text-sm font-medium text-foreground">Admin</p>
-                    <p className="text-xs text-muted-foreground">Training Manager</p>
+                    <p className="text-sm font-medium text-white">Admin</p>
+                    <p className="text-xs text-ps-primary-light">Training Manager</p>
                   </div>
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  <ChevronDown className="h-4 w-4 text-white" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 bg-white border shadow-lg">
@@ -185,16 +185,16 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-border">
+        <div className="lg:hidden bg-ps-primary border-t border-ps-primary-dark">
           <div className="px-4 py-2 space-y-1 max-h-96 overflow-y-auto">
             {menuItems.map((menu, index) => (
               <div key={index} className="py-2">
-                <p className="font-medium text-primary mb-2">{menu.title}</p>
+                <p className="font-medium text-white mb-2">{menu.title}</p>
                 <div className="pl-4 space-y-1">
                   {menu.items.map((item, itemIndex) => (
                     <button
                       key={itemIndex}
-                      className="block w-full text-left text-sm text-muted-foreground hover:text-primary py-1"
+                      className="block w-full text-left text-sm text-ps-primary-light hover:text-white py-1"
                     >
                       {item}
                     </button>
