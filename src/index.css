@@ -2,95 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* PS Training Design System - Professional Corporate Theme */
 
 @layer base {
   :root {
+    /* PS Training Brand Colors - Corporate Blue Theme */
+    --ps-primary: 213 100% 35%; /* #0057B8 - Main brand color */
+    --ps-primary-light: 213 100% 45%; /* Lighter version */
+    --ps-primary-dark: 213 100% 25%; /* Darker version */
+    --ps-primary-glow: 213 100% 65%; /* For glow effects */
+    
+    /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 222 84% 5%;
+    
+    /* Card colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --card-foreground: 222 84% 5%;
+    
+    /* Primary system colors using PS brand */
+    --primary: 213 100% 35%; /* PS brand blue */
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary colors */
+    --secondary: 213 20% 96%;
+    --secondary-foreground: 213 100% 25%;
+    
+    /* Accent colors */
+    --accent: 213 25% 94%;
+    --accent-foreground: 213 100% 30%;
+    
+    /* Muted colors */
+    --muted: 213 15% 96%;
+    --muted-foreground: 213 10% 45%;
+    
+    /* Border and input */
+    --border: 213 20% 90%;
+    --input: 213 20% 90%;
+    --ring: 213 100% 35%;
+    
+    /* Status colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--ps-primary)), hsl(var(--ps-primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--ps-primary-dark)), hsl(var(--ps-primary)));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(213 20% 98%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(213 100% 35% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(213 100% 35% / 0.1), 0 2px 4px -2px hsl(213 100% 35% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(213 100% 35% / 0.1), 0 4px 6px -4px hsl(213 100% 35% / 0.1);
+    --shadow-glow: 0 0 20px hsl(var(--ps-primary-glow) / 0.3);
+    
+    /* Radius */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    
+    /* Sidebar colors */
+    --sidebar-background: 213 25% 97%;
+    --sidebar-foreground: 213 15% 35%;
+    --sidebar-primary: 213 100% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 20% 92%;
+    --sidebar-accent-foreground: 213 100% 30%;
+    --sidebar-border: 213 20% 88%;
+    --sidebar-ring: 213 100% 35%;
+    
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark theme for PS Training (optional for future use) */
+    --background: 213 25% 8%;
+    --foreground: 0 0% 98%;
+    
+    --card: 213 25% 10%;
+    --card-foreground: 0 0% 98%;
+    
+    --primary: 213 100% 55%;
+    --primary-foreground: 213 25% 8%;
+    
+    --secondary: 213 15% 15%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 213 15% 15%;
+    --muted-foreground: 213 10% 65%;
+    
+    --accent: 213 15% 18%;
+    --accent-foreground: 0 0% 98%;
+    
+    --border: 213 15% 18%;
+    --input: 213 15% 18%;
+    --ring: 213 100% 55%;
+    
+    --sidebar-background: 213 25% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 213 100% 55%;
+    --sidebar-primary-foreground: 213 25% 6%;
+    --sidebar-accent: 213 15% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 213 15% 12%;
+    --sidebar-ring: 213 100% 55%;
   }
 }
 
@@ -100,6 +121,78 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* PS Training Component Styles */
+  .ps-card {
+    @apply bg-card rounded-lg border shadow-sm;
+  }
+  
+  .ps-card-elevated {
+    @apply ps-card shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+  
+  .ps-gradient-bg {
+    background: var(--gradient-primary);
+  }
+  
+  .ps-hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .ps-card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  .ps-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .ps-transition {
+    transition: var(--transition-smooth);
+  }
+  
+  .ps-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Menu item hover effects */
+  .menu-item {
+    @apply relative overflow-hidden ps-transition;
+  }
+  
+  .menu-item::before {
+    @apply absolute inset-0 bg-primary/5 scale-x-0 origin-left ps-transition;
+    content: '';
+  }
+  
+  .menu-item:hover::before {
+    @apply scale-x-100;
+  }
+  
+  /* KPI Card animations */
+  .kpi-card {
+    @apply ps-card-elevated ps-transition hover:scale-105;
+  }
+  
+  .kpi-icon {
+    @apply rounded-full p-3 ps-gradient-bg text-white;
+  }
+  
+  /* Professional typography */
+  .heading-primary {
+    @apply text-3xl font-bold text-foreground tracking-tight;
+  }
+  
+  .heading-secondary {
+    @apply text-xl font-semibold text-foreground;
+  }
+  
+  .text-brand {
+    @apply text-primary font-medium;
   }
 }

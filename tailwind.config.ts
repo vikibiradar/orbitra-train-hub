@@ -57,6 +57,23 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // PS Training brand colors
+        "ps-primary": "hsl(var(--ps-primary))",
+        "ps-primary-light": "hsl(var(--ps-primary-light))",
+        "ps-primary-dark": "hsl(var(--ps-primary-dark))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-card": "var(--gradient-card)",
+      },
+      boxShadow: {
+        "glow": "var(--shadow-glow)",
+        "sm": "var(--shadow-sm)",
+        "md": "var(--shadow-md)",
+        "lg": "var(--shadow-lg)",
       },
       borderRadius: {
         lg: "var(--radius)",
