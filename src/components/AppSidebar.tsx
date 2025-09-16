@@ -1,13 +1,19 @@
-import { 
-  BookOpen, 
-  ClipboardCheck, 
-  Users, 
-  Search, 
-  FileText, 
-  Settings, 
-  Database, 
-  ShieldCheck 
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import {
+  BookOpen,
+  Users,
+  ClipboardCheck,
+  BarChart3,
+  Settings,
+  ShieldCheck,
+  FileText,
+  GraduationCap,
+  Database,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
+
 import {
   Sidebar,
   SidebarContent,
@@ -18,164 +24,201 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-  SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarHeader,
+  SidebarMenuSubButton,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { ChevronRight } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const menuItems = [
   {
     title: "Training Planner",
     icon: BookOpen,
     items: [
-      "New Employee Planner",
-      "Approve New Employee Planner", 
-      "Edit Employee Planner",
-      "Annual Employee Planner",
-      "Close Annual Employee Planner",
-      "Print Planner",
-      "Update Additional Training"
-    ]
+      { title: "New Employee Planner", url: "/training-planner/new-employee" },
+      { title: "Approve New Employee Planner", url: "/training-planner/approve-new" },
+      { title: "Edit Employee Planner", url: "/training-planner/edit" },
+      { title: "Annual Employee Planner", url: "/training-planner/annual" },
+      { title: "Close Annual Employee Planner", url: "/training-planner/close-annual" },
+      { title: "Print Planner", url: "/training-planner/print" },
+      { title: "Update Additional Training", url: "/training-planner/update-additional" },
+    ],
   },
   {
     title: "Evaluations",
     icon: ClipboardCheck,
     items: [
-      "Internal Evaluation Update",
-      "Plan Final Evaluation",
-      "Final Evaluation Update"
-    ]
+      { title: "Internal Evaluation Update", url: "/evaluations/internal-update" },
+      { title: "Plan Final Evaluation", url: "/evaluations/plan-final" },
+      { title: "Final Evaluation Update", url: "/evaluations/final-update" },
+    ],
   },
   {
     title: "Trainer",
     icon: Users,
     items: [
-      "Accept Training",
-      "Training Attendance and Rating",
-      "Training Materials"
-    ]
+      { title: "Accept Training", url: "/trainer/accept" },
+      { title: "Training Attendance and Rating", url: "/trainer/attendance-rating" },
+      { title: "Training Materials", url: "/trainer/materials" },
+    ],
   },
   {
     title: "Surprise Audit",
-    icon: Search,
+    icon: ShieldCheck,
     items: [
-      "Generate Surprise Audit",
-      "Update Surprise Audit"
-    ]
+      { title: "Generate Surprise Audit", url: "/surprise-audit/generate" },
+      { title: "Update Surprise Audit", url: "/surprise-audit/update" },
+    ],
   },
   {
     title: "Reports",
-    icon: FileText,
+    icon: BarChart3,
     items: [
-      "Surprise Audit Report",
-      "Training Planner Report",
-      "Training Report (Training Planner/Attendance)",
-      "Training Topics Report",
-      "Employee Reports",
-      "Trainer Report"
-    ]
+      { title: "Surprise Audit Report", url: "/reports/surprise-audit" },
+      { title: "Training Planner Report", url: "/reports/training-planner" },
+      { title: "Training Report", url: "/reports/training" },
+      { title: "Training Topics Report", url: "/reports/training-topics" },
+      { title: "Employee Reports", url: "/reports/employee" },
+      { title: "Trainer Report", url: "/reports/trainer" },
+    ],
   },
   {
     title: "TC Control",
     icon: Settings,
     items: [
-      "UnLock (Unlock Records)",
-      "Employee Planner Report",
-      "Additional Controls",
-      "Training Material (System reference)"
-    ]
+      { title: "UnLock", url: "/tc-control/unlock" },
+      { title: "Employee Planner Report", url: "/tc-control/employee-planner-report" },
+      { title: "Additional Controls", url: "/tc-control/additional" },
+      { title: "Training Material", url: "/tc-control/training-material" },
+    ],
   },
   {
     title: "Master",
     icon: Database,
     items: [
-      "Scope",
-      "Scope & Department Mapping",
-      "Topic Module",
-      "Training Mode",
-      "Topic",
-      "Trainer Mapping",
-      "Access Management",
-      "Topic & Scope Mapping",
-      "Department & Panel Member Mapping"
-    ]
+      { title: "Scope", url: "/master/scope" },
+      { title: "Scope & Department Mapping", url: "/master/scope-department" },
+      { title: "Topic Module", url: "/master/topic-module" },
+      { title: "Training Mode", url: "/master/training-mode" },
+      { title: "Topic", url: "/master/topic" },
+      { title: "Trainer Mapping", url: "/master/trainer-mapping" },
+    ],
+  },
+  {
+    title: "Access Management",
+    icon: GraduationCap,
+    items: [
+      { title: "Topic & Scope Mapping", url: "/access-management/topic-scope" },
+      { title: "Department & Panel Member Mapping", url: "/access-management/department-panel" },
+    ],
   },
   {
     title: "Admin",
-    icon: ShieldCheck,
+    icon: FileText,
     items: [
-      "Manage Email Templates",
-      "View Email Notification"
-    ]
-  }
+      { title: "Manage Email Templates", url: "/admin/email-templates" },
+      { title: "View Email Notification", url: "/admin/email-notifications" },
+    ],
+  },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set(["Training Planner"]));
+  const collapsed = state === "collapsed";
+
+  const isGroupActive = (group: typeof menuItems[0]) => {
+    return group.items.some((item) => currentPath === item.url || currentPath.startsWith(item.url));
+  };
+
+  const isItemActive = (url: string) => currentPath === url;
+
+  const toggleGroup = (groupTitle: string) => {
+    const newOpenGroups = new Set(openGroups);
+    if (newOpenGroups.has(groupTitle)) {
+      newOpenGroups.delete(groupTitle);
+    } else {
+      newOpenGroups.add(groupTitle);
+    }
+    setOpenGroups(newOpenGroups);
+  };
 
   return (
-    <Sidebar className="border-r border-ps-primary bg-ps-primary-dark text-white">
-      <SidebarHeader className="p-4 border-b border-ps-primary">
-        <div className="flex items-center space-x-3">
-          <div className="bg-white rounded-lg p-2">
-            <div className="w-8 h-8 ps-gradient-bg rounded-sm flex items-center justify-center">
-              <span className="text-white font-bold text-lg">PS</span>
+    <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border`}>
+      <SidebarContent className="py-4 bg-sidebar">
+        <div className="px-4 pb-4 border-b border-sidebar-border/50">
+          <div className="flex items-center gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sidebar-primary shadow-lg">
+              <GraduationCap className="h-6 w-6 text-sidebar-primary-foreground" />
             </div>
+            {!collapsed && (
+              <div>
+                <h1 className="text-lg font-semibold text-sidebar-foreground">PS Training</h1>
+                <p className="text-xs text-sidebar-foreground/70">Enterprise System</p>
+              </div>
+            )}
           </div>
-          {state !== "collapsed" && (
-            <div className="min-w-0">
-              <h1 className="text-xl font-bold text-white truncate">PS Training</h1>
-              <p className="text-sm text-ps-primary-light truncate">Training Management System</p>
-            </div>
-          )}
         </div>
-      </SidebarHeader>
 
-      <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((menu, index) => (
-                <Collapsible key={index} asChild defaultOpen>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton tooltip={menu.title}>
-                      <CollapsibleTrigger className="flex items-center justify-between w-full p-0 hover:bg-transparent">
-                        <div className="flex items-center space-x-2 text-white hover:text-ps-primary-light">
-                          <menu.icon className="h-4 w-4" />
-                          {state !== "collapsed" && <span>{menu.title}</span>}
+          <SidebarMenu>
+            {menuItems.map((group) => {
+              const isOpen = openGroups.has(group.title);
+              const isActive = isGroupActive(group);
+
+              return (
+                <SidebarMenuItem key={group.title}>
+                  <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        className={`w-full justify-between hover:bg-sidebar-accent transition-colors ${
+                          isActive 
+                            ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm" 
+                            : "text-sidebar-foreground hover:text-sidebar-accent-foreground"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <group.icon className="h-5 w-5" />
+                          {!collapsed && <span className="font-medium">{group.title}</span>}
                         </div>
-                        {state !== "collapsed" && <ChevronRight className="h-4 w-4 text-white transition-transform group-data-[state=open]:rotate-90" />}
-                      </CollapsibleTrigger>
-                    </SidebarMenuButton>
-                    
-                    {state !== "collapsed" && (
+                        {!collapsed && (
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                          />
+                        )}
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    {!collapsed && (
                       <CollapsibleContent>
                         <SidebarMenuSub>
-                          {menu.items.map((item, itemIndex) => (
-                            <SidebarMenuSubItem key={itemIndex}>
+                          {group.items.map((item) => (
+                            <SidebarMenuSubItem key={item.url}>
                               <SidebarMenuSubButton asChild>
-                                <button className="w-full text-left text-sm text-ps-primary-light hover:bg-white/10 hover:text-white">
-                                  {item}
-                                </button>
+                                <NavLink
+                                  to={item.url}
+                                  className={({ isActive }) =>
+                                    `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
+                                      isActive
+                                        ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
+                                        : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+                                    }`
+                                  }
+                                >
+                                  {item.title}
+                                </NavLink>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           ))}
                         </SidebarMenuSub>
                       </CollapsibleContent>
                     )}
-                  </SidebarMenuItem>
-                </Collapsible>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
+                  </Collapsible>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
