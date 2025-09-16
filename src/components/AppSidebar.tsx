@@ -121,7 +121,7 @@ export function AppSidebar() {
   const { state } = useSidebar();
 
   return (
-    <Sidebar className="border-r bg-ps-primary-dark text-white">
+    <Sidebar className="border-r border-ps-primary bg-ps-primary-dark text-white">
       <SidebarHeader className="p-4 border-b border-ps-primary">
         <div className="flex items-center space-x-3">
           <div className="bg-white rounded-lg p-2">
