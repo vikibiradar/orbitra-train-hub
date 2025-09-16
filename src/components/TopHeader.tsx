@@ -11,7 +11,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export function TopHeader() {
   return (
-    <header className="h-16 border-b bg-background px-4 flex items-center justify-between">
+    <header className="h-16 border-b bg-ps-primary-dark px-4 flex items-center justify-between">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
       </div>
@@ -19,15 +19,15 @@ export function TopHeader() {
       {/* User Profile Dropdown */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="flex items-center space-x-2">
+          <Button variant="ghost" className="flex items-center space-x-2 text-white hover:bg-white/10">
             <div className="w-8 h-8 ps-gradient-bg rounded-full flex items-center justify-center">
               <User className="h-4 w-4 text-white" />
             </div>
             <div className="hidden sm:block text-left">
-              <p className="text-sm font-medium">Admin</p>
-              <p className="text-xs text-muted-foreground">Training Manager</p>
+              <p className="text-sm font-medium text-white">Admin</p>
+              <p className="text-xs text-ps-primary-light">Training Manager</p>
             </div>
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 text-white" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-56">

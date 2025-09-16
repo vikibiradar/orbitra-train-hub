@@ -121,8 +121,8 @@ export function AppSidebar() {
   const { state } = useSidebar();
 
   return (
-    <Sidebar className="border-r bg-sidebar-background">
-      <SidebarHeader className="p-4 border-b">
+    <Sidebar className="border-r bg-ps-primary-dark text-white">
+      <SidebarHeader className="p-4 border-b border-ps-primary">
         <div className="flex items-center space-x-3">
           <div className="bg-white rounded-lg p-2">
             <div className="w-8 h-8 ps-gradient-bg rounded-sm flex items-center justify-center">
@@ -131,8 +131,8 @@ export function AppSidebar() {
           </div>
           {state !== "collapsed" && (
             <div className="min-w-0">
-              <h1 className="text-xl font-bold text-sidebar-foreground truncate">PS Training</h1>
-              <p className="text-sm text-sidebar-foreground/70 truncate">Training Management System</p>
+              <h1 className="text-xl font-bold text-white truncate">PS Training</h1>
+              <p className="text-sm text-ps-primary-light truncate">Training Management System</p>
             </div>
           )}
         </div>
@@ -148,11 +148,11 @@ export function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton tooltip={menu.title}>
                       <CollapsibleTrigger className="flex items-center justify-between w-full p-0 hover:bg-transparent">
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 text-white hover:text-ps-primary-light">
                           <menu.icon className="h-4 w-4" />
                           {state !== "collapsed" && <span>{menu.title}</span>}
                         </div>
-                        {state !== "collapsed" && <ChevronRight className="h-4 w-4 transition-transform group-data-[state=open]:rotate-90" />}
+                        {state !== "collapsed" && <ChevronRight className="h-4 w-4 text-white transition-transform group-data-[state=open]:rotate-90" />}
                       </CollapsibleTrigger>
                     </SidebarMenuButton>
                     
@@ -162,7 +162,7 @@ export function AppSidebar() {
                           {menu.items.map((item, itemIndex) => (
                             <SidebarMenuSubItem key={itemIndex}>
                               <SidebarMenuSubButton asChild>
-                                <button className="w-full text-left text-sm hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground">
+                                <button className="w-full text-left text-sm text-ps-primary-light hover:bg-white/10 hover:text-white">
                                   {item}
                                 </button>
                               </SidebarMenuSubButton>
