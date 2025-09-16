@@ -65,15 +65,15 @@
     --radius-sm: 0.5rem;
     --radius-lg: 1rem;
     
-    /* Sidebar colors - Dark Blue Theme */
-    --sidebar-background: 213 100% 25%; /* Dark blue background */
+    /* Sidebar colors - Very Dark Blue Theme */
+    --sidebar-background: 213 100% 15%; /* Very dark blue background */
     --sidebar-foreground: 0 0% 95%; /* Light text */
-    --sidebar-primary: 213 100% 45%; /* Lighter blue for active items */
+    --sidebar-primary: 213 100% 35%; /* Lighter blue for active items */
     --sidebar-primary-foreground: 0 0% 100%; /* White text for active items */
-    --sidebar-accent: 213 100% 30%; /* Slightly lighter dark blue for hover */
+    --sidebar-accent: 213 100% 20%; /* Slightly lighter dark blue for hover */
     --sidebar-accent-foreground: 0 0% 95%; /* Light text for hover */
-    --sidebar-border: 213 100% 20%; /* Darker border */
-    --sidebar-ring: 213 100% 45%; /* Focus ring color */
+    --sidebar-border: 213 100% 10%; /* Very dark border */
+    --sidebar-ring: 213 100% 35%; /* Focus ring color */
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
