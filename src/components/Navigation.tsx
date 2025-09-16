@@ -104,10 +104,10 @@ export function Navigation() {
                   <span className="text-white font-bold text-lg">PS</span>
                 </div>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-white">PS Training</h1>
-                <p className="text-sm text-ps-primary-light">Training Management System</p>
-              </div>
+            <div className="min-w-0">
+              <h1 className="text-xl font-bold text-white truncate">PS Training</h1>
+              <p className="text-sm text-ps-primary-light truncate hidden sm:block">Training Management System</p>
+            </div>
             </div>
 
             {/* Desktop Menu */}
