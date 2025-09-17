@@ -16,11 +16,11 @@ export function TopHeader() {
     <header className="h-16 border-b bg-ps-primary-dark px-4 flex items-center justify-between">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
-        <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center space-x-3 hover:opacity-100 transition-opacity">
           <img src={tuvLogo} alt="TUV Logo" className="h-10 w-10" />
           <div className="flex flex-col">
             <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
-            <p className="text-xs text-ps-primary-light leading-tight">Training Management System</p>
+            <p className="text-xs font-bold text-white leading-tight">Training Management System</p>
           </div>
         </Link>
       </div>
