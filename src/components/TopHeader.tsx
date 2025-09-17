@@ -8,12 +8,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
+import tuvLogo from "@/assets/tuv-logo.png";
 
 export function TopHeader() {
   return (
     <header className="h-16 border-b bg-ps-primary-dark px-4 flex items-center justify-between">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
+        <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <img src={tuvLogo} alt="TUV Logo" className="h-8 w-8" />
+          <h1 className="text-xl font-bold text-white">PS Training</h1>
+        </Link>
       </div>
 
       {/* User Profile Dropdown */}
