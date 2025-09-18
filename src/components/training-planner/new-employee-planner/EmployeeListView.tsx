@@ -100,30 +100,30 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
           />
         </div>
         
-        <Select value={filters.department || ""} onValueChange={(value) => 
-          setFilters(prev => ({ ...prev, department: value || undefined }))
+        <Select value={filters.department || "all"} onValueChange={(value) => 
+          setFilters(prev => ({ ...prev, department: value === "all" ? undefined : value }))
         }>
           <SelectTrigger className="w-full md:w-48">
             <Building2 className="h-4 w-4 mr-2" />
             <SelectValue placeholder="All Departments" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Departments</SelectItem>
+            <SelectItem value="all">All Departments</SelectItem>
             {mockDepartments.filter(dept => dept.isPSRelated).map(dept => (
               <SelectItem key={dept.id} value={dept.id}>{dept.name}</SelectItem>
             ))}
           </SelectContent>
         </Select>
 
-        <Select value={filters.location || ""} onValueChange={(value) => 
-          setFilters(prev => ({ ...prev, location: value || undefined }))
+        <Select value={filters.location || "all"} onValueChange={(value) => 
+          setFilters(prev => ({ ...prev, location: value === "all" ? undefined : value }))
         }>
           <SelectTrigger className="w-full md:w-40">
             <MapPin className="h-4 w-4 mr-2" />
             <SelectValue placeholder="All Locations" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Locations</SelectItem>
+            <SelectItem value="all">All Locations</SelectItem>
             {mockLocations.map(loc => (
               <SelectItem key={loc.id} value={loc.id}>{loc.name}</SelectItem>
             ))}
@@ -133,7 +133,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
         <Button
           variant="outline"
           onClick={() => setFilters({})}
-          disabled={!filters.searchTerm && !filters.department && !filters.location}
+          disabled={!filters.searchTerm && (!filters.department || filters.department === "all") && (!filters.location || filters.location === "all")}
         >
           <Filter className="h-4 w-4 mr-2" />
           Clear
