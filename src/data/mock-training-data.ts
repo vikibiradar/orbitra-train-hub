@@ -178,8 +178,10 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-1",
     employeeCode: "TUV001",
-    name: "Dr. Rajesh Kumar",
-    email: "rajesh.kumar@tuvsud.com",
+    
+    name: "Tushar Maske",
+    email: "tushar.maske@tuvsud.com",
+,
     department: mockDepartments[0],
     specializations: ["Textile Testing", "Quality Systems"],
     isActive: true
@@ -187,8 +189,10 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-2",
     employeeCode: "TUV002",
-    name: "Ms. Priya Sharma",
-    email: "priya.sharma@tuvsud.com",
+    
+name: "Mayuri Manikpure",
+email: "mayuri.manikpure@tuvsud.com"
+",
     department: mockDepartments[1],
     specializations: ["Food Safety", "Microbiology"],
     isActive: true
@@ -196,8 +200,9 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-3",
     employeeCode: "TUV003",
-    name: "Mr. Amit Patel",
-    email: "amit.patel@tuvsud.com",
+    
+name: "Akshay Dhumal",
+email: "akshay.dhumal@tuvsud.com",
     department: mockDepartments[2],
     specializations: ["Chemical Analysis", "Analytical Chemistry"],
     isActive: true
@@ -205,8 +210,10 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-4",
     employeeCode: "TUV004",
-    name: "Dr. Sarah Johnson",
-    email: "sarah.johnson@tuvsud.com",
+   
+name: "Tejas Kashid",
+email: "tejas.kashid@tuvsud.com"
+,
     department: mockDepartments[3],
     specializations: ["Product Inspection", "Quality Control"],
     isActive: true
@@ -214,8 +221,10 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-5",
     employeeCode: "TUV005",
-    name: "Mr. Vikram Singh",
-    email: "vikram.singh@tuvsud.com",
+    
+name: "Chetan Magar",
+email: "chetan.magar@tuvsud.com"
+,
     department: mockDepartments[4],
     specializations: ["Energy Testing", "Environmental Standards"],
     isActive: true
@@ -223,8 +232,10 @@ export const mockTrainers: Trainer[] = [
   {
     id: "trainer-6",
     employeeCode: "TUV006",
-    name: "Ms. Lisa Chen",
-    email: "lisa.chen@tuvsud.com",
+
+name: "Lalit Sinkar",
+email: "lalit.sinkar@tuvsud.com"
+,
     department: mockDepartments[0],
     specializations: ["Laboratory Safety", "Training Management"],
     isActive: true
@@ -236,8 +247,8 @@ export const mockTrainingIncharges: TrainingIncharge[] = [
   {
     id: "ti-1",
     employeeCode: "TUV101",
-    name: "Mr. Rohit Gupta",
-    email: "rohit.gupta@tuvsud.com",
+name: "Tejas Kashid",
+email: "tejas.kashid@tuvsud.com",
     department: mockDepartments[0],
     isActive: true
   },
