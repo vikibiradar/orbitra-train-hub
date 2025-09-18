@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
+import { TopHeader } from "@/components/TopHeader";
 import { EmployeeListView } from "./EmployeeListView";
 import { PlannerForm } from "./PlannerForm";
 import { Employee, PlannerType, PlannerTypeType } from "@/types/training-planner";
@@ -46,7 +49,13 @@ export function NewEmployeePlannerPage() {
   };
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        <SidebarInset>
+          <TopHeader />
+          
+          <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       {/* Breadcrumb Navigation */}
       <div className="flex items-center space-x-4">
         <Breadcrumb>
@@ -162,7 +171,10 @@ export function NewEmployeePlannerPage() {
           </Card>
         )}
       </div>
-    </div>
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 }
 
