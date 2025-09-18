@@ -270,7 +270,7 @@ export const mockNewEmployees: Employee[] = [
     email: "arjun.menon@tuv.com",
     department: mockDepartments[0], // PS-Softlines
     location: mockLocations[0], // Mumbai
-    joiningDate: "2024-01-15",
+    joiningDate: "2025-01-15",
     isResigned: false,
     applicableYear: 2024
   },
@@ -283,7 +283,7 @@ export const mockNewEmployees: Employee[] = [
     email: "kavya.rao@tuv.com",
     department: mockDepartments[1], // PS-Food
     location: mockLocations[1], // Delhi
-    joiningDate: "2024-02-01",
+    joiningDate: "2025-02-01",
     isResigned: false,
     applicableYear: 2024
   },
@@ -296,7 +296,7 @@ export const mockNewEmployees: Employee[] = [
     email: "deepak.singh@tuv.com",
     department: mockDepartments[2], // PS-Chem
     location: mockLocations[2], // Bangalore
-    joiningDate: "2024-01-20",
+    joiningDate: "2025-01-20",
     isResigned: false,
     applicableYear: 2024
   },
@@ -309,7 +309,7 @@ export const mockNewEmployees: Employee[] = [
     email: "neha.agarwal@tuv.com",
     department: mockDepartments[3], // PS-Hardlines
     location: mockLocations[0], // Mumbai
-    joiningDate: "2024-02-10",
+    joiningDate: "2025-02-10",
     isResigned: false,
     applicableYear: 2024
   },
@@ -322,7 +322,7 @@ export const mockNewEmployees: Employee[] = [
     email: "rakesh.joshi@tuv.com",
     department: mockDepartments[4], // PS-ENE
     location: mockLocations[3], // Chennai
-    joiningDate: "2024-01-25",
+    joiningDate: "2025-01-25",
     isResigned: false,
     applicableYear: 2024
   },
@@ -335,7 +335,7 @@ export const mockNewEmployees: Employee[] = [
     email: "simran.kaur@tuv.com",
     department: mockDepartments[5], // PS-Food-Chemical
     location: mockLocations[4], // Pune
-    joiningDate: "2024-02-15",
+    joiningDate: "2025-02-15",
     isResigned: false,
     applicableYear: 2024
   }
@@ -360,15 +360,15 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     employee: mockNewEmployees[0],
     plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[0],
-    proposedFirstEvaluationDate: "2024-03-15",
+    proposedFirstEvaluationDate: "2025-03-15",
     selectedScopes: [mockTrainingScopes[0]],
     topics: [
       {
         id: "topic-plan-1",
         topic: mockTrainingTopics[0],
         trainer: mockTrainers[5],
-        startDate: "2024-02-01",
-        endDate: "2024-02-01",
+        startDate: "2025-02-01",
+        endDate: "2025-02-01",
         modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
         comments: "Basic safety training for new joiner"
       },
@@ -376,8 +376,8 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         id: "topic-plan-2",
         topic: mockTrainingTopics[1],
         trainer: mockTrainers[0],
-        startDate: "2024-02-05",
-        endDate: "2024-02-07",
+        startDate: "2025-02-05",
+        endDate: "2025-02-07",
         modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
         comments: "Textile testing fundamentals"
       }
@@ -385,8 +385,8 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     status: PlannerStatus.APPROVED,
     createdBy: "TM001",
     createdDate: "2024-01-20",
-    submittedDate: "2024-01-22",
-    approvedDate: "2024-01-25"
+    submittedDate: "2025-01-22",
+    approvedDate: "2025-01-25"
   }
 ];
 
