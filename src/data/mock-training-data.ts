@@ -179,7 +179,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-1",
     employeeCode: "TUV001",
     name: "Dr. Rajesh Kumar",
-    email: "rajesh.kumar@tuv.com",
+    email: "rajesh.kumar@tuvsud.com",
     department: mockDepartments[0],
     specializations: ["Textile Testing", "Quality Systems"],
     isActive: true
@@ -188,7 +188,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-2",
     employeeCode: "TUV002",
     name: "Ms. Priya Sharma",
-    email: "priya.sharma@tuv.com",
+    email: "priya.sharma@tuvsud.com",
     department: mockDepartments[1],
     specializations: ["Food Safety", "Microbiology"],
     isActive: true
@@ -197,7 +197,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-3",
     employeeCode: "TUV003",
     name: "Mr. Amit Patel",
-    email: "amit.patel@tuv.com",
+    email: "amit.patel@tuvsud.com",
     department: mockDepartments[2],
     specializations: ["Chemical Analysis", "Analytical Chemistry"],
     isActive: true
@@ -206,7 +206,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-4",
     employeeCode: "TUV004",
     name: "Dr. Sarah Johnson",
-    email: "sarah.johnson@tuv.com",
+    email: "sarah.johnson@tuvsud.com",
     department: mockDepartments[3],
     specializations: ["Product Inspection", "Quality Control"],
     isActive: true
@@ -215,7 +215,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-5",
     employeeCode: "TUV005",
     name: "Mr. Vikram Singh",
-    email: "vikram.singh@tuv.com",
+    email: "vikram.singh@tuvsud.com",
     department: mockDepartments[4],
     specializations: ["Energy Testing", "Environmental Standards"],
     isActive: true
@@ -224,7 +224,7 @@ export const mockTrainers: Trainer[] = [
     id: "trainer-6",
     employeeCode: "TUV006",
     name: "Ms. Lisa Chen",
-    email: "lisa.chen@tuv.com",
+    email: "lisa.chen@tuvsud.com",
     department: mockDepartments[0],
     specializations: ["Laboratory Safety", "Training Management"],
     isActive: true
@@ -237,7 +237,7 @@ export const mockTrainingIncharges: TrainingIncharge[] = [
     id: "ti-1",
     employeeCode: "TUV101",
     name: "Mr. Rohit Gupta",
-    email: "rohit.gupta@tuv.com",
+    email: "rohit.gupta@tuvsud.com",
     department: mockDepartments[0],
     isActive: true
   },
@@ -245,7 +245,7 @@ export const mockTrainingIncharges: TrainingIncharge[] = [
     id: "ti-2",
     employeeCode: "TUV102",
     name: "Ms. Anjali Verma",
-    email: "anjali.verma@tuv.com",
+    email: "anjali.verma@tuvsud.com",
     department: mockDepartments[1],
     isActive: true
   },
@@ -253,7 +253,7 @@ export const mockTrainingIncharges: TrainingIncharge[] = [
     id: "ti-3",
     employeeCode: "TUV103",
     name: "Dr. Suresh Reddy",
-    email: "suresh.reddy@tuv.com",
+    email: "suresh.reddy@tuvsud.com",
     department: mockDepartments[2],
     isActive: true
   }
@@ -267,7 +267,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee1",
     firstName: "Arjun",
     lastName: "Menon",
-    email: "arjun.menon@tuv.com",
+    email: "arjun.menon@tuvsud.com",
     department: mockDepartments[0], // PS-Softlines
     location: mockLocations[0], // Mumbai
     joiningDate: "2025-01-15",
@@ -280,7 +280,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee2",
     firstName: "Kavya",
     lastName: "Rao",
-    email: "kavya.rao@tuv.com",
+    email: "kavya.rao@tuvsud.com",
     department: mockDepartments[1], // PS-Food
     location: mockLocations[1], // Delhi
     joiningDate: "2025-02-01",
@@ -293,7 +293,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee3",
     firstName: "Deepak",
     lastName: "Singh",
-    email: "deepak.singh@tuv.com",
+    email: "deepak.singh@tuvsud.com",
     department: mockDepartments[2], // PS-Chem
     location: mockLocations[2], // Bangalore
     joiningDate: "2025-01-20",
@@ -306,7 +306,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee4",
     firstName: "Neha",
     lastName: "Agarwal",
-    email: "neha.agarwal@tuv.com",
+    email: "neha.agarwal@tuvsud.com",
     department: mockDepartments[3], // PS-Hardlines
     location: mockLocations[0], // Mumbai
     joiningDate: "2025-02-10",
@@ -319,7 +319,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee5",
     firstName: "Rakesh",
     lastName: "Joshi",
-    email: "rakesh.joshi@tuv.com",
+    email: "rakesh.joshi@tuvsud.com",
     department: mockDepartments[4], // PS-ENE
     location: mockLocations[3], // Chennai
     joiningDate: "2025-01-25",
@@ -332,7 +332,7 @@ export const mockNewEmployees: Employee[] = [
     employeeADID: "new.employee6",
     firstName: "Simran",
     lastName: "Kaur",
-    email: "simran.kaur@tuv.com",
+    email: "simran.kaur@tuvsud.com",
     department: mockDepartments[5], // PS-Food-Chemical
     location: mockLocations[4], // Pune
     joiningDate: "2025-02-15",
