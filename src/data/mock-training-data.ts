@@ -190,8 +190,7 @@ export const mockTrainers: Trainer[] = [
     employeeCode: "TUV002",
     
 name: "Mayuri Manikpure",
-email: "mayuri.manikpure@tuvsud.com"
-",
+email: "mayuri.manikpure@tuvsud.com",
     department: mockDepartments[1],
     specializations: ["Food Safety", "Microbiology"],
     isActive: true
