@@ -181,7 +181,6 @@ export const mockTrainers: Trainer[] = [
     
     name: "Tushar Maske",
     email: "tushar.maske@tuvsud.com",
-,
     department: mockDepartments[0],
     specializations: ["Textile Testing", "Quality Systems"],
     isActive: true
