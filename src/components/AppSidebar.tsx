@@ -126,9 +126,17 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
-  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set(["Training Planner"]));
+  const [openGroups, setOpenGroups] = useState<Set<string>>(() => new Set());
   const collapsed = state === "collapsed";
-
+  useEffect(() => {
+    const activeGroups = new Set<string>();
+    for (const group of menuItems) {
+      if (group.items.some((item) => currentPath === item.url || currentPath.startsWith(item.url))) {
+        activeGroups.add(group.title);
+      }
+    }
+    setOpenGroups(activeGroups);
+  }, [currentPath]);
   const isGroupActive = (group: typeof menuItems[0]) => {
     return group.items.some((item) => currentPath === item.url || currentPath.startsWith(item.url));
   };
