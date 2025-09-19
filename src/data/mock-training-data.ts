@@ -396,6 +396,147 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     createdDate: "2024-01-20",
     submittedDate: "2025-01-22",
     approvedDate: "2025-01-25"
+  },
+  // Submitted planners for TI approval
+  {
+    id: "planner-2",
+    employee: mockNewEmployees[1],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[1],
+    proposedFirstEvaluationDate: "2025-03-20",
+    selectedScopes: [mockTrainingScopes[1]],
+    topics: [
+      {
+        id: "topic-plan-3",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2025-02-15",
+        endDate: "2025-02-15",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Safety training for food department"
+      },
+      {
+        id: "topic-plan-4",
+        topic: mockTrainingTopics[2],
+        trainer: mockTrainers[1],
+        startDate: "2025-02-20",
+        endDate: "2025-02-23",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Food microbiology fundamentals",
+        isNew: true
+      }
+    ],
+    status: PlannerStatus.SUBMITTED,
+    createdBy: "TM002",
+    createdDate: "2025-01-25",
+    submittedDate: "2025-01-28"
+  },
+  {
+    id: "planner-3",
+    employee: mockNewEmployees[2],
+    plannerType: PlannerType.SCOPE_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[2],
+    proposedFirstEvaluationDate: "2025-03-25",
+    selectedScopes: [mockTrainingScopes[2]],
+    topics: [
+      {
+        id: "topic-plan-5",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2025-02-10",
+        endDate: "2025-02-10",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Laboratory safety protocols"
+      },
+      {
+        id: "topic-plan-6",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2025-02-25",
+        endDate: "2025-03-01",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Chemical analysis techniques training"
+      }
+    ],
+    status: PlannerStatus.SUBMITTED,
+    createdBy: "TM003",
+    createdDate: "2025-01-22",
+    submittedDate: "2025-01-26"
+  },
+  {
+    id: "planner-4",
+    employee: mockNewEmployees[3],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2025-04-01",
+    selectedScopes: [mockTrainingScopes[3]],
+    topics: [
+      {
+        id: "topic-plan-7",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2025-03-01",
+        endDate: "2025-03-01",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Safety training for hardlines"
+      },
+      {
+        id: "topic-plan-8",
+        topic: mockTrainingTopics[6],
+        trainer: mockTrainers[3],
+        startDate: "2025-03-05",
+        endDate: "2025-03-07",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Product inspection methods",
+        isNew: true
+      },
+      {
+        id: "topic-plan-9",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[0],
+        startDate: "2025-03-10",
+        endDate: "2025-03-11",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Quality documentation training",
+        isNew: true
+      }
+    ],
+    status: PlannerStatus.SUBMITTED,
+    createdBy: "TM001",
+    createdDate: "2025-01-20",
+    submittedDate: "2025-01-30"
+  },
+  {
+    id: "planner-5",
+    employee: mockNewEmployees[4],
+    plannerType: PlannerType.SCOPE_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2025-04-05",
+    selectedScopes: [mockTrainingScopes[4]],
+    topics: [
+      {
+        id: "topic-plan-10",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2025-03-05",
+        endDate: "2025-03-05",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Safety protocols for energy department"
+      },
+      {
+        id: "topic-plan-11",
+        topic: mockTrainingTopics[7],
+        trainer: mockTrainers[4],
+        startDate: "2025-03-12",
+        endDate: "2025-03-14",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Energy testing protocols fundamentals"
+      }
+    ],
+    status: PlannerStatus.SUBMITTED,
+    createdBy: "TM004",
+    createdDate: "2025-01-18",
+    submittedDate: "2025-01-31"
   }
 ];
 
@@ -419,4 +560,14 @@ export const getNewEmployeesByDepartment = (departmentIds: string[]): Employee[]
   return mockNewEmployees.filter(emp => 
     departmentIds.includes(emp.department.id) && !emp.isResigned
   );
+};
+
+// Get planners by status for approval workflow
+export const getPlannersByStatus = (status: PlannerStatusType): TrainingPlanner[] => {
+  return mockExistingPlanners.filter(planner => planner.status === status);
+};
+
+// Get submitted planners for TI approval
+export const getSubmittedPlanners = (): TrainingPlanner[] => {
+  return getPlannersByStatus(PlannerStatus.SUBMITTED);
 };
