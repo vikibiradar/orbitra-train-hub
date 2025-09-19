@@ -181,10 +181,9 @@ export function AppSidebar() {
                   <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton
-  className={`w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors ${
-    isActive ? "border-l-2 border-sidebar-primary/60 pl-[calc(0.5rem-2px)]" : ""
-  }`}
+  className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
 >
+
 
                         <div className="flex items-center gap-3">
                           <group.icon className="h-5 w-5" />
