@@ -17,7 +17,7 @@ export function TopHeader() {
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
         <Link to="/" className="flex items-center space-x-3 ">
-          <img src={tuvLogo} alt="TUV Logo" className="h-full w-full" />
+          <img src={tuvLogo} alt="TUV Logo" className="w-full" />
           <div className="flex flex-col">
             <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
             <p className="text-xs text-white leading-tight">Training Management System</p>
