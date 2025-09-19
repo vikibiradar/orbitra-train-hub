@@ -274,9 +274,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-1",
     employeeCode: "TUV2024001",
     employeeADID: "new.employee1",
-    firstName: "Arjun",
-    lastName: "Menon",
-    email: "arjun.menon@tuvsud.com",
+    firstName: "Vikram",
+    lastName: "Biradar",
+    email: "Vikram.Biradar@tuvsud.com",
     department: mockDepartments[0], // PS-Softlines
     location: mockLocations[0], // Mumbai
     joiningDate: "2025-01-15",
@@ -287,9 +287,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-2",
     employeeCode: "TUV2024002",
     employeeADID: "new.employee2",
-    firstName: "Kavya",
-    lastName: "Rao",
-    email: "kavya.rao@tuvsud.com",
+    firstName: "Tushar",
+    lastName: "Maske",
+    email: "Tushar.Maske@tuvsud.com",
     department: mockDepartments[1], // PS-Food
     location: mockLocations[1], // Delhi
     joiningDate: "2025-02-01",
@@ -300,9 +300,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-3",
     employeeCode: "TUV2024003",
     employeeADID: "new.employee3",
-    firstName: "Deepak",
-    lastName: "Singh",
-    email: "deepak.singh@tuvsud.com",
+    firstName: "Akshay",
+    lastName: "Dhuman",
+    email: "Akshay.Dhumal@tuvsud.com",
     department: mockDepartments[2], // PS-Chem
     location: mockLocations[2], // Bangalore
     joiningDate: "2025-01-20",
@@ -313,9 +313,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-4",
     employeeCode: "TUV2024004",
     employeeADID: "new.employee4",
-    firstName: "Neha",
-    lastName: "Agarwal",
-    email: "neha.agarwal@tuvsud.com",
+    firstName: "Mayuri",
+    lastName: "Manikpure",
+    email: "Mayuri.Manikpure@tuvsud.com",
     department: mockDepartments[3], // PS-Hardlines
     location: mockLocations[0], // Mumbai
     joiningDate: "2025-02-10",
@@ -326,9 +326,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-5",
     employeeCode: "TUV2024005",
     employeeADID: "new.employee5",
-    firstName: "Rakesh",
-    lastName: "Joshi",
-    email: "rakesh.joshi@tuvsud.com",
+    firstName: "Mayuri",
+    lastName: "Manikpure",
+    email: "Mayuri.Manikpure@tuvsud.com",
     department: mockDepartments[4], // PS-ENE
     location: mockLocations[3], // Chennai
     joiningDate: "2025-01-25",
@@ -339,9 +339,9 @@ export const mockNewEmployees: Employee[] = [
     id: "emp-6",
     employeeCode: "TUV2024006",
     employeeADID: "new.employee6",
-    firstName: "Simran",
-    lastName: "Kaur",
-    email: "simran.kaur@tuvsud.com",
+    firstName: "Rohini",
+    lastName: "Raut",
+    email: "Rohini.Raut@tuvsud.com",
     department: mockDepartments[5], // PS-Food-Chemical
     location: mockLocations[4], // Pune
     joiningDate: "2025-02-15",
