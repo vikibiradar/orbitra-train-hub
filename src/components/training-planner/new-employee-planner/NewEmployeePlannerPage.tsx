@@ -11,30 +11,17 @@ import { EmployeeListView } from "./EmployeeListView";
 import { PlannerForm } from "./PlannerForm";
 import { Employee, PlannerType, PlannerTypeType } from "@/types/training-planner";
 
-type ViewMode = "list" | "create-general" | "create-scope" | "create-general-scope";
+type ViewMode = "list" | "create-general";
 
 export function NewEmployeePlannerPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [selectedPlannerType, setSelectedPlannerType] = useState<PlannerTypeType>(PlannerType.GENERAL_NEW_EMPLOYEE);
 
-  const handleCreatePlanner = (employee: Employee, type: "general" | "scope" | "general-scope") => {
+  const handleCreatePlanner = (employee: Employee, type: "general") => {
     setSelectedEmployee(employee);
-    
-    switch (type) {
-      case "general":
-        setSelectedPlannerType(PlannerType.GENERAL_NEW_EMPLOYEE);
-        setViewMode("create-general");
-        break;
-      case "scope":
-        setSelectedPlannerType(PlannerType.SCOPE_NEW_EMPLOYEE);
-        setViewMode("create-scope");
-        break;
-      case "general-scope":
-        setSelectedPlannerType(PlannerType.GENERAL_SCOPE_NEW_EMPLOYEE);
-        setViewMode("create-general-scope");
-        break;
-    }
+    setSelectedPlannerType(PlannerType.GENERAL_NEW_EMPLOYEE);
+    setViewMode("create-general");
   };
 
   const handleBackToList = () => {
@@ -148,7 +135,7 @@ export function NewEmployeePlannerPage() {
               <CardHeader>
                 <CardTitle>New Employees</CardTitle>
                 <CardDescription>
-                  Select an employee and choose the type of planner to create
+                  Click "Create Planner" to start creating a training plan for any employee
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0">

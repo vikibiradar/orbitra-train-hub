@@ -1,18 +1,17 @@
 import { useState, useMemo } from "react";
-import { Search, Filter, Building2, MapPin, Calendar, Users } from "lucide-react";
+import { Search, Filter, MapPin, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { mockNewEmployees, mockDepartments, mockLocations } from "@/data/mock-training-data";
+import { mockNewEmployees, mockLocations } from "@/data/mock-training-data";
 import type { Employee, EmployeeFilter } from "@/types/training-planner";
 import { format } from "date-fns";
 
 interface EmployeeListViewProps {
-  onCreatePlanner: (employee: Employee, type: "general" | "scope" | "general-scope") => void;
+  onCreatePlanner: (employee: Employee, type: "general") => void;
 }
 
 export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
@@ -22,7 +21,6 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
 
   const filteredAndSortedEmployees = useMemo(() => {
     let filtered = mockNewEmployees.filter(employee => {
-      if (filters.department && employee.department.id !== filters.department) return false;
       if (filters.location && employee.location.id !== filters.location) return false;
       if (filters.searchTerm) {
         const searchLower = filters.searchTerm.toLowerCase();
@@ -100,21 +98,6 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
           />
         </div>
         
-        <Select value={filters.department || "all"} onValueChange={(value) => 
-          setFilters(prev => ({ ...prev, department: value === "all" ? undefined : value }))
-        }>
-          <SelectTrigger className="w-full md:w-48">
-            <Building2 className="h-4 w-4 mr-2" />
-            <SelectValue placeholder="All Departments" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Departments</SelectItem>
-            {mockDepartments.filter(dept => dept.isPSRelated).map(dept => (
-              <SelectItem key={dept.id} value={dept.id}>{dept.name}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
         <Select value={filters.location || "all"} onValueChange={(value) => 
           setFilters(prev => ({ ...prev, location: value === "all" ? undefined : value }))
         }>
@@ -133,7 +116,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
         <Button
           variant="outline"
           onClick={() => setFilters({})}
-          disabled={!filters.searchTerm && (!filters.department || filters.department === "all") && (!filters.location || filters.location === "all")}
+          disabled={!filters.searchTerm && (!filters.location || filters.location === "all")}
         >
           <Filter className="h-4 w-4 mr-2" />
           Clear
@@ -165,15 +148,6 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
               >
                 Employee Code
                 {sortField === "employeeCode" && (
-                  <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
-                )}
-              </TableHead>
-              <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
-                onClick={() => handleSort("department" as keyof Employee)}
-              >
-                Department
-                {sortField === "department" && (
                   <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
                 )}
               </TableHead>
@@ -218,11 +192,6 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 </TableCell>
                 <TableCell className="font-mono text-sm">{employee.employeeCode}</TableCell>
                 <TableCell>
-                  <Badge variant="outline" className="text-xs">
-                    {employee.department.name}
-                  </Badge>
-                </TableCell>
-                <TableCell>
                   <div className="flex items-center space-x-1">
                     <MapPin className="h-3 w-3 text-muted-foreground" />
                     <span className="text-sm">{employee.location.name}</span>
@@ -243,24 +212,14 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="text-xs">
-                        Create Planner
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem onClick={() => onCreatePlanner(employee, "general")}>
-                        General Planner
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onCreatePlanner(employee, "scope")}>
-                        Scope-Based Planner
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onCreatePlanner(employee, "general-scope")}>
-                        General + Scope Planner
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs"
+                    onClick={() => onCreatePlanner(employee, "general")}
+                  >
+                    Create Planner
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
