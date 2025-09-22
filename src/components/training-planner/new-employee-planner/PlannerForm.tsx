@@ -2,30 +2,24 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CalendarIcon, Plus, Save, Send, X } from "lucide-react";
+import { CalendarIcon, Save, Send } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Checkbox } from "@/components/ui/checkbox";
 import { TrainingTopicsTable } from "./TrainingTopicsTable";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import {
   Employee,
   PlannerTypeType,
-  PlannerType,
-  TrainingScope,
-  TrainingIncharge,
   TrainingPlannerTopic
 } from "@/types/training-planner";
 import {
@@ -60,7 +54,6 @@ interface PlannerFormProps {
 
 export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel }: PlannerFormProps) {
   const { toast } = useToast();
-  const [selectedScopes, setSelectedScopes] = useState<TrainingScope[]>([]);
   const [availableTopics, setAvailableTopics] = useState<any[]>([]);
   const [plannerTopics, setPlannerTopics] = useState<TrainingPlannerTopic[]>([]);
   const [isDraft, setIsDraft] = useState(true);
@@ -75,28 +68,12 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
     }
   });
 
-  // Update available topics when scopes change
+  // Load all available topics for general planner
   useEffect(() => {
-    if (selectedScopes.length > 0) {
-      const scopeIds = selectedScopes.map(scope => scope.id);
-      const topics = getTopicsByScope(scopeIds);
-      setAvailableTopics(topics);
-    } else if (plannerType === PlannerType.GENERAL_NEW_EMPLOYEE || plannerType === PlannerType.GENERAL_SCOPE_NEW_EMPLOYEE) {
-      // For general planners, show all topics
-      setAvailableTopics(getTopicsByScope(mockTrainingScopes.map(s => s.id)));
-    }
-  }, [selectedScopes, plannerType]);
+    // For general planners, show all topics
+    setAvailableTopics(getTopicsByScope(mockTrainingScopes.map(s => s.id)));
+  }, [plannerType]);
 
-  const handleScopeChange = (scopeId: string, checked: boolean) => {
-    if (checked) {
-      const scope = mockTrainingScopes.find(s => s.id === scopeId);
-      if (scope) {
-        setSelectedScopes(prev => [...prev, scope]);
-      }
-    } else {
-      setSelectedScopes(prev => prev.filter(s => s.id !== scopeId));
-    }
-  };
 
   const handleTopicsChange = (topics: TrainingPlannerTopic[]) => {
     setPlannerTopics(topics);
@@ -147,8 +124,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
         employee,
         plannerType,
         data,
-        topics: plannerTopics,
-        selectedScopes
+        topics: plannerTopics
       });
       
       toast({
@@ -170,10 +146,6 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
 
-  const shouldShowScopeSelection = () => {
-    return plannerType === PlannerType.SCOPE_NEW_EMPLOYEE || 
-           plannerType === PlannerType.GENERAL_SCOPE_NEW_EMPLOYEE;
-  };
 
   return (
     <div className="space-y-6">
@@ -301,57 +273,6 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                 />
               </div>
 
-              {/* Scope Selection (for Scope-based planners) */}
-              {shouldShowScopeSelection() && (
-                <div className="space-y-4">
-                  <div>
-                    <Label className="text-sm font-medium">Training Scopes</Label>
-                    <p className="text-xs text-muted-foreground">
-                      Select the training scopes for this planner
-                    </p>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {mockTrainingScopes.map((scope) => (
-                      <div key={scope.id} className="flex items-center space-x-2 p-3 border rounded-lg">
-                        <Checkbox
-                          id={scope.id}
-                          checked={selectedScopes.some(s => s.id === scope.id)}
-                          onCheckedChange={(checked) => handleScopeChange(scope.id, !!checked)}
-                        />
-                        <div className="grid gap-1.5 leading-none flex-1">
-                          <Label
-                            htmlFor={scope.id}
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                          >
-                            {scope.name}
-                          </Label>
-                          <p className="text-xs text-muted-foreground">
-                            {scope.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {selectedScopes.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {selectedScopes.map((scope) => (
-                        <Badge key={scope.id} variant="secondary">
-                          {scope.name}
-                          <button
-                            type="button"
-                            onClick={() => handleScopeChange(scope.id, false)}
-                            className="ml-2 hover:bg-destructive/10 rounded-full"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
             </CardContent>
           </Card>
 
@@ -370,10 +291,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
               ) : (
                 <Alert>
                   <AlertDescription>
-                    {shouldShowScopeSelection() && selectedScopes.length === 0
-                      ? "Please select training scopes to view available topics."
-                      : "No training topics available for the selected configuration."
-                    }
+                    No training topics available for the selected configuration.
                   </AlertDescription>
                 </Alert>
               )}

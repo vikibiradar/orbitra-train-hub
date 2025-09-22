@@ -89,8 +89,6 @@ export type ModeOfEvaluationType = typeof ModeOfEvaluation[keyof typeof ModeOfEv
 
 export const PlannerType = {
   GENERAL_NEW_EMPLOYEE: 11,
-  SCOPE_NEW_EMPLOYEE: 12,
-  GENERAL_SCOPE_NEW_EMPLOYEE: 13,
   ANNUAL_EMPLOYEE: 20
 } as const;
 

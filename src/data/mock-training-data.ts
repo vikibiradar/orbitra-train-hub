@@ -434,7 +434,7 @@ export const mockExistingPlanners: TrainingPlanner[] = [
   {
     id: "planner-3",
     employee: mockNewEmployees[2],
-    plannerType: PlannerType.SCOPE_NEW_EMPLOYEE,
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[2],
     proposedFirstEvaluationDate: "2025-03-25",
     selectedScopes: [mockTrainingScopes[2]],
@@ -509,7 +509,7 @@ export const mockExistingPlanners: TrainingPlanner[] = [
   {
     id: "planner-5",
     employee: mockNewEmployees[4],
-    plannerType: PlannerType.SCOPE_NEW_EMPLOYEE,
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[0],
     proposedFirstEvaluationDate: "2025-04-05",
     selectedScopes: [mockTrainingScopes[4]],

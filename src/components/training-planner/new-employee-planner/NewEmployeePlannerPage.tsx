@@ -169,10 +169,8 @@ function getPlannerTypeLabel(type: PlannerTypeType): string {
   switch (type) {
     case PlannerType.GENERAL_NEW_EMPLOYEE:
       return "General Planner";
-    case PlannerType.SCOPE_NEW_EMPLOYEE:
-      return "Scope-Based Planner";
-    case PlannerType.GENERAL_SCOPE_NEW_EMPLOYEE:
-      return "General + Scope Planner";
+    case PlannerType.ANNUAL_EMPLOYEE:
+      return "Annual Planner";
     default:
       return "Training Planner";
   }
