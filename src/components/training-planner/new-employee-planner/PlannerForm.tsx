@@ -248,7 +248,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                   control={form.control}
                   name="trainingIncharge"
                   render={({ field }) => (
-                    <FormItem classname="flex flex-col">
+                    <FormItem className="flex flex-col">
                       <FormLabel className="required">Training In-charge (TI)</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
