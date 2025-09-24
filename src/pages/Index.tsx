@@ -24,10 +24,10 @@ const Index = () => {
               <KPICards />
             </section>
             
-            {/* Recent Events Section */}
+            {/* Recent Events Section 
             <section>
               <RecentEvents />
-            </section>
+            </section> */}
           </main>
         </SidebarInset>
       </div>
