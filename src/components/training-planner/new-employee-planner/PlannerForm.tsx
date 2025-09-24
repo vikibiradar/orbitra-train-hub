@@ -150,7 +150,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
   return (
     <div className="space-y-6">
       {/* Employee Information Card */}
-      <Card >
+      <Card className="ps-card">
         <CardHeader>
           <CardTitle className="text-lg">Employee Information</CardTitle>
         </CardHeader>

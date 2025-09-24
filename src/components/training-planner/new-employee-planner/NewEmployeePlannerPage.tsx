@@ -145,7 +145,7 @@ export function NewEmployeePlannerPage() {
           </>
         ) : (
           /* Planner Creation Form */
-          <Card className="ps-card">
+          <Card>
             <CardContent className="p-6">
               <PlannerForm
                 employee={selectedEmployee!}
