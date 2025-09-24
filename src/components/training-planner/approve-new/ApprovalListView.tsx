@@ -96,11 +96,11 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
 
   const handleViewDetails = (planner: TrainingPlanner) => {
     setSelectedPlanner(planner);
+    setShowRejectModal(false);
     setShowDetailsModal(true);
   };
 
   const handleApprove = (planner: TrainingPlanner) => {
-    // In real app, this would make API call
     toast({
       title: "Planner Approved",
       description: `Training planner for ${planner.employee.firstName} ${planner.employee.lastName} has been approved successfully.`,
@@ -108,13 +108,14 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
   };
 
   const handleReject = (planner: TrainingPlanner) => {
+    // when rejecting from the list OR from details, keep selection and open reject modal
     setSelectedPlanner(planner);
-    setShowRejectModal(true);
+    setShowDetailsModal(false); // hide details if it was open
+    setShowRejectModal(true);   // show reject reason modal
   };
 
   const handleRejectConfirm = (reason: string) => {
     if (selectedPlanner) {
-      // In real app, this would make API call
       toast({
         title: "Planner Rejected",
         description: `Training planner for ${selectedPlanner.employee.firstName} ${selectedPlanner.employee.lastName} has been rejected.`,
@@ -122,7 +123,7 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
       });
     }
     setShowRejectModal(false);
-    setSelectedPlanner(null);
+    setSelectedPlanner(null); // clear after finishing
   };
 
   return (
@@ -209,27 +210,30 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
                     <TableCell>
                       <div className="flex justify-center space-x-2">
                         <Button
+                          type="button"
                           variant="outline"
                           size="sm"
-                          onClick={() => handleViewDetails(planner)}
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleViewDetails(planner); }}
                           className="flex items-center space-x-1"
                         >
                           <Eye className="h-3 w-3" />
                           <span>View</span>
                         </Button>
                         <Button
+                          type="button"
                           variant="default"
                           size="sm"
-                          onClick={() => handleApprove(planner)}
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleApprove(planner); }}
                           className="flex items-center space-x-1"
                         >
                           <CheckCircle className="h-3 w-3" />
                           <span>Approve</span>
                         </Button>
                         <Button
+                          type="button"
                           variant="destructive"
                           size="sm"
-                          onClick={() => handleReject(planner)}
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleReject(planner); }}
                           className="flex items-center space-x-1"
                         >
                           <XCircle className="h-3 w-3" />
@@ -258,19 +262,19 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
             planner={selectedPlanner}
             open={showDetailsModal}
             onClose={() => {
+              // only hide the details modal; keep selection so reject modal can be shown next
               setShowDetailsModal(false);
-              setSelectedPlanner(null);
             }}
             onApprove={handleApprove}
             onReject={handleReject}
           />
-          
+
           <RejectReasonModal
             planner={selectedPlanner}
             open={showRejectModal}
             onClose={() => {
+              // just close reject modal; keep selection (optional)
               setShowRejectModal(false);
-              setSelectedPlanner(null);
             }}
             onConfirm={handleRejectConfirm}
           />
