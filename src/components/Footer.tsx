@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="relative mt-auto overflow-hidden bg-gradient-to-r from-ps-primary to-ps-primary-dark text-white">
+    <footer className="relative mt-auto overflow-hidden text-white" style={{ backgroundColor: '#003366' }}>
       {/* Top accent border */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-ps-secondary via-ps-accent to-ps-secondary" />
       
