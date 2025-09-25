@@ -6,8 +6,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { mockNewEmployees, mockLocations } from "@/data/mock-training-data";
 import type { Employee, EmployeeFilter } from "@/types/training-planner";
+import { useEmployees, useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 import { format } from "date-fns";
 
 interface EmployeeListViewProps {
@@ -19,49 +19,15 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
   const [sortField, setSortField] = useState<keyof Employee>("joiningDate");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  const filteredAndSortedEmployees = useMemo(() => {
-    let filtered = mockNewEmployees.filter(employee => {
-      if (filters.location && employee.location.id !== filters.location) return false;
-      if (filters.searchTerm) {
-        const searchLower = filters.searchTerm.toLowerCase();
-        return (
-          employee.firstName.toLowerCase().includes(searchLower) ||
-          employee.lastName.toLowerCase().includes(searchLower) ||
-          employee.employeeCode.toLowerCase().includes(searchLower) ||
-          employee.email.toLowerCase().includes(searchLower)
-        );
-      }
-      return true;
-    });
+  const { data: employees = [], isLoading: employeesLoading } = useEmployees({
+    filters,
+    sortBy: sortField,
+    sortOrder: sortDirection
+  });
+  const { data: lookups } = useTrainingPlannerLookups();
 
-    // Sort
-    filtered.sort((a, b) => {
-      let aValue: any = a[sortField];
-      let bValue: any = b[sortField];
-
-      // Handle nested properties
-      if (sortField === "department") {
-        aValue = a.department.name;
-        bValue = b.department.name;
-      } else if (sortField === "location") {
-        aValue = a.location.name;
-        bValue = b.location.name;
-      }
-
-      if (typeof aValue === "string") {
-        aValue = aValue.toLowerCase();
-        bValue = bValue.toLowerCase();
-      }
-
-      if (sortDirection === "asc") {
-        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-      } else {
-        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-      }
-    });
-
-    return filtered;
-  }, [filters, sortField, sortDirection]);
+  // Use employees directly from API hook as it handles filtering and sorting
+  const filteredAndSortedEmployees = employees;
 
   const handleSort = (field: keyof Employee) => {
     if (sortField === field) {
@@ -107,9 +73,9 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Locations</SelectItem>
-            {mockLocations.map(loc => (
+            {lookups?.locations?.map(loc => (
               <SelectItem key={loc.id} value={loc.id}>{loc.name}</SelectItem>
-            ))}
+            )) || []}
           </SelectContent>
         </Select>
 
@@ -125,7 +91,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
 
       {/* Results Summary */}
       <div className="text-sm text-muted-foreground">
-        Showing {filteredAndSortedEmployees.length} of {mockNewEmployees.length} employees
+        {employeesLoading ? "Loading employees..." : `Showing ${filteredAndSortedEmployees.length} employees`}
       </div>
 
       {/* Employee Table */}

@@ -18,10 +18,8 @@ import {
   ModeOfEvaluation,
   ModeOfEvaluationType
 } from "@/types/training-planner";
-import {
-  mockTrainers,
-  modeOfEvaluationOptions
-} from "@/data/mock-training-data";
+import { modeOfEvaluationOptions } from "@/data/mock-training-data";
+import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 
 interface TrainingTopicsTableProps {
   availableTopics: TrainingTopic[];
@@ -34,6 +32,7 @@ export function TrainingTopicsTable({
   topics, 
   onTopicsChange 
 }: TrainingTopicsTableProps) {
+  const { data: lookups } = useTrainingPlannerLookups();
   const [selectedTopicId, setSelectedTopicId] = useState<string>("");
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
@@ -116,12 +115,13 @@ export function TrainingTopicsTable({
   };
 
   const getAvailableTrainers = (departmentId?: string): Trainer[] => {
+    if (!lookups?.trainers) return [];
     if (departmentId) {
-      return mockTrainers.filter(trainer => 
+      return lookups.trainers.filter(trainer => 
         trainer.department.id === departmentId && trainer.isActive
       );
     }
-    return mockTrainers.filter(trainer => trainer.isActive);
+    return lookups.trainers.filter(trainer => trainer.isActive);
   };
 
   const validateDuplicateTopicDates = (topicId: string, startDate: string, endDate: string) => {
@@ -226,7 +226,7 @@ export function TrainingTopicsTable({
                     <Select
                       value={plannerTopic.trainer?.id || ""}
                       onValueChange={(value) => {
-                        const trainer = mockTrainers.find(t => t.id === value);
+                        const trainer = lookups?.trainers?.find(t => t.id === value);
                         handleTopicUpdate(plannerTopic.id, 'trainer', trainer);
                       }}
                     >

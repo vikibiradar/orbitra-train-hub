@@ -8,8 +8,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon, Search, X } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { mockLocations } from "@/data/mock-training-data";
 import { useToast } from "@/hooks/use-toast";
+import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 
 interface FilterState {
   location?: string;
@@ -23,6 +23,7 @@ interface SearchFiltersProps {
 
 export const SearchFilters = ({ onFiltersChange }: SearchFiltersProps) => {
   const { toast } = useToast();
+  const { data: lookups, isLoading } = useTrainingPlannerLookups();
   const [filters, setFilters] = useState<FilterState>({});
   const [fromDate, setFromDate] = useState<Date>();
   const [toDate, setToDate] = useState<Date>();
@@ -89,11 +90,11 @@ export const SearchFilters = ({ onFiltersChange }: SearchFiltersProps) => {
                 <SelectValue placeholder="Select location" />
               </SelectTrigger>
               <SelectContent>
-                {mockLocations.map((location) => (
+                {lookups?.locations?.map((location) => (
                   <SelectItem key={location.id} value={location.id}>
                     {location.name}
                   </SelectItem>
-                ))}
+                )) || []}
               </SelectContent>
             </Select>
           </div>

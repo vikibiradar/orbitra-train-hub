@@ -22,11 +22,7 @@ import {
   PlannerTypeType,
   TrainingPlannerTopic
 } from "@/types/training-planner";
-import {
-  mockTrainingScopes,
-  mockTrainingIncharges,
-  getTopicsByScope
-} from "@/data/mock-training-data";
+import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 
 const plannerFormSchema = z.object({
   proposedFirstEvaluationDate: z.string().min(1, "Proposed 1st Evaluation Date is required"),
@@ -54,6 +50,7 @@ interface PlannerFormProps {
 
 export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel }: PlannerFormProps) {
   const { toast } = useToast();
+  const { data: lookups, isLoading: lookupsLoading } = useTrainingPlannerLookups();
   const [availableTopics, setAvailableTopics] = useState<any[]>([]);
   const [plannerTopics, setPlannerTopics] = useState<TrainingPlannerTopic[]>([]);
   const [isDraft, setIsDraft] = useState(true);
@@ -70,9 +67,11 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
 
   // Load all available topics for general planner
   useEffect(() => {
-    // For general planners, show all topics
-    setAvailableTopics(getTopicsByScope(mockTrainingScopes.map(s => s.id)));
-  }, [plannerType]);
+    if (lookups?.trainingTopics) {
+      // For general planners, show all available topics
+      setAvailableTopics(lookups.trainingTopics);
+    }
+  }, [lookups, plannerType]);
 
 
   const handleTopicsChange = (topics: TrainingPlannerTopic[]) => {
@@ -257,11 +256,11 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {mockTrainingIncharges.map((ti) => (
+                          {lookups?.trainingIncharges?.map((ti) => (
                             <SelectItem key={ti.id} value={ti.id}>
                               {ti.name} - {ti.department.name}
                             </SelectItem>
-                          ))}
+                          )) || []}
                         </SelectContent>
                       </Select>
                       <FormDescription>
@@ -282,7 +281,9 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
               <CardTitle className="text-lg">Training Topics</CardTitle>
             </CardHeader>
             <CardContent>
-              {availableTopics.length > 0 ? (
+              {lookupsLoading ? (
+                <div className="text-center py-8 text-muted-foreground">Loading topics...</div>
+              ) : availableTopics.length > 0 ? (
                 <TrainingTopicsTable
                   availableTopics={availableTopics}
                   topics={plannerTopics}
