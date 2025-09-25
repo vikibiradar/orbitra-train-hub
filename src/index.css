@@ -2,35 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* PS Training Design System - Professional Corporate Theme */
+/* TÜV SÜD Corporate Theme System - Complete Implementation */
 
 @layer base {
   :root {
-    /* PS Training Enhanced Color System - TÜV SÜD Inspired */
-    --ps-primary: 218 91% 35%; /* #0057B8 - Original PS Blue */
-    --ps-primary-light: 208 91% 55%; /* #4D94FF - Lighter variant */
-    --ps-primary-dark: 210 100% 20%; /* #003366 - Custom header color */
-    --ps-primary-glow: 208 100% 65%; /* #5BA3FF - Glow effect */
+    /* TÜV SÜD Corporate Color System - Official Brand Colors */
+    --tuv-navy-blue: 210 100% 20%; /* #003366 - Primary Corporate Navy */
+    --tuv-corporate-blue: 213 100% 40%; /* #0066CC - Corporate Blue */
+    --tuv-light-blue: 208 100% 65%; /* #4D94FF - Light Blue Variant */
+    --tuv-bright-blue: 212 100% 70%; /* #66B2FF - Bright Blue Accent */
+    
+    /* TÜV SÜD Orange Accent System */
+    --tuv-orange-primary: 16 100% 60%; /* #FF6B35 - Primary Orange */
+    --tuv-orange-light: 18 100% 67%; /* #FF8A5C - Light Orange */
+    --tuv-orange-dark: 15 82% 53%; /* #E55A2B - Dark Orange */
     
     /* Status Colors */
-    --ps-success: 142 76% 36%; /* #28A745 */
-    --ps-success-light: 145 63% 42%; /* #34CE57 */
-    --ps-warning: 45 100% 51%; /* #FFC107 */
-    --ps-warning-light: 48 100% 60%; /* #FFD93D */
-    --ps-error: 354 85% 44%; /* #DC3545 */
-    --ps-error-light: 4 90% 58%; /* #E74C3C */
-    --ps-info: 188 78% 41%; /* #17A2B8 */
-    --ps-info-light: 186 73% 48%; /* #3FBDDA */
+    --tuv-success: 142 76% 36%; /* #28A745 */
+    --tuv-success-light: 145 63% 42%; /* #34CE57 */
+    --tuv-warning: 45 100% 51%; /* #FFC107 */
+    --tuv-warning-light: 48 100% 60%; /* #FFD93D */
+    --tuv-error: 354 85% 44%; /* #DC3545 */
+    --tuv-error-light: 4 90% 58%; /* #E74C3C */
+    --tuv-info: 188 78% 41%; /* #17A2B8 */
+    --tuv-info-light: 186 73% 48%; /* #3FBDDA */
     
-    /* Surface Colors */
-    --ps-surface-elevated: 0 0% 99%; /* #FDFDFD */
-    --ps-border-light: 0 0% 94%; /* #F0F0F0 */
-    --ps-border-dark: 0 0% 80%; /* #CCCCCC */
+    /* Surface & Background Colors */
+    --tuv-surface-elevated: 210 40% 99%; /* #FDFDFD - Elevated surfaces */
+    --tuv-border-light: 0 0% 94%; /* #F0F0F0 - Light borders */
+    --tuv-border-dark: 0 0% 80%; /* #CCCCCC - Dark borders */
+    --tuv-background: 210 17% 98%; /* #F8F9FA - Main background */
     
     /* Text Colors Enhanced */
-    --ps-text-brand: 218 91% 35%; /* PS Blue for brand text */
-    --ps-text-muted: 0 0% 60%; /* #999999 */
-    --ps-text-light: 0 0% 80%; /* #CCCCCC */
+    --tuv-text-brand: 210 100% 20%; /* Navy blue for brand text */
+    --tuv-text-primary: 0 0% 20%; /* #333333 - Primary text */
+    --tuv-text-secondary: 0 0% 40%; /* #666666 - Secondary text */
+    --tuv-text-muted: 0 0% 60%; /* #999999 - Muted text */
+    --tuv-text-light: 0 0% 80%; /* #CCCCCC - Light text */
+    --tuv-text-inverse: 0 0% 100%; /* #FFFFFF - Inverse text */
     
     /* Base colors */
     --background: 0 0% 100%;
@@ -40,66 +49,67 @@
     --card: 0 0% 100%;
     --card-foreground: 222 84% 5%;
     
-    /* Primary system colors using PS brand */
-    --primary: 213 100% 35%; /* PS brand blue */
+    /* Primary system colors using TÜV SÜD brand */
+    --primary: 210 100% 20%; /* TÜV SÜD Navy Blue */
     --primary-foreground: 0 0% 100%;
     
     /* Secondary colors */
-    --secondary: 213 20% 96%;
-    --secondary-foreground: 213 100% 25%;
+    --secondary: 213 100% 40%; /* TÜV SÜD Corporate Blue */
+    --secondary-foreground: 0 0% 100%;
     
     /* Accent colors */
-    --accent: 213 25% 94%;
-    --accent-foreground: 213 100% 30%;
+    --accent: 16 100% 60%; /* TÜV SÜD Orange Primary */
+    --accent-foreground: 0 0% 100%;
     
     /* Muted colors */
-    --muted: 213 15% 96%;
-    --muted-foreground: 213 10% 45%;
+    --muted: 210 17% 96%;
+    --muted-foreground: 0 0% 40%;
     
     /* Border and input */
-    --border: 213 20% 90%;
-    --input: 213 20% 90%;
-    --ring: 213 100% 35%;
+    --border: 0 0% 88%; /* #E0E0E0 */
+    --input: 0 0% 88%;
+    --ring: 210 100% 20%; /* TÜV SÜD Navy Blue */
     
     /* Status colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 98%;
-    --warning: 38 92% 50%;
+    --warning: 45 100% 51%;
     --warning-foreground: 0 0% 98%;
-    --destructive: 0 84% 60%;
+    --destructive: 354 85% 44%;
     --destructive-foreground: 0 0% 98%;
     
-    /* PS Training Enhanced Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--ps-primary-dark)) 0%, hsl(var(--ps-primary)) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--ps-primary)) 0%, hsl(var(--ps-primary-light)) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(var(--ps-primary-dark)) 0%, hsl(var(--ps-primary)) 50%, hsl(var(--ps-primary-light)) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--ps-surface-elevated)) 100%);
-    --gradient-surface: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--ps-surface-elevated)) 100%);
-    --gradient-glow: linear-gradient(135deg, hsl(var(--ps-primary-glow) / 0.1) 0%, hsl(var(--ps-primary) / 0.05) 100%);
+    /* TÜV SÜD Enhanced Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--tuv-navy-blue)) 0%, hsl(var(--tuv-corporate-blue)) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--tuv-corporate-blue)) 0%, hsl(var(--tuv-light-blue)) 100%);
+    --gradient-orange: linear-gradient(135deg, hsl(var(--tuv-orange-primary)) 0%, hsl(var(--tuv-orange-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--tuv-navy-blue)) 0%, hsl(var(--tuv-corporate-blue)) 50%, hsl(var(--tuv-light-blue)) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--tuv-surface-elevated)) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--tuv-surface-elevated)) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(var(--tuv-light-blue) / 0.1) 0%, hsl(var(--tuv-corporate-blue) / 0.05) 100%);
     
-    /* PS Training Enhanced Shadow System */
-    --shadow-glow: 0 0 40px hsl(var(--ps-primary-glow) / 0.4);
-    --shadow-sm: 0 2px 4px hsl(var(--ps-primary) / 0.08);
-    --shadow-md: 0 4px 12px hsl(var(--ps-primary) / 0.12);
-    --shadow-lg: 0 8px 24px hsl(var(--ps-primary) / 0.16);
-    --shadow-xl: 0 12px 40px hsl(var(--ps-primary) / 0.20);
-    --shadow-hover: 0 8px 25px hsl(var(--ps-primary) / 0.15);
-    --shadow-card: 0 4px 12px hsl(var(--ps-primary) / 0.1);
+    /* TÜV SÜD Enhanced Shadow System */
+    --shadow-glow: 0 0 40px hsl(var(--tuv-light-blue) / 0.4);
+    --shadow-sm: 0 2px 4px hsl(var(--tuv-navy-blue) / 0.08);
+    --shadow-md: 0 4px 12px hsl(var(--tuv-navy-blue) / 0.12);
+    --shadow-lg: 0 8px 24px hsl(var(--tuv-navy-blue) / 0.16);
+    --shadow-xl: 0 12px 40px hsl(var(--tuv-navy-blue) / 0.20);
+    --shadow-hover: 0 8px 25px hsl(var(--tuv-navy-blue) / 0.15);
+    --shadow-card: 0 4px 12px hsl(var(--tuv-navy-blue) / 0.1);
     
     /* Radius */
     --radius: 0.75rem;
     --radius-sm: 0.5rem;
     --radius-lg: 1rem;
     
-    /* Sidebar colors - Very Dark Blue Theme */
-    --sidebar-background: 213 100% 15%; /* Very dark blue background */
+    /* TÜV SÜD Sidebar colors - Corporate Navy Theme */
+    --sidebar-background: 210 100% 15%; /* TÜV SÜD Navy dark background */
     --sidebar-foreground: 0 0% 95%; /* Light text */
-    --sidebar-primary: 213 100% 35%; /* Lighter blue for active items */
+    --sidebar-primary: 213 100% 40%; /* TÜV SÜD Corporate Blue for active items */
     --sidebar-primary-foreground: 0 0% 100%; /* White text for active items */
-    --sidebar-accent: 213 100% 20%; /* Slightly lighter dark blue for hover */
+    --sidebar-accent: 210 100% 25%; /* Slightly lighter navy for hover */
     --sidebar-accent-foreground: 0 0% 95%; /* Light text for hover */
-    --sidebar-border: 213 100% 10%; /* Very dark border */
-    --sidebar-ring: 213 100% 35%; /* Focus ring color */
+    --sidebar-border: 210 100% 10%; /* Very dark navy border */
+    --sidebar-ring: 213 100% 40%; /* TÜV SÜD Corporate Blue for focus ring */
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -154,13 +164,13 @@
 
 @layer components {
   /* ============================================================================
-     PS TRAINING ENHANCED COMPONENT SYSTEM - TÜV SÜD INSPIRED
+     TÜV SÜD ENHANCED COMPONENT SYSTEM - CORPORATE BRANDING
      ============================================================================ */
 
   /* Professional Card System */
-  .ps-card {
+  .tuv-card {
     background: var(--gradient-card);
-    border: 1px solid hsl(var(--ps-border-light));
+    border: 1px solid hsl(var(--tuv-border-light));
     border-radius: calc(var(--radius) + 4px);
     box-shadow: var(--shadow-card);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -169,48 +179,40 @@
     backdrop-filter: blur(10px);
   }
 
-  .ps-card::before {
+  .tuv-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--ps-primary-glow) / 0.1), transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--tuv-light-blue) / 0.1), transparent);
     transition: left 0.6s ease;
   }
 
-  .ps-card:hover::before {
+  .tuv-card:hover::before {
     left: 100%;
   }
 
-  .ps-card-elevated {
+  .tuv-card-elevated {
     box-shadow: var(--shadow-lg);
     background: var(--gradient-surface);
   }
 
-  .ps-card:hover {
+  .tuv-card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-4px) scale(1.02);
-    border-color: hsl(var(--ps-primary) / 0.2);
-  }
-
-  /* Glassmorphism Effect */
-  .ps-glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: calc(var(--radius) + 2px);
+    border-color: hsl(var(--tuv-corporate-blue) / 0.2);
   }
 
   /* Enhanced Gradient System */
-  .ps-gradient-bg {
+  .tuv-gradient-bg {
     background: var(--gradient-primary);
     position: relative;
     overflow: hidden;
   }
 
-  .ps-gradient-bg::before {
+  .tuv-gradient-bg::before {
     content: '';
     position: absolute;
     top: 0;
@@ -227,31 +229,31 @@
     100% { left: 100%; }
   }
 
-  .ps-hero-gradient {
+  .tuv-hero-gradient {
     background: var(--gradient-hero);
     position: relative;
     overflow: hidden;
   }
 
-  .ps-card-gradient {
+  .tuv-card-gradient {
     background: var(--gradient-card);
   }
 
-  .ps-surface-gradient {
+  .tuv-surface-gradient {
     background: var(--gradient-surface);
   }
 
-  .ps-glow-gradient {
+  .tuv-glow-gradient {
     background: var(--gradient-glow);
   }
 
   /* Professional Visual Effects */
-  .ps-glow {
+  .tuv-glow {
     box-shadow: var(--shadow-glow);
     position: relative;
   }
 
-  .ps-glow::after {
+  .tuv-glow::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -262,41 +264,41 @@
     transition: opacity 0.3s ease;
   }
 
-  .ps-glow:hover::after {
+  .tuv-glow:hover::after {
     opacity: 1;
   }
 
-  .ps-transition {
+  .tuv-transition {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .ps-transition-fast {
+  .tuv-transition-fast {
     transition: all 0.15s ease-in-out;
   }
 
-  .ps-transition-slow {
+  .tuv-transition-slow {
     transition: all 0.5s ease-in-out;
   }
 
   /* Hover Effects */
-  .ps-hover-scale:hover {
+  .tuv-hover-scale:hover {
     transform: scale(1.05);
   }
 
-  .ps-hover-lift:hover {
+  .tuv-hover-lift:hover {
     transform: translateY(-4px);
   }
 
-  .ps-hover-glow:hover {
+  .tuv-hover-glow:hover {
     box-shadow: var(--shadow-glow);
   }
 
   /* Professional Animation System */
-  .ps-bounce {
-    animation: ps-bounce 1s infinite;
+  .tuv-bounce {
+    animation: tuv-bounce 1s infinite;
   }
 
-  @keyframes ps-bounce {
+  @keyframes tuv-bounce {
     0%, 20%, 50%, 80%, 100% {
       transform: translateY(0);
     }
@@ -308,11 +310,11 @@
     }
   }
 
-  .ps-pulse {
-    animation: ps-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .tuv-pulse {
+    animation: tuv-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  @keyframes ps-pulse {
+  @keyframes tuv-pulse {
     0%, 100% {
       opacity: 1;
     }
@@ -321,11 +323,11 @@
     }
   }
 
-  .ps-fade-in {
-    animation: ps-fade-in 0.6s ease-out;
+  .tuv-fade-in {
+    animation: tuv-fade-in 0.6s ease-out;
   }
 
-  @keyframes ps-fade-in {
+  @keyframes tuv-fade-in {
     0% {
       opacity: 0;
       transform: translateY(20px);
@@ -336,11 +338,11 @@
     }
   }
 
-  .ps-slide-up {
-    animation: ps-slide-up 0.4s ease-out;
+  .tuv-slide-up {
+    animation: tuv-slide-up 0.4s ease-out;
   }
 
-  @keyframes ps-slide-up {
+  @keyframes tuv-slide-up {
     0% {
       opacity: 0;
       transform: translateY(30px);
@@ -351,11 +353,11 @@
     }
   }
 
-  .ps-scale-in {
-    animation: ps-scale-in 0.3s ease-out;
+  .tuv-scale-in {
+    animation: tuv-scale-in 0.3s ease-out;
   }
 
-  @keyframes ps-scale-in {
+  @keyframes tuv-scale-in {
     0% {
       opacity: 0;
       transform: scale(0.9);
@@ -368,11 +370,11 @@
   
   /* Menu item hover effects */
   .menu-item {
-    @apply relative overflow-hidden ps-transition;
+    @apply relative overflow-hidden tuv-transition;
   }
   
   .menu-item::before {
-    @apply absolute inset-0 bg-primary/5 scale-x-0 origin-left ps-transition;
+    @apply absolute inset-0 bg-primary/5 scale-x-0 origin-left tuv-transition;
     content: '';
   }
   
@@ -383,7 +385,7 @@
   /* Enhanced KPI Card System - TÜV SÜD Inspired */
   .kpi-card {
     background: var(--gradient-card);
-    border: 1px solid hsl(var(--ps-border-light));
+    border: 1px solid hsl(var(--tuv-border-light));
     border-radius: calc(var(--radius) + 4px);
     padding: 2rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -400,7 +402,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--ps-primary-glow) / 0.08), transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--tuv-light-blue) / 0.08), transparent);
     transition: left 0.6s ease;
   }
 
@@ -411,7 +413,7 @@
   .kpi-card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-6px) scale(1.03);
-    border-color: hsl(var(--ps-primary) / 0.2);
+    border-color: hsl(var(--tuv-corporate-blue) / 0.2);
   }
 
   .kpi-icon {
@@ -437,7 +439,7 @@
   .heading-primary {
     font-size: 2.5rem;
     font-weight: 700;
-    color: hsl(var(--ps-primary-dark));
+    color: hsl(var(--tuv-navy-blue));
     margin-bottom: 1.5rem;
     line-height: 1.2;
     background: var(--gradient-primary);
@@ -450,7 +452,7 @@
   .heading-secondary {
     font-size: 2rem;
     font-weight: 600;
-    color: hsl(var(--ps-primary));
+    color: hsl(var(--tuv-corporate-blue));
     margin-bottom: 1rem;
     line-height: 1.3;
   }
@@ -458,13 +460,13 @@
   .heading-tertiary {
     font-size: 1.5rem;
     font-weight: 600;
-    color: hsl(var(--ps-primary));
+    color: hsl(var(--tuv-corporate-blue));
     margin-bottom: 0.75rem;
     line-height: 1.4;
   }
 
   .text-brand {
-    color: hsl(var(--ps-text-brand));
+    color: hsl(var(--tuv-text-brand));
     font-weight: 600;
   }
 
@@ -476,6 +478,6 @@
   }
 
   .text-shadow {
-    text-shadow: 0 2px 4px hsl(var(--ps-primary) / 0.2);
+    text-shadow: 0 2px 4px hsl(var(--tuv-navy-blue) / 0.2);
   }
 }
