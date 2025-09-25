@@ -57,16 +57,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // TÜV SÜD brand colors
-        "tuv-navy-blue": "hsl(var(--tuv-navy-blue))",
-        "tuv-corporate-blue": "hsl(var(--tuv-corporate-blue))",
-        "tuv-light-blue": "hsl(var(--tuv-light-blue))",
-        "tuv-bright-blue": "hsl(var(--tuv-bright-blue))",
-        "tuv-orange-primary": "hsl(var(--tuv-orange-primary))",
-        "tuv-orange-light": "hsl(var(--tuv-orange-light))",
-        "tuv-header-primary": "hsl(var(--tuv-header-primary))",
-        "tuv-accent-cyan": "hsl(var(--tuv-accent-cyan))",
-        "tuv-accent-cyan-light": "hsl(var(--tuv-accent-cyan-light))",
         // PS Training enhanced brand colors
         "ps-primary": "hsl(var(--ps-primary))",
         "ps-primary-light": "hsl(var(--ps-primary-light))",
@@ -92,7 +82,7 @@ export default {
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
         "gradient-secondary": "var(--gradient-secondary)",
-        "gradient-hero": "var(--gradient-hero)", 
+        "gradient-hero": "var(--gradient-hero)",
         "gradient-card": "var(--gradient-card)",
         "gradient-surface": "var(--gradient-surface)",
         "gradient-glow": "var(--gradient-glow)",
@@ -104,7 +94,7 @@ export default {
         "lg": "var(--shadow-lg)",
         "xl": "var(--shadow-xl)",
         "hover": "var(--shadow-hover)",
-        "card": "var(--shadow-card)", 
+        "card": "var(--shadow-card)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -132,7 +122,6 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "shimmer": "shimmer 3s infinite",
       },
     },
   },
