@@ -9,7 +9,7 @@
     /* PS Training Enhanced Color System - TÜV SÜD Inspired */
     --ps-primary: 218 91% 35%; /* #0057B8 - Original PS Blue */
     --ps-primary-light: 208 91% 55%; /* #4D94FF - Lighter variant */
-    --ps-primary-dark: 218 91% 25%; /* #003875 - Darker variant */
+    --ps-primary-dark: 210 100% 20%; /* #003366 - Custom header color */
     --ps-primary-glow: 208 100% 65%; /* #5BA3FF - Glow effect */
     
     /* Status Colors */
