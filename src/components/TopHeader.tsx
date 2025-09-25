@@ -13,14 +13,14 @@ import tuvLogo from "@/assets/tuv-logo.png";
 
 export function TopHeader() {
   return (
-    <header className="h-18 border-b bg-ps-primary-dark backdrop-blur-sm px-4 flex items-center justify-between">
-      <div className="flex items-center space-x-4">
+    <header className="tuv-header h-18 border-b backdrop-blur-sm px-4 flex items-center justify-between">
+      <div className="tuv-navbar-brand">
         <SidebarTrigger />
-        <Link to="/" className="flex items-center space-x-3 ">
-          <img src={tuvLogo} alt="TUV Logo" className="h-16 w-16" />
+        <Link to="/" className="flex items-center space-x-3">
+          <img src={tuvLogo} alt="TUV Logo" className="tuv-logo h-16 w-16" />
           <div className="flex flex-col">
-            <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
-            <p className="text-xs text-white leading-tight">Training Management System</p>
+            <h1 className="tuv-brand-text text-xl font-bold leading-tight">PS Training</h1>
+            <p className="text-xs text-white/80 leading-tight">Training Management System</p>
           </div>
         </Link>
       </div>
@@ -29,12 +29,12 @@ export function TopHeader() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="flex items-center space-x-2 text-white hover:bg-white/10">
-            <div className="w-8 h-8 ps-gradient-bg rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center border border-tuv-accent-cyan/20">
               <User className="h-4 w-4 text-white" />
             </div>
             <div className="hidden sm:block text-left">
               <p className="text-sm font-medium text-white">Admin</p>
-              <p className="text-xs text-ps-primary-light">Training Manager</p>
+              <p className="text-xs text-tuv-accent-cyan-light">Training Manager</p>
             </div>
             <ChevronDown className="h-4 w-4 text-white" />
           </Button>

@@ -1,0 +1,2921 @@
+/* ============================================================================
+   TÜV SÜD CORPORATE THEME SYSTEM
+   Complete styling framework for ISPortal application
+   Implementation Date: July 11, 2025
+   Status: ✅ COMPLETE - Corporate Branding Compliance
+   ============================================================================ */
+
+/* ============================================================================
+   1. TÜV SÜD CORPORATE COLOR SYSTEM
+   ============================================================================ */
+
+:root {
+  /* Primary Corporate Colors */
+  --tuv-navy-blue: #003366;
+  --tuv-corporate-blue: #0066CC;
+  --tuv-light-blue: #4D94FF;
+  --tuv-bright-blue: #66B2FF;
+  
+  /* TÜV SÜD Orange Accent */
+  --tuv-orange-primary: #FF6B35;
+  --tuv-orange-light: #FF8A5C;
+  --tuv-orange-dark: #E55A2B;
+  
+  /* Status Colors */
+  --tuv-success: #28A745;
+  --tuv-success-light: #34CE57;
+  --tuv-warning: #FFC107;
+  --tuv-warning-light: #FFD93D;
+  --tuv-error: #DC3545;
+  --tuv-error-light: #E74C3C;
+  --tuv-info: #17A2B8;
+  --tuv-info-light: #3FBDDA;
+  
+  /* Neutral Colors */
+  --tuv-white: #FFFFFF;
+  --tuv-background: #F8F9FA;
+  --tuv-surface: #FFFFFF;
+  --tuv-surface-elevated: #FDFDFD;
+  --tuv-border: #E0E0E0;
+  --tuv-border-light: #F0F0F0;
+  --tuv-border-dark: #CCCCCC;
+  
+  /* Text Colors */
+  --tuv-text-primary: #333333;
+  --tuv-text-secondary: #666666;
+  --tuv-text-muted: #999999;
+  --tuv-text-light: #CCCCCC;
+  --tuv-text-inverse: #FFFFFF;
+  
+  /* Gradients */
+  --tuv-gradient-primary: linear-gradient(135deg, var(--tuv-navy-blue) 0%, var(--tuv-corporate-blue) 100%);
+  --tuv-gradient-secondary: linear-gradient(135deg, var(--tuv-corporate-blue) 0%, var(--tuv-light-blue) 100%);
+  --tuv-gradient-orange: linear-gradient(135deg, var(--tuv-orange-primary) 0%, var(--tuv-orange-light) 100%);
+  --tuv-gradient-surface: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+  
+  /* Shadows */
+  --tuv-shadow-sm: 0 2px 4px rgba(0, 51, 102, 0.08);
+  --tuv-shadow-md: 0 4px 12px rgba(0, 51, 102, 0.12);
+  --tuv-shadow-lg: 0 8px 24px rgba(0, 51, 102, 0.16);
+  --tuv-shadow-xl: 0 12px 40px rgba(0, 51, 102, 0.20);
+  
+  /* Border Radius */
+  --tuv-radius-sm: 4px;
+  --tuv-radius-md: 8px;
+  --tuv-radius-lg: 12px;
+  --tuv-radius-xl: 16px;
+  --tuv-radius-full: 50px;
+  
+  /* Spacing (8px grid system) */
+  --tuv-space-xs: 4px;
+  --tuv-space-sm: 8px;
+  --tuv-space-md: 16px;
+  --tuv-space-lg: 24px;
+  --tuv-space-xl: 32px;
+  --tuv-space-2xl: 48px;
+  --tuv-space-3xl: 64px;
+  
+  /* Typography */
+  --tuv-font-family: 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --tuv-font-size-xs: 12px;
+  --tuv-font-size-sm: 14px;
+  --tuv-font-size-md: 16px;
+  --tuv-font-size-lg: 18px;
+  --tuv-font-size-xl: 20px;
+  --tuv-font-size-2xl: 24px;
+  --tuv-font-size-3xl: 32px;
+  --tuv-font-size-4xl: 40px;
+  
+  /* Font Weights */
+  --tuv-font-weight-light: 300;
+  --tuv-font-weight-normal: 400;
+  --tuv-font-weight-medium: 500;
+  --tuv-font-weight-semibold: 600;
+  --tuv-font-weight-bold: 700;
+  
+  /* Line Heights */
+  --tuv-line-height-tight: 1.2;
+  --tuv-line-height-normal: 1.5;
+  --tuv-line-height-relaxed: 1.7;
+  
+  /* Transitions */
+  --tuv-transition-fast: 0.15s ease-in-out;
+  --tuv-transition-normal: 0.3s ease-in-out;
+  --tuv-transition-slow: 0.5s ease-in-out;
+  
+  /* Z-Index Scale */
+  --tuv-z-dropdown: 1000;
+  --tuv-z-sticky: 1020;
+  --tuv-z-fixed: 1030;
+  --tuv-z-modal-backdrop: 1040;
+  --tuv-z-modal: 1050;
+  --tuv-z-popover: 1060;
+  --tuv-z-tooltip: 1070;
+  --tuv-z-toast: 9999;
+}
+
+/* ============================================================================
+   2. GLOBAL RESET AND BASE STYLES
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: var(--tuv-line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--tuv-font-family);
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-normal);
+  color: var(--tuv-text-primary);
+  background: var(--tuv-background);
+  line-height: var(--tuv-line-height-normal);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+}
+
+/* ============================================================================
+   3. TÜV SÜD TYPOGRAPHY SYSTEM
+   ============================================================================ */
+
+.tuv-heading-1 {
+  font-size: var(--tuv-font-size-4xl);
+  font-weight: var(--tuv-font-weight-bold);
+  line-height: var(--tuv-line-height-tight);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-lg);
+  background: var(--tuv-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tuv-heading-2 {
+  font-size: var(--tuv-font-size-3xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  line-height: var(--tuv-line-height-tight);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-heading-3 {
+  font-size: var(--tuv-font-size-2xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-heading-4 {
+  font-size: var(--tuv-font-size-xl);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-heading-5 {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-heading-6 {
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-body-large {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-relaxed);
+  color: var(--tuv-text-primary);
+}
+
+.tuv-body {
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-primary);
+}
+
+.tuv-body-small {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-secondary);
+}
+
+.tuv-caption {
+  font-size: var(--tuv-font-size-xs);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-muted);
+}
+
+/* ============================================================================
+   4. TÜV SÜD LAYOUT COMPONENTS
+   ============================================================================ */
+
+/* Main Content Wrapper */
+.tuv-main-content-wrapper {
+  flex: 1;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+  min-height: calc(100vh - 85px);
+  position: relative;
+  z-index: 1;
+}
+
+.tuv-main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--tuv-space-2xl) var(--tuv-space-lg);
+  background: transparent;
+}
+
+/* Page Header */
+.tuv-page-header {
+  margin-bottom: var(--tuv-space-2xl);
+  padding: var(--tuv-space-lg);
+  background: var(--tuv-gradient-surface);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: var(--tuv-shadow-sm);
+  border: 1px solid var(--tuv-border-light);
+}
+
+/* Breadcrumb Container */
+.tuv-breadcrumb-container .breadcrumb {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  padding: var(--tuv-space-md) var(--tuv-space-lg);
+  margin: 0;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--tuv-shadow-sm);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item {
+  color: var(--tuv-navy-blue);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item.active {
+  color: var(--tuv-corporate-blue);
+  font-weight: var(--tuv-font-weight-semibold);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a {
+  color: var(--tuv-navy-blue);
+  text-decoration: none;
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a:hover {
+  color: var(--tuv-corporate-blue);
+}
+
+/* ============================================================================
+   5. TÜV SÜD CARD SYSTEM
+   ============================================================================ */
+
+.tuv-corporate-card {
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: var(--tuv-shadow-lg);
+  border: 1px solid var(--tuv-border);
+  overflow: hidden;
+  margin-bottom: var(--tuv-space-2xl);
+  backdrop-filter: blur(10px);
+}
+
+.tuv-card-header {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+  padding: var(--tuv-space-2xl);
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.tuv-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--tuv-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tuv-icon-wrapper i {
+  font-size: var(--tuv-font-size-2xl);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-card-title {
+  font-size: var(--tuv-font-size-2xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-text-inverse);
+  margin: 0;
+  line-height: var(--tuv-line-height-tight);
+}
+
+.tuv-card-subtitle {
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-normal);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  opacity: 0.9;
+}
+
+.tuv-card-body {
+  padding: var(--tuv-space-2xl);
+  background: var(--tuv-surface);
+}
+
+/* ============================================================================
+   6. TÜV SÜD FORM SYSTEM
+   ============================================================================ */
+
+.tuv-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--tuv-space-lg);
+  width: 100%;
+}
+
+.tuv-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tuv-space-sm);
+}
+
+.tuv-form-group-wide {
+  grid-column: span 2;
+}
+
+.tuv-form-group-full {
+  grid-column: 1 / -1;
+}
+
+.tuv-form-label {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-xs);
+}
+
+.tuv-form-label i {
+  color: var(--tuv-corporate-blue);
+  font-size: var(--tuv-font-size-md);
+}
+
+.tuv-form-control,
+.tuv-form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  color: var(--tuv-text-primary);
+  background: var(--tuv-surface);
+  transition: var(--tuv-transition-normal);
+  line-height: 1.5;
+  font-family: var(--tuv-font-family);
+}
+
+.tuv-form-control:focus,
+.tuv-form-select:focus {
+  outline: none;
+  border-color: var(--tuv-corporate-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+  background: var(--tuv-white);
+}
+
+.tuv-form-control:hover,
+.tuv-form-select:hover {
+  border-color: var(--tuv-corporate-blue);
+}
+
+.tuv-form-control::placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+.tuv-form-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px;
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  color: var(--tuv-text-primary);
+  background: var(--tuv-surface);
+  transition: var(--tuv-transition-normal);
+  resize: vertical;
+  font-family: var(--tuv-font-family);
+  line-height: var(--tuv-line-height-relaxed);
+}
+
+.tuv-form-textarea:focus {
+  outline: none;
+  border-color: var(--tuv-corporate-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+  background: var(--tuv-white);
+}
+
+.tuv-form-textarea::placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+/* Radio Button Styling */
+.tuv-radio-group {
+  display: flex;
+  gap: var(--tuv-space-lg);
+  flex-wrap: wrap;
+  margin-top: var(--tuv-space-sm);
+}
+
+.tuv-radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+}
+
+.tuv-radio-input {
+  display: none;
+}
+
+.tuv-radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  color: var(--tuv-text-primary);
+  cursor: pointer;
+  transition: var(--tuv-transition-fast);
+  padding: var(--tuv-space-sm) var(--tuv-space-md);
+  border-radius: var(--tuv-radius-full);
+  border: 2px solid transparent;
+}
+
+.tuv-radio-label:hover {
+  background: rgba(0, 102, 204, 0.05);
+  border-color: var(--tuv-corporate-blue);
+}
+
+.tuv-radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--tuv-border-dark);
+  border-radius: 50%;
+  position: relative;
+  transition: var(--tuv-transition-fast);
+  background: var(--tuv-white);
+}
+
+.tuv-radio-input:checked + .tuv-radio-label .tuv-radio-custom {
+  border-color: var(--tuv-corporate-blue);
+  background: var(--tuv-corporate-blue);
+}
+
+.tuv-radio-input:checked + .tuv-radio-label .tuv-radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--tuv-white);
+  border-radius: 50%;
+}
+
+.tuv-radio-input:checked + .tuv-radio-label {
+  color: var(--tuv-corporate-blue);
+  background: rgba(0, 102, 204, 0.1);
+  border-color: var(--tuv-corporate-blue);
+}
+
+/* ============================================================================
+   7. TÜV SÜD BUTTON SYSTEM
+   ============================================================================ */
+
+.tuv-btn-primary {
+  background: var(--tuv-gradient-primary);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  padding: 12px 24px;
+  transition: var(--tuv-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.tuv-btn-primary:hover::before {
+  left: 100%;
+}
+
+.tuv-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-lg);
+  color: var(--tuv-text-inverse);
+  border: none;
+}
+
+.tuv-btn-primary:focus {
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.3);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-btn-secondary {
+  background: var(--tuv-gradient-orange);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  padding: 12px 24px;
+  transition: var(--tuv-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  justify-content: center;
+}
+
+.tuv-btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-lg);
+  color: var(--tuv-text-inverse);
+  border: none;
+}
+
+.tuv-btn-outline {
+  background: transparent;
+  border: 2px solid var(--tuv-corporate-blue);
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-corporate-blue);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  padding: 10px 22px;
+  transition: var(--tuv-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  justify-content: center;
+}
+
+.tuv-btn-outline:hover {
+  background: var(--tuv-corporate-blue);
+  color: var(--tuv-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-md);
+}
+
+.tuv-btn-ghost {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-secondary);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  padding: 10px 22px;
+  transition: var(--tuv-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  justify-content: center;
+}
+
+.tuv-btn-ghost:hover {
+  background: rgba(0, 102, 204, 0.1);
+  color: var(--tuv-corporate-blue);
+  border-color: var(--tuv-corporate-blue);
+}
+
+/* Form Actions */
+.tuv-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--tuv-space-md);
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: var(--tuv-space-xl);
+  padding-top: var(--tuv-space-xl);
+  border-top: 1px solid var(--tuv-border);
+}
+
+/* ============================================================================
+   8. TÜV SÜD DROPDOWN SYSTEM
+   ============================================================================ */
+
+.tuv-dropdown-container .tuv-nav-dropdown-custom {
+  position: relative;
+}
+
+.tuv-dropdown-title {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-navy-blue);
+  padding: 12px 20px;
+  font-weight: var(--tuv-font-weight-semibold);
+  font-size: var(--tuv-font-size-sm);
+  transition: var(--tuv-transition-normal);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.tuv-dropdown-title:hover {
+  background: var(--tuv-white);
+  border-color: var(--tuv-corporate-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-md);
+}
+
+.tuv-nav-dropdown-custom .dropdown-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-xl);
+  backdrop-filter: blur(20px);
+  padding: var(--tuv-space-sm);
+  margin-top: var(--tuv-space-sm);
+  min-width: 250px;
+  z-index: var(--tuv-z-dropdown);
+}
+
+.tuv-nav-dropdown-custom .tuv-dropdown-item {
+  color: var(--tuv-navy-blue);
+  padding: 12px 16px;
+  border-radius: var(--tuv-radius-md);
+  transition: var(--tuv-transition-fast);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  margin-bottom: var(--tuv-space-xs);
+}
+
+.tuv-nav-dropdown-custom .tuv-dropdown-item:hover {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%);
+  color: var(--tuv-corporate-blue);
+  transform: translateX(4px);
+}
+
+/* ============================================================================
+   9. TÜV SÜD FILE UPLOAD SYSTEM
+   ============================================================================ */
+
+.tuv-dropzone {
+  border: 3px dashed var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  padding: var(--tuv-space-2xl);
+  text-align: center;
+  background: var(--tuv-gradient-surface);
+  transition: var(--tuv-transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-dropzone:hover {
+  border-color: var(--tuv-corporate-blue);
+  background: rgba(0, 102, 204, 0.02);
+}
+
+.tuv-dropzone.active {
+  border-color: var(--tuv-corporate-blue);
+  background: rgba(0, 102, 204, 0.05);
+}
+
+.tuv-dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tuv-space-md);
+  color: var(--tuv-text-secondary);
+}
+
+.tuv-dropzone-icon {
+  font-size: 48px;
+  color: var(--tuv-corporate-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-dropzone-title {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin: 0;
+}
+
+.tuv-dropzone-subtitle {
+  font-size: var(--tuv-font-size-sm);
+  color: var(--tuv-text-muted);
+  margin: 0;
+}
+
+/* File List */
+.tuv-file-list {
+  margin-top: var(--tuv-space-lg);
+  padding: var(--tuv-space-lg);
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-lg);
+  border: 1px solid var(--tuv-border);
+}
+
+.tuv-file-list-title {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-file-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tuv-space-sm);
+}
+
+.tuv-file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--tuv-space-sm) var(--tuv-space-md);
+  background: var(--tuv-background);
+  border-radius: var(--tuv-radius-md);
+  border: 1px solid var(--tuv-border-light);
+}
+
+.tuv-file-info {
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  color: var(--tuv-text-primary);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+}
+
+.tuv-file-name {
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.tuv-file-size {
+  font-size: var(--tuv-font-size-xs);
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+/* ============================================================================
+   10. TÜV SÜD INFO CARDS
+   ============================================================================ */
+
+.tuv-info-card {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 102, 204, 0.02) 100%);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  border-radius: var(--tuv-radius-lg);
+  overflow: hidden;
+  margin-top: var(--tuv-space-md);
+}
+
+.tuv-info-card-header {
+  background: rgba(0, 102, 204, 0.1);
+  padding: var(--tuv-space-md) var(--tuv-space-lg);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  font-size: var(--tuv-font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  border-bottom: 1px solid rgba(0, 120, 191, 0.1);
+}
+
+.tuv-info-card-body {
+  padding: var(--tuv-space-lg);
+}
+
+/* ============================================================================
+   11. TÜV SÜD CHATBOT SYSTEM
+   ============================================================================ */
+
+.tuv-chatbot-toggle {
+  position: fixed;
+  bottom: var(--tuv-space-2xl);
+  right: var(--tuv-space-2xl);
+  z-index: var(--tuv-z-fixed);
+}
+
+.tuv-chatbot-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--tuv-gradient-primary);
+  border: none;
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--tuv-transition-normal);
+  box-shadow: var(--tuv-shadow-lg);
+}
+
+.tuv-chatbot-button:hover {
+  transform: scale(1.1);
+  box-shadow: var(--tuv-shadow-xl);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-chatbot-container {
+  position: fixed;
+  bottom: 120px;
+  right: var(--tuv-space-2xl);
+  z-index: var(--tuv-z-fixed);
+  width: 380px;
+  max-height: 500px;
+}
+
+.tuv-chatbot-card {
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: var(--tuv-shadow-xl);
+  border: 1px solid var(--tuv-border);
+  overflow: hidden;
+}
+
+.tuv-chatbot-header {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+  padding: var(--tuv-space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tuv-chatbot-close {
+  color: var(--tuv-text-inverse);
+  border: none;
+  background: transparent;
+  font-size: var(--tuv-font-size-lg);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--tuv-radius-md);
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-chatbot-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-chatbot-body {
+  height: 400px;
+  overflow: hidden;
+}
+
+/* ============================================================================
+   12. TÜV SÜD TOAST NOTIFICATIONS
+   ============================================================================ */
+
+.Toastify__toast {
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-lg);
+  font-family: var(--tuv-font-family);
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.Toastify__toast--success {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, var(--tuv-error) 0%, var(--tuv-error-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, var(--tuv-warning) 0%, var(--tuv-warning-light) 100%);
+  color: var(--tuv-navy-blue);
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, var(--tuv-info) 0%, var(--tuv-info-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+
+/* ============================================================================
+   13. TÜV SÜD REACT SELECT STYLING
+   ============================================================================ */
+
+.tuv-react-select-container {
+  font-family: var(--tuv-font-family);
+}
+
+.tuv-react-select__control {
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  min-height: 48px;
+  box-shadow: none;
+  background: var(--tuv-surface);
+  transition: var(--tuv-transition-normal);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.tuv-react-select__control:hover {
+  border-color: var(--tuv-corporate-blue);
+}
+
+.tuv-react-select__control--is-focused {
+  border-color: var(--tuv-corporate-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.tuv-react-select__menu {
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-xl);
+  border: 1px solid var(--tuv-border);
+  z-index: var(--tuv-z-dropdown);
+}
+
+.tuv-react-select__option {
+  background: var(--tuv-surface);
+  color: var(--tuv-text-primary);
+  font-weight: var(--tuv-font-weight-medium);
+  padding: 12px 16px;
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-react-select__option--is-focused {
+  background: rgba(0, 102, 204, 0.1);
+  color: var(--tuv-corporate-blue);
+}
+
+.tuv-react-select__option--is-selected {
+  background: var(--tuv-corporate-blue);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-react-select__placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+/* ============================================================================
+   14. TÜV SÜD RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 1400px) {
+  .tuv-main-container {
+    max-width: 1200px;
+    padding: var(--tuv-space-xl) var(--tuv-space-lg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .tuv-main-container {
+    max-width: 992px;
+    padding: var(--tuv-space-xl) var(--tuv-space-md);
+  }
+  
+  .tuv-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tuv-form-group-wide,
+  .tuv-form-group-full {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-lg) var(--tuv-space-md);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-md);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-xl);
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-xl);
+  }
+  
+  .tuv-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .tuv-chatbot-container {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-md) var(--tuv-space-sm);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-md);
+    margin-bottom: var(--tuv-space-lg);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-lg);
+    text-align: center;
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-lg);
+  }
+  
+  .tuv-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .tuv-card-title {
+    font-size: var(--tuv-font-size-xl);
+  }
+  
+  .tuv-radio-group {
+    flex-direction: column;
+    gap: var(--tuv-space-sm);
+  }
+  
+  .tuv-chatbot-toggle {
+    bottom: var(--tuv-space-lg);
+    right: var(--tuv-space-lg);
+  }
+  
+  .tuv-chatbot-container {
+    bottom: 100px;
+    right: var(--tuv-space-lg);
+    left: var(--tuv-space-lg);
+    width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-sm);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-sm);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-md);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--tuv-space-md);
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-md);
+  }
+  
+  .tuv-form-actions {
+    gap: var(--tuv-space-sm);
+  }
+  
+  .tuv-btn-primary,
+  .tuv-btn-secondary,
+  .tuv-btn-outline {
+    padding: 14px 20px;
+    font-size: var(--tuv-font-size-sm);
+  }
+}
+
+/* ============================================================================
+   15. TÜV SÜD ANIMATIONS AND TRANSITIONS
+   ============================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animation Classes */
+.tuv-animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.tuv-animate-fade-in-left {
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.tuv-animate-slide-in-down {
+  animation: slideInDown 0.4s ease-out;
+}
+
+.tuv-animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.tuv-animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   16. TÜV SÜD UTILITY CLASSES
+   ============================================================================ */
+
+/* Text Utilities */
+.tuv-text-primary { color: var(--tuv-text-primary) !important; }
+.tuv-text-secondary { color: var(--tuv-text-secondary) !important; }
+.tuv-text-muted { color: var(--tuv-text-muted) !important; }
+.tuv-text-inverse { color: var(--tuv-text-inverse) !important; }
+.tuv-text-navy { color: var(--tuv-navy-blue) !important; }
+.tuv-text-blue { color: var(--tuv-corporate-blue) !important; }
+.tuv-text-orange { color: var(--tuv-orange-primary) !important; }
+
+/* Background Utilities */
+.tuv-bg-primary { background: var(--tuv-gradient-primary) !important; }
+.tuv-bg-secondary { background: var(--tuv-gradient-secondary) !important; }
+.tuv-bg-orange { background: var(--tuv-gradient-orange) !important; }
+.tuv-bg-surface { background: var(--tuv-surface) !important; }
+.tuv-bg-background { background: var(--tuv-background) !important; }
+
+/* Border Utilities */
+.tuv-border { border: 1px solid var(--tuv-border) !important; }
+.tuv-border-light { border: 1px solid var(--tuv-border-light) !important; }
+.tuv-border-primary { border: 2px solid var(--tuv-corporate-blue) !important; }
+.tuv-border-radius { border-radius: var(--tuv-radius-md) !important; }
+.tuv-border-radius-lg { border-radius: var(--tuv-radius-lg) !important; }
+
+/* Shadow Utilities */
+.tuv-shadow-sm { box-shadow: var(--tuv-shadow-sm) !important; }
+.tuv-shadow-md { box-shadow: var(--tuv-shadow-md) !important; }
+.tuv-shadow-lg { box-shadow: var(--tuv-shadow-lg) !important; }
+.tuv-shadow-xl { box-shadow: var(--tuv-shadow-xl) !important; }
+
+/* Spacing Utilities */
+.tuv-m-0 { margin: 0 !important; }
+.tuv-m-sm { margin: var(--tuv-space-sm) !important; }
+.tuv-m-md { margin: var(--tuv-space-md) !important; }
+.tuv-m-lg { margin: var(--tuv-space-lg) !important; }
+.tuv-m-xl { margin: var(--tuv-space-xl) !important; }
+
+.tuv-p-0 { padding: 0 !important; }
+.tuv-p-sm { padding: var(--tuv-space-sm) !important; }
+.tuv-p-md { padding: var(--tuv-space-md) !important; }
+.tuv-p-lg { padding: var(--tuv-space-lg) !important; }
+.tuv-p-xl { padding: var(--tuv-space-xl) !important; }
+
+/* ============================================================================
+   17. TÜV SÜD ACCESSIBILITY FEATURES
+   ============================================================================ */
+
+/* Focus Indicators */
+*:focus {
+  outline: 3px solid rgba(0, 102, 204, 0.3);
+  outline-offset: 2px;
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  :root {
+    --tuv-border: #000000;
+    --tuv-text-primary: #000000;
+    --tuv-text-secondary: #333333;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   18. PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .tuv-chatbot-toggle,
+  .tuv-chatbot-container,
+  .tuv-form-actions {
+    display: none !important;
+  }
+  
+  .tuv-corporate-card {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+  
+  .tuv-card-header {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+  
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+  }
+}
+
+/* ============================================================================
+   19. ENHANCED BOOTSTRAP 5.0 INTEGRATION & MODERN UI COMPONENTS
+   ============================================================================ */
+
+/* Enhanced Typography with Inter Font */
+body, .tuv-font-family {
+  font-family: 'Inter', var(--tuv-font-family);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-optical-sizing: auto;
+}
+
+/* Modern Container System */
+.tuv-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--tuv-space-lg);
+  width: 100%;
+}
+
+.tuv-container-fluid {
+  width: 100%;
+  padding: 0 var(--tuv-space-md);
+}
+
+/* Enhanced Page Layout */
+.tuv-page-title {
+  margin-bottom: var(--tuv-space-2xl);
+  padding: var(--tuv-space-xl);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.8) 100%);
+  border-radius: var(--tuv-radius-xl);
+  border: 1px solid var(--tuv-border-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--tuv-shadow-sm);
+}
+
+.tuv-heading-primary {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: var(--tuv-font-weight-bold);
+  background: var(--tuv-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Modern Card System with Bootstrap 5.0 Classes */
+.tuv-card {
+  background: var(--tuv-surface);
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.06);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.tuv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 51, 102, 0.12);
+  border-color: rgba(0, 102, 204, 0.2);
+}
+
+.tuv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--tuv-gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tuv-card:hover::before {
+  opacity: 1;
+}
+
+.tuv-card-header {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+  padding: var(--tuv-space-2xl);
+  border-bottom: none;
+  position: relative;
+  z-index: 2;
+}
+
+.tuv-card-body {
+  padding: var(--tuv-space-2xl);
+  background: var(--tuv-surface);
+  position: relative;
+  z-index: 1;
+}
+
+.tuv-card-title {
+  font-size: var(--tuv-font-size-xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  margin: 0;
+  color: inherit;
+}
+
+/* Enhanced Form Controls */
+.tuv-input,
+.tuv-select,
+.tuv-textarea {
+  background: var(--tuv-surface);
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  padding: 14px 16px;
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  font-family: 'Inter', var(--tuv-font-family);
+  color: var(--tuv-text-primary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  min-height: 48px;
+}
+
+.tuv-input:focus,
+.tuv-select:focus,
+.tuv-textarea:focus {
+  outline: none;
+  border-color: var(--tuv-corporate-blue);
+  background: var(--tuv-white);
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+  transform: translateY(-1px);
+}
+
+.tuv-input::placeholder,
+.tuv-textarea::placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+.tuv-label {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+  display: block;
+}
+
+/* Enhanced Button System */
+.tuv-btn-primary {
+  background: var(--tuv-gradient-primary);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 12px 24px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tuv-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.tuv-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.25);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-btn-primary:hover::before {
+  opacity: 1;
+}
+
+.tuv-btn-secondary {
+  background: var(--tuv-gradient-orange);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 12px 24px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tuv-btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.25);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-btn-outline {
+  background: transparent;
+  border: 2px solid var(--tuv-corporate-blue);
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-corporate-blue);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 10px 22px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-btn-outline:hover {
+  background: var(--tuv-corporate-blue);
+  color: var(--tuv-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25);
+}
+
+/* Form Actions */
+.tuv-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--tuv-space-md);
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: var(--tuv-space-xl);
+  padding-top: var(--tuv-space-xl);
+  border-top: 1px solid var(--tuv-border);
+}
+
+/* ============================================================================
+   8. TÜV SÜD DROPDOWN SYSTEM
+   ============================================================================ */
+
+.tuv-dropdown-container .tuv-nav-dropdown-custom {
+  position: relative;
+}
+
+.tuv-dropdown-title {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-navy-blue);
+  padding: 12px 20px;
+  font-weight: var(--tuv-font-weight-semibold);
+  font-size: var(--tuv-font-size-sm);
+  transition: var(--tuv-transition-normal);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.tuv-dropdown-title:hover {
+  background: var(--tuv-white);
+  border-color: var(--tuv-corporate-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-md);
+}
+
+.tuv-nav-dropdown-custom .dropdown-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-xl);
+  backdrop-filter: blur(20px);
+  padding: var(--tuv-space-sm);
+  margin-top: var(--tuv-space-sm);
+  min-width: 250px;
+  z-index: var(--tuv-z-dropdown);
+}
+
+.tuv-nav-dropdown-custom .tuv-dropdown-item {
+  color: var(--tuv-navy-blue);
+  padding: 12px 16px;
+  border-radius: var(--tuv-radius-md);
+  transition: var(--tuv-transition-fast);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  margin-bottom: var(--tuv-space-xs);
+}
+
+.tuv-nav-dropdown-custom .tuv-dropdown-item:hover {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%);
+  color: var(--tuv-corporate-blue);
+  transform: translateX(4px);
+}
+
+/* ============================================================================
+   9. TÜV SÜD FILE UPLOAD SYSTEM
+   ============================================================================ */
+
+.tuv-dropzone {
+  border: 3px dashed var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  padding: var(--tuv-space-2xl);
+  text-align: center;
+  background: var(--tuv-gradient-surface);
+  transition: var(--tuv-transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-dropzone:hover {
+  border-color: var(--tuv-corporate-blue);
+  background: rgba(0, 102, 204, 0.02);
+}
+
+.tuv-dropzone.active {
+  border-color: var(--tuv-corporate-blue);
+  background: rgba(0, 102, 204, 0.05);
+}
+
+.tuv-dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tuv-space-md);
+  color: var(--tuv-text-secondary);
+}
+
+.tuv-dropzone-icon {
+  font-size: 48px;
+  color: var(--tuv-corporate-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-dropzone-title {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin: 0;
+}
+
+.tuv-dropzone-subtitle {
+  font-size: var(--tuv-font-size-sm);
+  color: var(--tuv-text-muted);
+  margin: 0;
+}
+
+/* File List */
+.tuv-file-list {
+  margin-top: var(--tuv-space-lg);
+  padding: var(--tuv-space-lg);
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-lg);
+  border: 1px solid var(--tuv-border);
+}
+
+.tuv-file-list-title {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-file-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tuv-space-sm);
+}
+
+.tuv-file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--tuv-space-sm) var(--tuv-space-md);
+  background: var(--tuv-background);
+  border-radius: var(--tuv-radius-md);
+  border: 1px solid var(--tuv-border-light);
+}
+
+.tuv-file-info {
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  color: var(--tuv-text-primary);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+}
+
+.tuv-file-name {
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.tuv-file-size {
+  font-size: var(--tuv-font-size-xs);
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+/* ============================================================================
+   10. TÜV SÜD INFO CARDS
+   ============================================================================ */
+
+.tuv-info-card {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 102, 204, 0.02) 100%);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  border-radius: var(--tuv-radius-lg);
+  overflow: hidden;
+  margin-top: var(--tuv-space-md);
+}
+
+.tuv-info-card-header {
+  background: rgba(0, 102, 204, 0.1);
+  padding: var(--tuv-space-md) var(--tuv-space-lg);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  font-size: var(--tuv-font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--tuv-space-sm);
+  border-bottom: 1px solid rgba(0, 120, 191, 0.1);
+}
+
+.tuv-info-card-body {
+  padding: var(--tuv-space-lg);
+}
+
+/* ============================================================================
+   11. TÜV SÜD CHATBOT SYSTEM
+   ============================================================================ */
+
+.tuv-chatbot-toggle {
+  position: fixed;
+  bottom: var(--tuv-space-2xl);
+  right: var(--tuv-space-2xl);
+  z-index: var(--tuv-z-fixed);
+}
+
+.tuv-chatbot-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--tuv-gradient-primary);
+  border: none;
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--tuv-transition-normal);
+  box-shadow: var(--tuv-shadow-lg);
+}
+
+.tuv-chatbot-button:hover {
+  transform: scale(1.1);
+  box-shadow: var(--tuv-shadow-xl);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-chatbot-container {
+  position: fixed;
+  bottom: 120px;
+  right: var(--tuv-space-2xl);
+  z-index: var(--tuv-z-fixed);
+  width: 380px;
+  max-height: 500px;
+}
+
+.tuv-chatbot-card {
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: var(--tuv-shadow-xl);
+  border: 1px solid var(--tuv-border);
+  overflow: hidden;
+}
+
+.tuv-chatbot-header {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+  padding: var(--tuv-space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tuv-chatbot-close {
+  color: var(--tuv-text-inverse);
+  border: none;
+  background: transparent;
+  font-size: var(--tuv-font-size-lg);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--tuv-radius-md);
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-chatbot-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-chatbot-body {
+  height: 400px;
+  overflow: hidden;
+}
+
+/* ============================================================================
+   12. TÜV SÜD TOAST NOTIFICATIONS
+   ============================================================================ */
+
+.Toastify__toast {
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-lg);
+  font-family: var(--tuv-font-family);
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.Toastify__toast--success {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, var(--tuv-error) 0%, var(--tuv-error-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, var(--tuv-warning) 0%, var(--tuv-warning-light) 100%);
+  color: var(--tuv-navy-blue);
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, var(--tuv-info) 0%, var(--tuv-info-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+
+/* ============================================================================
+   13. TÜV SÜD REACT SELECT STYLING
+   ============================================================================ */
+
+.tuv-react-select-container {
+  font-family: var(--tuv-font-family);
+}
+
+.tuv-react-select__control {
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  min-height: 48px;
+  box-shadow: none;
+  background: var(--tuv-surface);
+  transition: var(--tuv-transition-normal);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.tuv-react-select__control:hover {
+  border-color: var(--tuv-corporate-blue);
+}
+
+.tuv-react-select__control--is-focused {
+  border-color: var(--tuv-corporate-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.tuv-react-select__menu {
+  background: var(--tuv-surface);
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-xl);
+  border: 1px solid var(--tuv-border);
+  z-index: var(--tuv-z-dropdown);
+}
+
+.tuv-react-select__option {
+  background: var(--tuv-surface);
+  color: var(--tuv-text-primary);
+  font-weight: var(--tuv-font-weight-medium);
+  padding: 12px 16px;
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-react-select__option--is-focused {
+  background: rgba(0, 102, 204, 0.1);
+  color: var(--tuv-corporate-blue);
+}
+
+.tuv-react-select__option--is-selected {
+  background: var(--tuv-corporate-blue);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-react-select__placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+/* ============================================================================
+   14. TÜV SÜD RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 1400px) {
+  .tuv-main-container {
+    max-width: 1200px;
+    padding: var(--tuv-space-xl) var(--tuv-space-lg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .tuv-main-container {
+    max-width: 992px;
+    padding: var(--tuv-space-xl) var(--tuv-space-md);
+  }
+  
+  .tuv-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tuv-form-group-wide,
+  .tuv-form-group-full {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-lg) var(--tuv-space-md);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-md);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-xl);
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-xl);
+  }
+  
+  .tuv-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .tuv-chatbot-container {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-md) var(--tuv-space-sm);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-md);
+    margin-bottom: var(--tuv-space-lg);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-lg);
+    text-align: center;
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-lg);
+  }
+  
+  .tuv-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .tuv-card-title {
+    font-size: var(--tuv-font-size-xl);
+  }
+  
+  .tuv-radio-group {
+    flex-direction: column;
+    gap: var(--tuv-space-sm);
+  }
+  
+  .tuv-chatbot-toggle {
+    bottom: var(--tuv-space-lg);
+    right: var(--tuv-space-lg);
+  }
+  
+  .tuv-chatbot-container {
+    bottom: 100px;
+    right: var(--tuv-space-lg);
+    left: var(--tuv-space-lg);
+    width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .tuv-main-container {
+    padding: var(--tuv-space-sm);
+  }
+  
+  .tuv-page-header {
+    padding: var(--tuv-space-sm);
+  }
+  
+  .tuv-card-header {
+    padding: var(--tuv-space-md);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--tuv-space-md);
+  }
+  
+  .tuv-card-body {
+    padding: var(--tuv-space-md);
+  }
+  
+  .tuv-form-actions {
+    gap: var(--tuv-space-sm);
+  }
+  
+  .tuv-btn-primary,
+  .tuv-btn-secondary,
+  .tuv-btn-outline {
+    padding: 14px 20px;
+    font-size: var(--tuv-font-size-sm);
+  }
+}
+
+/* ============================================================================
+   15. TÜV SÜD ANIMATIONS AND TRANSITIONS
+   ============================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animation Classes */
+.tuv-animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.tuv-animate-fade-in-left {
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.tuv-animate-slide-in-down {
+  animation: slideInDown 0.4s ease-out;
+}
+
+.tuv-animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.tuv-animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   16. TÜV SÜD UTILITY CLASSES
+   ============================================================================ */
+
+/* Text Utilities */
+.tuv-text-primary { color: var(--tuv-text-primary) !important; }
+.tuv-text-secondary { color: var(--tuv-text-secondary) !important; }
+.tuv-text-muted { color: var(--tuv-text-muted) !important; }
+.tuv-text-inverse { color: var(--tuv-text-inverse) !important; }
+.tuv-text-navy { color: var(--tuv-navy-blue) !important; }
+.tuv-text-blue { color: var(--tuv-corporate-blue) !important; }
+.tuv-text-orange { color: var(--tuv-orange-primary) !important; }
+
+/* Background Utilities */
+.tuv-bg-primary { background: var(--tuv-gradient-primary) !important; }
+.tuv-bg-secondary { background: var(--tuv-gradient-secondary) !important; }
+.tuv-bg-orange { background: var(--tuv-gradient-orange) !important; }
+.tuv-bg-surface { background: var(--tuv-surface) !important; }
+.tuv-bg-background { background: var(--tuv-background) !important; }
+
+/* Border Utilities */
+.tuv-border { border: 1px solid var(--tuv-border) !important; }
+.tuv-border-light { border: 1px solid var(--tuv-border-light) !important; }
+.tuv-border-primary { border: 2px solid var(--tuv-corporate-blue) !important; }
+.tuv-border-radius { border-radius: var(--tuv-radius-md) !important; }
+.tuv-border-radius-lg { border-radius: var(--tuv-radius-lg) !important; }
+
+/* Shadow Utilities */
+.tuv-shadow-sm { box-shadow: var(--tuv-shadow-sm) !important; }
+.tuv-shadow-md { box-shadow: var(--tuv-shadow-md) !important; }
+.tuv-shadow-lg { box-shadow: var(--tuv-shadow-lg) !important; }
+.tuv-shadow-xl { box-shadow: var(--tuv-shadow-xl) !important; }
+
+/* Spacing Utilities */
+.tuv-m-0 { margin: 0 !important; }
+.tuv-m-sm { margin: var(--tuv-space-sm) !important; }
+.tuv-m-md { margin: var(--tuv-space-md) !important; }
+.tuv-m-lg { margin: var(--tuv-space-lg) !important; }
+.tuv-m-xl { margin: var(--tuv-space-xl) !important; }
+
+.tuv-p-0 { padding: 0 !important; }
+.tuv-p-sm { padding: var(--tuv-space-sm) !important; }
+.tuv-p-md { padding: var(--tuv-space-md) !important; }
+.tuv-p-lg { padding: var(--tuv-space-lg) !important; }
+.tuv-p-xl { padding: var(--tuv-space-xl) !important; }
+
+/* ============================================================================
+   17. TÜV SÜD ACCESSIBILITY FEATURES
+   ============================================================================ */
+
+/* Focus Indicators */
+*:focus {
+  outline: 3px solid rgba(0, 102, 204, 0.3);
+  outline-offset: 2px;
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  :root {
+    --tuv-border: #000000;
+    --tuv-text-primary: #000000;
+    --tuv-text-secondary: #333333;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   18. PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .tuv-chatbot-toggle,
+  .tuv-chatbot-container,
+  .tuv-form-actions {
+    display: none !important;
+  }
+  
+  .tuv-corporate-card {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+  
+  .tuv-card-header {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+  
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+  }
+}
+
+/* ============================================================================
+   19. ENHANCED BOOTSTRAP 5.0 INTEGRATION & MODERN UI COMPONENTS
+   ============================================================================ */
+
+/* Enhanced Typography with Inter Font */
+body, .tuv-font-family {
+  font-family: 'Inter', var(--tuv-font-family);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-optical-sizing: auto;
+}
+
+/* Modern Container System */
+.tuv-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--tuv-space-lg);
+  width: 100%;
+}
+
+.tuv-container-fluid {
+  width: 100%;
+  padding: 0 var(--tuv-space-md);
+}
+
+/* Enhanced Page Layout */
+.tuv-page-title {
+  margin-bottom: var(--tuv-space-2xl);
+  padding: var(--tuv-space-xl);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.8) 100%);
+  border-radius: var(--tuv-radius-xl);
+  border: 1px solid var(--tuv-border-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--tuv-shadow-sm);
+}
+
+.tuv-heading-primary {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: var(--tuv-font-weight-bold);
+  background: var(--tuv-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Modern Card System with Bootstrap 5.0 Classes */
+.tuv-card {
+  background: var(--tuv-surface);
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.06);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.tuv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 51, 102, 0.12);
+  border-color: rgba(0, 102, 204, 0.2);
+}
+
+.tuv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--tuv-gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tuv-card:hover::before {
+  opacity: 1;
+}
+
+.tuv-card-header {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+  padding: var(--tuv-space-2xl);
+  border-bottom: none;
+  position: relative;
+  z-index: 2;
+}
+
+.tuv-card-body {
+  padding: var(--tuv-space-2xl);
+  background: var(--tuv-surface);
+  position: relative;
+  z-index: 1;
+}
+
+.tuv-card-title {
+  font-size: var(--tuv-font-size-xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  margin: 0;
+  color: inherit;
+}
+
+/* Enhanced Form Controls */
+.tuv-input,
+.tuv-select,
+.tuv-textarea {
+  background: var(--tuv-surface);
+  border: 2px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-md);
+  padding: 14px 16px;
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-medium);
+  font-family: 'Inter', var(--tuv-font-family);
+  color: var(--tuv-text-primary);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  min-height: 48px;
+}
+
+.tuv-input:focus,
+.tuv-select:focus,
+.tuv-textarea:focus {
+  outline: none;
+  border-color: var(--tuv-corporate-blue);
+  background: var(--tuv-white);
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+  transform: translateY(-1px);
+}
+
+.tuv-input::placeholder,
+.tuv-textarea::placeholder {
+  color: var(--tuv-text-muted);
+  font-weight: var(--tuv-font-weight-normal);
+}
+
+.tuv-label {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+  display: block;
+}
+
+/* Enhanced Button System */
+.tuv-btn-primary {
+  background: var(--tuv-gradient-primary);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 12px 24px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tuv-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.tuv-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.25);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-btn-primary:hover::before {
+  opacity: 1;
+}
+
+.tuv-btn-secondary {
+  background: var(--tuv-gradient-orange);
+  border: none;
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-text-inverse);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 12px 24px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tuv-btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.25);
+  color: var(--tuv-text-inverse);
+}
+
+.tuv-btn-outline {
+  background: transparent;
+  border: 2px solid var(--tuv-corporate-blue);
+  border-radius: var(--tuv-radius-lg);
+  color: var(--tuv-corporate-blue);
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-semibold);
+  font-family: 'Inter', var(--tuv-font-family);
+  padding: 10px 22px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tuv-space-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-btn-outline:hover {
+  background: var(--tuv-corporate-blue);
+  color: var(--tuv-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25);
+}
+
+/* ============================================================================
+   17. TÜV SÜD MODERN DATA TABLE STYLES
+   ============================================================================ */
+
+.tuv-data-table {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 120, 191, 0.1);
+}
+
+.tuv-table-header {
+  background: linear-gradient(135deg, var(--tuv-primary), #0066cc);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tuv-table-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tuv-table-title i {
+  font-size: 1.75rem;
+  color: var(--tuv-accent);
+}
+
+.tuv-table-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tuv-search-container {
+  position: relative;
+  min-width: 280px;
+}
+
+.tuv-search-input {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  color: white;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.tuv-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tuv-search-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--tuv-accent);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+}
+
+.tuv-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+/* Table Content */
+.tuv-table-content {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.table.tuv-table {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--tuv-text-primary);
+}
+
+.table.tuv-table thead th {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  color: var(--tuv-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  border-bottom: 2px solid var(--tuv-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table.tuv-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table.tuv-table tbody tr:hover {
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 120, 191, 0.1);
+}
+
+.table.tuv-table tbody td {
+  padding: 1.25rem 1.5rem;
+  vertical-align: middle;
+  border: none;
+  font-weight: 500;
+}
+
+.table.tuv-table tbody tr:nth-child(even) {
+  background: rgba(248, 249, 250, 0.5);
+}
+
+.table.tuv-table tbody tr:nth-child(even):hover {
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+}
+
+/* Table Actions */
+.tuv-table-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.tuv-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tuv-action-btn.view {
+  background: linear-gradient(135deg, #17a2b8, #20c997);
+  color: white;
+}
+
+.tuv-action-btn.edit {
+  background: linear-gradient(135deg, #ffc107, #ffb347);
+  color: #333;
+}
+
+.tuv-action-btn.delete {
+  background: linear-gradient(135deg, #dc3545, #e74c3c);
+  color: white;
+}
+
+.tuv-action-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Status Badges */
+.tuv-status-badge {
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.tuv-status-badge.active {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  color: #155724;
+  border: 1px solid #b8daff;
+}
+
+.tuv-status-badge.inactive {
+  background: linear-gradient(135deg, #f8d7da, #f1b0b7);
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.tuv-status-badge.pending {
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.tuv-status-badge i {
+  font-size: 0.7rem;
+}
+
+/* Table Footer */
+.tuv-table-footer {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tuv-table-info {
+  color: var(--tuv-text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Modern Pagination */
+.tuv-pagination {
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tuv-pagination .page-item .page-link {
+  border: none;
+  background: white;
+  color: var(--tuv-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0 0.125rem;
+}
+
+.tuv-pagination .page-item .page-link:hover {
+  background: linear-gradient(135deg, var(--tuv-primary), #0066cc);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 120, 191, 0.3);
+}
+
+.tuv-pagination .page-item.active .page-link {
+  background: linear-gradient(135deg, var(--tuv-primary), #0066cc);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 120, 191, 0.3);
+}
+
+.tuv-pagination .page-item.disabled .page-link {
+  background: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Loading States */
+.tuv-table-loading {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.tuv-loading-spinner {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid rgba(0, 120, 191, 0.1);
+  border-top: 3px solid var(--tuv-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tuv-loading-text {
+  color: var(--tuv-text-secondary);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* Empty State */
+.tuv-table-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--tuv-text-secondary);
+}
+
+.tuv-empty-icon {
+  font-size: 4rem;
+  color: #dee2e6;
+  margin-bottom: 1rem;
+}
+
+.tuv-empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--tuv-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.tuv-empty-subtitle {
+  font-size: 1rem;
+  color: var(--tuv-text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tuv-table-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.5rem;
+  }
+  
+  .tuv-table-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .tuv-search-container {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .tuv-table-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 1.5rem;
+  }
+  
+  .tuv-pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .table.tuv-table thead th,
+  .table.tuv-table tbody td {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .tuv-table-header {
+    padding: 1rem;
+  }
+  
+  .tuv-table-title {
+    font-size: 1.25rem;
+  }
+  
+  .tuv-table-footer {
+    padding: 1rem;
+  }
+  
+  .table.tuv-table thead th,
+  .table.tuv-table tbody td {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .tuv-action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}
