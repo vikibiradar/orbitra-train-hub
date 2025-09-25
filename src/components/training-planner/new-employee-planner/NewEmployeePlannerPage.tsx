@@ -9,6 +9,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { EmployeeListView } from "./EmployeeListView";
 import { PlannerForm } from "./PlannerForm";
+import Footer from "@/components/Footer";
 import { Employee, PlannerType, PlannerTypeType } from "@/types/training-planner";
 
 type ViewMode = "list" | "create-general";
@@ -39,7 +40,7 @@ export function NewEmployeePlannerPage() {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
-        <SidebarInset>
+        <SidebarInset className="flex flex-col">
           <TopHeader />
           
           <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -159,6 +160,8 @@ export function NewEmployeePlannerPage() {
         )}
       </div>
           </main>
+          
+          <Footer />
         </SidebarInset>
       </div>
     </SidebarProvider>

@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { ApprovalDashboard } from "./ApprovalDashboard";
 import { ApprovalListView } from "./ApprovalListView";
+import Footer from "@/components/Footer";
 import { useState } from "react";
 
 export const ApproveNewEmployeePlannerPage = () => {
@@ -12,11 +13,11 @@ export const ApproveNewEmployeePlannerPage = () => {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
-        <SidebarInset>
+        <SidebarInset className="flex flex-col">
           <TopHeader />
           
           {/* Main Content */}
-          <main className="w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
+          <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
             {/* Page Header */}
             <section>
               <h1 className="heading-primary">Approve New Employee Planner</h1>
@@ -31,6 +32,8 @@ export const ApproveNewEmployeePlannerPage = () => {
               <ApprovalListView onBackToDashboard={() => setShowList(false)} />
             )}
           </main>
+          
+          <Footer />
         </SidebarInset>
       </div>
     </SidebarProvider>

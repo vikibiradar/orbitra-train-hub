@@ -4,17 +4,18 @@ import { TopHeader } from "@/components/TopHeader";
 import { WelcomeBanner } from "@/components/WelcomeBanner";
 import { KPICards } from "@/components/KPICards";
 import { RecentEvents } from "@/components/RecentEvents";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
-        <SidebarInset>
+        <SidebarInset className="flex flex-col">
           <TopHeader />
           
           {/* Main Content */}
-          <main className="w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
+          <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
             {/* Welcome Banner Section */}
             <WelcomeBanner />
             
@@ -29,6 +30,8 @@ const Index = () => {
               <RecentEvents />
             </section> */}
           </main>
+          
+          <Footer />
         </SidebarInset>
       </div>
     </SidebarProvider>
