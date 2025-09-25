@@ -6,8 +6,6 @@ const Footer = () => {
       {/* Top accent border */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-border" />
       
-       
-      
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex justify-center items-center">

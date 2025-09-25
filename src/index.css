@@ -98,10 +98,6 @@
     --shadow-hover: 0 8px 25px hsl(var(--tuv-accent-cyan) / 0.2);
     --shadow-card: 0 4px 12px hsl(var(--tuv-navy-blue) / 0.1);
     
-    /* TÜV SÜD Header Shadows */
-    --shadow-header: 0 4px 20px hsl(var(--tuv-header-primary) / 0.25), 
-                     0 1px 3px hsl(var(--tuv-accent-cyan) / 0.1), 
-                     inset 0 1px 0 rgba(255, 255, 255, 0.1);
     
     /* Radius */
     --radius: 0.75rem;
@@ -482,9 +478,7 @@
   
   /* TÜV SÜD Header Styles */
   .tuv-header {
-    background: var(--gradient-header) !important;
-    border-bottom: 4px solid transparent !important;
-    border-image: var(--gradient-border) 1 !important;
+ 
     box-shadow: var(--shadow-header);
     backdrop-filter: blur(15px);
     min-height: 85px !important;

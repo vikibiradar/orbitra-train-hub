@@ -92,9 +92,7 @@ export default {
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
         "gradient-secondary": "var(--gradient-secondary)",
-        "gradient-hero": "var(--gradient-hero)",
-        "gradient-header": "var(--gradient-header)",
-        "gradient-border": "var(--gradient-border)",
+        "gradient-hero": "var(--gradient-hero)", 
         "gradient-card": "var(--gradient-card)",
         "gradient-surface": "var(--gradient-surface)",
         "gradient-glow": "var(--gradient-glow)",
@@ -106,8 +104,7 @@ export default {
         "lg": "var(--shadow-lg)",
         "xl": "var(--shadow-xl)",
         "hover": "var(--shadow-hover)",
-        "card": "var(--shadow-card)",
-        "header": "var(--shadow-header)",
+        "card": "var(--shadow-card)", 
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -130,11 +127,6 @@ export default {
           to: {
             height: "0",
           },
-        },
-        "shimmer": {
-          "0%": { left: "-100%" },
-          "50%": { left: "100%" },
-          "100%": { left: "100%" },
         },
       },
       animation: {
