@@ -6,21 +6,11 @@
 
 @layer base {
   :root {
-    /* TÜV SÜD Corporate Color System */
-    --tuv-navy-blue: 213 100% 20%; /* #003366 converted to HSL */
-    --tuv-corporate-blue: 213 100% 40%; /* #0066CC converted to HSL */
-    --tuv-light-blue: 213 100% 65%; /* #4D94FF converted to HSL */
-    --tuv-bright-blue: 213 100% 70%; /* #66B2FF converted to HSL */
-    --tuv-orange-primary: 13 100% 60%; /* #FF6B35 converted to HSL */
-    --tuv-orange-light: 15 100% 67%; /* #FF8A5C converted to HSL */
-    
-    /* TÜV SÜD Header specific colors */
-    --tuv-header-primary: 223 100% 19%; /* #00205B */
-    --tuv-header-dark: 223 100% 15%; /* #001a4d */
-    --tuv-header-accent: 223 100% 22%; /* #003875 */
-    --tuv-header-bright: 213 100% 45%; /* #0044a0 */
-    --tuv-accent-cyan: 188 100% 40%; /* #00A8CC */
-    --tuv-accent-cyan-light: 188 100% 46%; /* #00c4e8 */
+    /* PS Training Enhanced Color System - TÜV SÜD Inspired */
+    --ps-primary: 218 91% 35%; /* #0057B8 - Original PS Blue */
+    --ps-primary-light: 208 91% 55%; /* #4D94FF - Lighter variant */
+    --ps-primary-dark: 218 91% 25%; /* #003875 - Darker variant */
+    --ps-primary-glow: 208 100% 65%; /* #5BA3FF - Glow effect */
     
     /* Status Colors */
     --ps-success: 142 76% 36%; /* #28A745 */
@@ -79,29 +69,22 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    /* TÜV SÜD Enhanced Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--tuv-navy-blue)) 0%, hsl(var(--tuv-corporate-blue)) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--tuv-corporate-blue)) 0%, hsl(var(--tuv-light-blue)) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(var(--tuv-navy-blue)) 0%, hsl(var(--tuv-corporate-blue)) 50%, hsl(var(--tuv-light-blue)) 100%);
-    --gradient-header: linear-gradient(135deg, hsl(var(--tuv-header-primary)) 0%, hsl(var(--tuv-header-dark)) 25%, hsl(var(--tuv-header-accent)) 75%, hsl(var(--tuv-header-bright)) 100%);
-    --gradient-border: linear-gradient(90deg, hsl(var(--tuv-accent-cyan)), hsl(var(--tuv-accent-cyan-light)), hsl(var(--tuv-accent-cyan)));
+    /* PS Training Enhanced Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--ps-primary-dark)) 0%, hsl(var(--ps-primary)) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--ps-primary)) 0%, hsl(var(--ps-primary-light)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--ps-primary-dark)) 0%, hsl(var(--ps-primary)) 50%, hsl(var(--ps-primary-light)) 100%);
     --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--ps-surface-elevated)) 100%);
     --gradient-surface: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--ps-surface-elevated)) 100%);
-    --gradient-glow: linear-gradient(135deg, hsl(var(--tuv-light-blue) / 0.1) 0%, hsl(var(--tuv-corporate-blue) / 0.05) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(var(--ps-primary-glow) / 0.1) 0%, hsl(var(--ps-primary) / 0.05) 100%);
     
-    /* TÜV SÜD Enhanced Shadow System */
-    --shadow-glow: 0 0 40px hsl(var(--tuv-light-blue) / 0.4);
-    --shadow-sm: 0 2px 4px hsl(var(--tuv-navy-blue) / 0.08);
-    --shadow-md: 0 4px 12px hsl(var(--tuv-navy-blue) / 0.12);
-    --shadow-lg: 0 8px 24px hsl(var(--tuv-navy-blue) / 0.16);
-    --shadow-xl: 0 12px 40px hsl(var(--tuv-navy-blue) / 0.20);
-    --shadow-hover: 0 8px 25px hsl(var(--tuv-accent-cyan) / 0.2);
-    --shadow-card: 0 4px 12px hsl(var(--tuv-navy-blue) / 0.1);
-    
-    /* TÜV SÜD Header Shadows */
-    --shadow-header: 0 4px 20px hsl(var(--tuv-header-primary) / 0.25), 
-                     0 1px 3px hsl(var(--tuv-accent-cyan) / 0.1), 
-                     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* PS Training Enhanced Shadow System */
+    --shadow-glow: 0 0 40px hsl(var(--ps-primary-glow) / 0.4);
+    --shadow-sm: 0 2px 4px hsl(var(--ps-primary) / 0.08);
+    --shadow-md: 0 4px 12px hsl(var(--ps-primary) / 0.12);
+    --shadow-lg: 0 8px 24px hsl(var(--ps-primary) / 0.16);
+    --shadow-xl: 0 12px 40px hsl(var(--ps-primary) / 0.20);
+    --shadow-hover: 0 8px 25px hsl(var(--ps-primary) / 0.15);
+    --shadow-card: 0 4px 12px hsl(var(--ps-primary) / 0.1);
     
     /* Radius */
     --radius: 0.75rem;
@@ -454,7 +437,7 @@
   .heading-primary {
     font-size: 2.5rem;
     font-weight: 700;
-    color: hsl(var(--tuv-navy-blue));
+    color: hsl(var(--ps-primary-dark));
     margin-bottom: 1.5rem;
     line-height: 1.2;
     background: var(--gradient-primary);
@@ -467,7 +450,7 @@
   .heading-secondary {
     font-size: 2rem;
     font-weight: 600;
-    color: hsl(var(--tuv-corporate-blue));
+    color: hsl(var(--ps-primary));
     margin-bottom: 1rem;
     line-height: 1.3;
   }
@@ -475,97 +458,9 @@
   .heading-tertiary {
     font-size: 1.5rem;
     font-weight: 600;
-    color: hsl(var(--tuv-corporate-blue));
+    color: hsl(var(--ps-primary));
     margin-bottom: 0.75rem;
     line-height: 1.4;
-  }
-  
-  /* TÜV SÜD Header Styles */
-  .tuv-header {
-    background: var(--gradient-header) !important;
-    border-bottom: 4px solid transparent !important;
-    border-image: var(--gradient-border) 1 !important;
-    box-shadow: var(--shadow-header);
-    backdrop-filter: blur(15px);
-    min-height: 85px !important;
-    position: relative;
-    overflow: visible;
-    z-index: 1020 !important;
-  }
-
-  .tuv-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--tuv-accent-cyan) / 0.1), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  .tuv-navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 8px 16px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--tuv-accent-cyan) / 0.2);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tuv-navbar-brand::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--tuv-accent-cyan) / 0.15), transparent);
-    transition: left 0.6s ease;
-  }
-
-  .tuv-navbar-brand:hover::before {
-    left: 100%;
-  }
-
-  .tuv-navbar-brand:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: hsl(var(--tuv-accent-cyan) / 0.4);
-    box-shadow: 0 8px 25px hsl(var(--tuv-accent-cyan) / 0.2);
-  }
-
-  .tuv-logo {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 4px;
-  }
-
-  .tuv-logo:hover {
-    transform: rotate(5deg) scale(1.1);
-    filter: drop-shadow(0 6px 15px hsl(var(--tuv-accent-cyan) / 0.3));
-  }
-
-  .tuv-brand-text {
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.3),
-      0 0 20px hsl(var(--tuv-accent-cyan) / 0.3);
-    background: linear-gradient(135deg, #fff 0%, hsl(var(--tuv-accent-cyan)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
   }
 
   .text-brand {
