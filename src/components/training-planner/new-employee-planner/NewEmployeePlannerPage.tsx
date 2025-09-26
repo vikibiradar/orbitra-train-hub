@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { EmployeeListView } from "./EmployeeListView";
@@ -14,27 +14,37 @@ import { Employee, PlannerType, PlannerTypeType } from "@/types/training-planner
 
 type ViewMode = "list" | "create-general";
 
-const PlannerContent = ({ 
-  viewMode, 
-  selectedEmployee, 
-  selectedPlannerType, 
-  handleBackToList, 
-  handleCreatePlanner, 
-  handlePlannerSaved 
-}: {
-  viewMode: ViewMode;
-  selectedEmployee: Employee | null;
-  selectedPlannerType: PlannerTypeType;
-  handleBackToList: () => void;
-  handleCreatePlanner: (employee: Employee, type: "general") => void;
-  handlePlannerSaved: () => void;
-}) => {
-  const { state } = useSidebar();
-  const collapsed = state === "collapsed";
+export function NewEmployeePlannerPage() {
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  const [selectedPlannerType, setSelectedPlannerType] = useState<PlannerTypeType>(PlannerType.GENERAL_NEW_EMPLOYEE);
+
+  const handleCreatePlanner = (employee: Employee, type: "general") => {
+    setSelectedEmployee(employee);
+    setSelectedPlannerType(PlannerType.GENERAL_NEW_EMPLOYEE);
+    setViewMode("create-general");
+  };
+
+  const handleBackToList = () => {
+    setViewMode("list");
+    setSelectedEmployee(null);
+  };
+
+  const handlePlannerSaved = () => {
+    // Handle successful save/submit
+    setViewMode("list");
+    setSelectedEmployee(null);
+  };
 
   return (
-    <SidebarInset className={`flex flex-col ${collapsed ? 'ml-16' : 'ml-72'}`}>
-      <main className="flex-1 space-y-4 p-4 md:p-8 pt-6 mt-[72px]">
+    <SidebarProvider>
+      <div className="min-h-screen flex flex-col w-full">
+        <TopHeader />
+        
+        <div className="flex flex-1 w-full">
+          <AppSidebar />
+          <SidebarInset className="flex flex-col ml-16 lg:ml-72">
+            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6 mt-[72px]">
         {/* Breadcrumb Navigation */}
         <div className="flex items-center space-x-4">
           <Breadcrumb>
@@ -150,50 +160,10 @@ const PlannerContent = ({
             </Card>
           )}
         </div>
-      </main>
-      
-      <Footer />
-    </SidebarInset>
-  );
-};
-
-export function NewEmployeePlannerPage() {
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
-  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
-  const [selectedPlannerType, setSelectedPlannerType] = useState<PlannerTypeType>(PlannerType.GENERAL_NEW_EMPLOYEE);
-
-  const handleCreatePlanner = (employee: Employee, type: "general") => {
-    setSelectedEmployee(employee);
-    setSelectedPlannerType(PlannerType.GENERAL_NEW_EMPLOYEE);
-    setViewMode("create-general");
-  };
-
-  const handleBackToList = () => {
-    setViewMode("list");
-    setSelectedEmployee(null);
-  };
-
-  const handlePlannerSaved = () => {
-    // Handle successful save/submit
-    setViewMode("list");
-    setSelectedEmployee(null);
-  };
-
-  return (
-    <SidebarProvider>
-      <div className="min-h-screen flex flex-col w-full">
-        <TopHeader />
-        
-        <div className="flex flex-1 w-full">
-          <AppSidebar />
-          <PlannerContent 
-            viewMode={viewMode}
-            selectedEmployee={selectedEmployee}
-            selectedPlannerType={selectedPlannerType}
-            handleBackToList={handleBackToList}
-            handleCreatePlanner={handleCreatePlanner}
-            handlePlannerSaved={handlePlannerSaved}
-          />
+            </main>
+            
+            <Footer />
+          </SidebarInset>
         </div>
       </div>
     </SidebarProvider>
