@@ -43,8 +43,8 @@ export function NewEmployeePlannerPage() {
         
         <div className="flex flex-1 w-full">
           <AppSidebar />
-          <SidebarInset className="flex flex-col">
-            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+          <SidebarInset className="flex flex-col ml-16 lg:ml-72">
+            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6 mt-[72px]">
         {/* Breadcrumb Navigation */}
         <div className="flex items-center space-x-4">
           <Breadcrumb>
