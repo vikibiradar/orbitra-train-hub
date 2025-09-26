@@ -154,69 +154,83 @@ export function AppSidebar() {
     setOpenGroups(newOpenGroups);
   };
 
-  return (
-    <TopHeader/>
-    <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border h-[calc(100vh-4.5rem)]`}>
-      <SidebarContent className="py-4 bg-sidebar">
-        
-         
-        <SidebarGroup>
-          <SidebarMenu>
-            {menuItems.map((group) => {
-              const isOpen = openGroups.has(group.title);
-              const isActive = isGroupActive(group);
+   return (
+    <>
+      {/* Top header stays at top */}
+      <TopHeader />
 
-              return (
-                <SidebarMenuItem key={group.title}>
-                  <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-  className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
->
+      {/* Layout row: sidebar + content area */}
+      <div className="flex">
+        {/* Sidebar
+            - mt-16 pushes it visually below the header (header = h-16).
+            - w-16 / w-72 toggles collapsed width
+            - remove mt-16 if you already changed Sidebar.tsx to use top-16 positioning
+        */}
+        <Sidebar
+          className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border mt-16`}
+        >
+          {/* SidebarContent: allow internal scrolling and constrained height */}
+          <SidebarContent className="py-4 bg-sidebar overflow-y-auto max-h-[calc(100vh-4rem)] pr-2 sidebar-scroll">
+            <SidebarGroup>
+              <SidebarMenu>
+                {menuItems.map((group) => {
+                  const isOpen = openGroups.has(group.title);
 
+                  return (
+                    <SidebarMenuItem key={group.title}>
+                      <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
+                        <CollapsibleTrigger asChild>
+                          <SidebarMenuButton className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors">
+                            <div className="flex items-center gap-3">
+                              <group.icon className="h-5 w-5" />
+                              {!collapsed && <span className="font-medium">{group.title}</span>}
+                            </div>
 
-                        <div className="flex items-center gap-3">
-                          <group.icon className="h-5 w-5" />
-                          {!collapsed && <span className="font-medium">{group.title}</span>}
-                        </div>
+                            {!collapsed && (
+                              <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                            )}
+                          </SidebarMenuButton>
+                        </CollapsibleTrigger>
+
                         {!collapsed && (
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                          />
+                          <CollapsibleContent>
+                            {/* cap height so long lists scroll inside the sidebar instead of pushing page */}
+                            <SidebarMenuSub className="max-h-[60vh] overflow-y-auto pr-1 sidebar-scroll">
+                              {group.items.map((item) => (
+                                <SidebarMenuSubItem key={item.url}>
+                                  <SidebarMenuSubButton asChild>
+                                    <NavLink
+                                      to={item.url}
+                                      className={({ isActive }) =>
+                                        `block w-full text-sm py-2 px-3 rounded-md transition-colors leading-snug whitespace-normal ${
+                                          isActive
+                                            ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
+                                            : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+                                        }`
+                                      }
+                                    >
+                                      {item.title}
+                                    </NavLink>
+                                  </SidebarMenuSubButton>
+                                </SidebarMenuSubItem>
+                              ))}
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
                         )}
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    {!collapsed && (
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {group.items.map((item) => (
-                            <SidebarMenuSubItem key={item.url}>
-                              <SidebarMenuSubButton asChild>
-                                <NavLink
-                                  to={item.url}
-                                  className={({ isActive }) =>
-                                    `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
-                                      isActive
-                                        ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
-                                        : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
-                                    }`
-                                  }
-                                >
-                                  {item.title}
-                                </NavLink>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    )}
-                  </Collapsible>
-                </SidebarMenuItem>
-              );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+                      </Collapsible>
+                    </SidebarMenuItem>
+                  );
+                })}
+              </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+
+        {/* Main content placeholder — keep this so page content sits to the right of the sidebar */}
+        <main className="flex-1">
+          {/* your main app content will render here (routes / children) */}
+        </main>
+      </div>
+    </>
   );
 }
