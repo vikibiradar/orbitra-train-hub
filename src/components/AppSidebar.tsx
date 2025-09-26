@@ -29,6 +29,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { TopHeader } from "@/components/TopHeader";
 
 const menuItems = [
   {
@@ -154,7 +155,7 @@ export function AppSidebar() {
   };
 
   return (
-    <TopHeader />
+    <TopHeader/>
     <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border h-[calc(100vh-4.5rem)]`}>
       <SidebarContent className="py-4 bg-sidebar">
         
