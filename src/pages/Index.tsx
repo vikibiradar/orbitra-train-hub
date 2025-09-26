@@ -13,8 +13,7 @@ const Index = () => {
         <TopHeader />
         
         <div className="flex flex-1 w-full">
-          <AppSidebar />
-          <SidebarInset className="flex flex-col">
+        
             {/* Main Content */}
             <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
               {/* Welcome Banner Section */}
@@ -33,7 +32,7 @@ const Index = () => {
             </main>
             
             <Footer />
-          </SidebarInset>
+           
         </div>
       </div>
     </SidebarProvider>
