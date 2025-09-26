@@ -16,9 +16,9 @@ export const ApproveNewEmployeePlannerPage = () => {
         
         <div className="flex flex-1 w-full">
           <AppSidebar />
-          <SidebarInset className="flex flex-col">
+          <SidebarInset className="flex flex-col ml-16 lg:ml-72">
             {/* Main Content */}
-            <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
+            <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 mt-[72px] space-y-8">
               {/* Page Header */}
               <section>
                 <h1 className="heading-primary">Approve New Employee Planner</h1>

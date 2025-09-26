@@ -154,7 +154,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}>
+    <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border fixed top-[72px] left-0 h-[calc(100svh-72px)]`}>
       <SidebarContent className="py-4 bg-sidebar">
          
         <SidebarGroup>
