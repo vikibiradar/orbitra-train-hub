@@ -156,20 +156,7 @@ export function AppSidebar() {
   return (
     <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border`}>
       <SidebarContent className="py-4 bg-sidebar">
-        <div className="px-4 pb-4 border-b border-sidebar-border/50">
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sidebar-primary shadow-lg">
-              <GraduationCap className="h-6 w-6 text-sidebar-primary-foreground" />
-            </div>
-            {!collapsed && (
-              <div>
-                <h1 className="text-lg font-semibold text-sidebar-foreground">PS Training</h1>
-                <p className="text-xs text-sidebar-foreground/70">Enterprise System</p>
-              </div>
-            )}
-          </div>
-        </div>
-
+         
         <SidebarGroup>
           <SidebarMenu>
             {menuItems.map((group) => {
