@@ -165,3 +165,91 @@ export interface TrainingHistory {
   previousStatus?: PlannerStatusType;
   newStatus?: PlannerStatusType;
 }
+
+// Extended types for Edit Employee Planner
+export const TopicStatus = {
+  PENDING_TI_APPROVAL: "Pending TI Approval",
+  TI_APPROVED: "TI Approved", 
+  TI_REJECTED: "TI Rejected",
+  PENDING_TRAINER_APPROVAL: "Pending Trainer Approval",
+  TRAINER_ACCEPTED: "Trainer Accepted",
+  TRAINER_REJECTED: "Trainer Rejected",
+  IN_PROGRESS: "In Progress",
+  COMPLETED: "Completed",
+  CANCELLED: "Cancelled"
+} as const;
+
+export type TopicStatusType = typeof TopicStatus[keyof typeof TopicStatus];
+
+export const AmendmentStatus = {
+  NONE: "None",
+  IN_PROGRESS: "In Progress", 
+  PENDING_APPROVAL: "Pending Approval",
+  APPROVED: "Approved",
+  REJECTED: "Rejected"
+} as const;
+
+export type AmendmentStatusType = typeof AmendmentStatus[keyof typeof AmendmentStatus];
+
+export interface ReferenceDocument {
+  id: string;
+  fileName: string;
+  fileUrl: string;
+  uploadedDate: string;
+  uploadedBy: string;
+}
+
+export interface CancellationReason {
+  id: string;
+  reason: string;
+  cancelledBy: string;
+  cancelledDate: string;
+  comments?: string;
+}
+
+export interface AmendmentVersion {
+  versionNumber: number;
+  createdDate: string;
+  createdBy: string;
+  status: AmendmentStatusType;
+  approvedDate?: string;
+  approvedBy?: string;
+  rejectedDate?: string;
+  rejectedBy?: string;
+  rejectionReason?: string;
+}
+
+export interface EnhancedTrainingPlannerTopic extends TrainingPlannerTopic {
+  status: TopicStatusType;
+  isEditable: boolean;
+  canRemove: boolean;
+  canCancel: boolean;
+  referenceDocument?: ReferenceDocument;
+  cancellationReason?: CancellationReason;
+  trainerAcceptedDate?: string;
+  trainerRejectedDate?: string;
+  attendanceMarked?: boolean;
+  ratingGiven?: boolean;
+  amendmentVersion?: number;
+}
+
+export interface EditablePlannerState {
+  canEdit: boolean;
+  canAmend: boolean;
+  canSubmit: boolean;
+  canSave: boolean;
+  canSaveAsDraft: boolean;
+  canCancel: boolean;
+  isAmendmentMode: boolean;
+  hasUnsavedChanges: boolean;
+}
+
+export interface EnhancedTrainingPlanner extends TrainingPlanner {
+  topics: EnhancedTrainingPlannerTopic[];
+  amendmentVersion: number;
+  amendmentHistory: AmendmentVersion[];
+  currentAmendmentStatus: AmendmentStatusType;
+  editableState: EditablePlannerState;
+  isMovedToFinalEvaluation: boolean;
+  needsRetraining: boolean;
+}

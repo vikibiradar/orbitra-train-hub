@@ -571,3 +571,33 @@ export const getPlannersByStatus = (status: PlannerStatusType): TrainingPlanner[
 export const getSubmittedPlanners = (): TrainingPlanner[] => {
   return getPlannersByStatus(PlannerStatus.SUBMITTED);
 };
+
+// Enhanced mock data for Edit Employee Planner functionality
+export const mockEnhancedPlanners = mockExistingPlanners.map((planner) => ({
+  ...planner,
+  amendmentVersion: Math.floor(Math.random() * 3) + 1,
+  amendmentHistory: [],
+  currentAmendmentStatus: "None" as const,
+  editableState: {
+    canEdit: planner.status !== "Submitted",
+    canAmend: planner.status === "Approved",
+    canSubmit: planner.status === "Draft" || planner.status === "Rejected",
+    canSave: true,
+    canSaveAsDraft: planner.status === "Draft" || planner.status === "Rejected",
+    canCancel: true,
+    isAmendmentMode: false,
+    hasUnsavedChanges: false
+  },
+  isMovedToFinalEvaluation: false,
+  needsRetraining: false,
+  topics: planner.topics.map((topic) => ({
+    ...topic,
+    status: "TI Approved" as const,
+    isEditable: true,
+    canRemove: true,
+    canCancel: false,
+    attendanceMarked: false,
+    ratingGiven: false,
+    amendmentVersion: 1
+  }))
+}));
