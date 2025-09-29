@@ -22,10 +22,10 @@ export function EditEmployeePlannerPage() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
-        <AppSidebar />
-        <SidebarInset className="flex-1">
-          <TopHeader />
+      <div className="min-h-screen flex flex-col w-full">
+        <TopHeader />
+        <div className="flex flex-1 w-full">
+          <AppSidebar />
           <main className="flex-1 space-y-4 p-4 md:p-6 pt-6">
             <div className="space-y-2">
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
