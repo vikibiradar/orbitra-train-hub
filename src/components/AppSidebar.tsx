@@ -28,6 +28,7 @@ import {
   SidebarMenuSubButton,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const menuItems = [
@@ -155,9 +156,9 @@ export function AppSidebar() {
 
   return (
     <Sidebar className={`${collapsed ? "w-16" : "w-72"} bg-sidebar border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}>
-      <SidebarContent className="py-4 bg-sidebar">
-         
-        <SidebarGroup>
+      <ScrollArea className="h-full">
+        <SidebarContent className="py-4 bg-sidebar">
+          <SidebarGroup>
           <SidebarMenu>
             {menuItems.map((group) => {
               const isOpen = openGroups.has(group.title);
@@ -214,6 +215,7 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      </ScrollArea>
     </Sidebar>
   );
 }
