@@ -5,6 +5,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { PlannerListView } from "./PlannerListView";
 import { PlannerEditForm } from "./PlannerEditForm";
 import { EnhancedTrainingPlanner } from "@/types/training-planner";
+import Footer from "@/components/Footer";
 
 export function EditEmployeePlannerPage() {
   const [selectedPlanner, setSelectedPlanner] = useState<EnhancedTrainingPlanner | null>(null);
