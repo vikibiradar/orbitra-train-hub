@@ -50,6 +50,7 @@ export function EditEmployeePlannerPage() {
           </main>
         </div>
       </div>
+      <Footer />
     </SidebarProvider>
   );
 }
