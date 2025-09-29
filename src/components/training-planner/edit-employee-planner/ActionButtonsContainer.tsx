@@ -37,6 +37,19 @@ export function ActionButtonsContainer({
   const getButtonVisibility = () => {
     const { status, editableState, currentAmendmentStatus } = planner;
     
+    // Defensive check - if editableState is undefined, provide defaults
+    if (!editableState) {
+      console.warn('EditableState is undefined, using defaults');
+      return {
+        saveAsDraft: status === PlannerStatus.DRAFT,
+        save: false,
+        sendForApproval: status === PlannerStatus.DRAFT,
+        amendment: status === PlannerStatus.APPROVED,
+        close: true,
+        cancel: true
+      };
+    }
+    
     // Pending for TI Approval First Time
     if (status === PlannerStatus.SUBMITTED) {
       return {

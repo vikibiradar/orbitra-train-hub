@@ -22,6 +22,7 @@ import {
 } from './types';
 import {
   mockExistingPlanners,
+  mockEnhancedPlanners,
   mockNewEmployees,
   mockDepartments,
   mockLocations,
@@ -46,7 +47,7 @@ export class TrainingPlannerMockProvider extends MockApiProvider {
   private initializeData(): void {
     // Initialize session storage with mock data if not exists
     if (!this.getStoredData('planners').length) {
-      this.setStoredData('planners', mockExistingPlanners);
+      this.setStoredData('planners', mockEnhancedPlanners);
     }
   }
 
