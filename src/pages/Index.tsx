@@ -32,8 +32,9 @@ const Index = () => {
               </section> */}
             </main>
             
-            <Footer />
+            
           </SidebarInset>
+          <Footer />
         </div>
       </div>
     </SidebarProvider>
