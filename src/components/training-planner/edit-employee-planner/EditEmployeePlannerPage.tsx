@@ -48,7 +48,7 @@ export function EditEmployeePlannerPage() {
               <PlannerListView onPlannerSelect={handlePlannerSelect} />
             )}
           </main>
-        </SidebarInset>
+        </div>
       </div>
     </SidebarProvider>
   );
