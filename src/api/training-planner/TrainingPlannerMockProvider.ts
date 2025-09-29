@@ -65,7 +65,7 @@ export class TrainingPlannerMockProvider extends MockApiProvider {
       planners = this.sortItems(planners, request.sortBy, request.sortOrder);
 
       // Apply pagination
-      const { paginatedItems, pagination } = this.generatePagination(planners, request);
+      const { paginatedItems } = this.generatePagination(planners, request);
 
       return paginatedItems;
     }, request.config);
@@ -328,7 +328,7 @@ export class TrainingPlannerMockProvider extends MockApiProvider {
       employees = this.sortItems(employees, request.sortBy, request.sortOrder);
 
       // Apply pagination
-      const { paginatedItems, pagination } = this.generatePagination(employees, request);
+      const { paginatedItems } = this.generatePagination(employees, request);
 
       return paginatedItems;
     }, request.config);

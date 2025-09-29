@@ -3,7 +3,6 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { WelcomeBanner } from "@/components/WelcomeBanner";
 import { KPICards } from "@/components/KPICards";
-import { RecentEvents } from "@/components/RecentEvents";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -26,10 +25,6 @@ const Index = () => {
                 <KPICards />
               </section>
               
-              {/* Recent Events Section 
-              <section>
-                <RecentEvents />
-              </section> */}
             </main>
             
             <Footer />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sidebar, SidebarContent, SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { PlannerListView } from "./PlannerListView";
@@ -30,7 +30,7 @@ export function EditEmployeePlannerPage() {
           <main className="flex-1 space-y-4 p-4 md:p-6 pt-6">
             <div className="space-y-2">
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
-                {isEditing ? "Edit Employee Planner" : "Edit Employee Planner"}
+                Edit Employee Planner
               </h1>
               <p className="text-muted-foreground">
                 {isEditing 

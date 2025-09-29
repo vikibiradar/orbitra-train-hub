@@ -6,7 +6,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { SearchFilters } from "./SearchFilters";
 import { PlannerDetailsModal } from "./PlannerDetailsModal";
 import { RejectReasonModal } from "./RejectReasonModal";
-import { ActionButtons } from "./ActionButtons";
 import { getSubmittedPlanners } from "@/data/mock-training-data";
 import { TrainingPlanner } from "@/types/training-planner";
 import { format } from "date-fns";

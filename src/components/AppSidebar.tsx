@@ -11,15 +11,12 @@ import {
   GraduationCap,
   Database,
   ChevronDown,
-  ChevronRight,
 } from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -162,7 +159,6 @@ export function AppSidebar() {
           <SidebarMenu>
             {menuItems.map((group) => {
               const isOpen = openGroups.has(group.title);
-              const isActive = isGroupActive(group);
 
               return (
                 <SidebarMenuItem key={group.title}>
