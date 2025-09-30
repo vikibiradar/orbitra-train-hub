@@ -5,6 +5,8 @@ import { ApprovalDashboard } from "./ApprovalDashboard";
 import { ApprovalListView } from "./ApprovalListView";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 
 export const ApproveNewEmployeePlannerPage = () => {
   const [showList, setShowList] = useState(false);
@@ -19,6 +21,25 @@ export const ApproveNewEmployeePlannerPage = () => {
           <SidebarInset className="flex flex-col">
             {/* Main Content */}
             <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-8">
+              {/* Breadcrumb Navigation */}
+              <div className="flex items-center space-x-4">
+                <Breadcrumb>
+                  <BreadcrumbList>
+                    <BreadcrumbItem>
+                      <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      <BreadcrumbLink href="#">Training Planner</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbPage>Approve New Employee Planner</BreadcrumbPage>
+                  </BreadcrumbList>
+                </Breadcrumb>
+              </div>
+
+              <Separator />
+
               {/* Page Header */}
               <section>
                 <h1 className="heading-primary">Approve New Employee Planner</h1>
