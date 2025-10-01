@@ -14,7 +14,7 @@ import "@/custom-style/CustomHeader-3.css";
 
 export function TopHeader() {
   return (
-    <header className="tuv-header sticky top-0 z-50 px-4 flex items-center justify-between w-full">
+    <header className="tuv-header sticky top-0 z-50 px-4 flex items-center justify-between w-full" style={{ borderBottom: 'none', borderImage: 'none' }}>
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
         <Link to="/" className="tuv-navbar-brand">
