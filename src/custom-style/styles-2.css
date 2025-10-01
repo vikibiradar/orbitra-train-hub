@@ -1,0 +1,572 @@
+/* TÜV SÜD Brand Colors */
+:root {
+  --tuv-primary-blue: #00205B;
+  --tuv-secondary-blue: #00A8CC;
+  --tuv-light-blue: rgba(0, 168, 204, 0.1);
+  --tuv-dark-blue: rgba(0, 32, 91, 0.1);
+  --tuv-success: #28a745;
+  --tuv-warning: #ffc107;
+  --tuv-danger: #dc3545;
+  --tuv-light-gray: #f8f9fa;
+  --tuv-medium-gray: #6c757d;
+  --tuv-dark-gray: #343a40;
+  --tuv-accent-gold: #ffc107;
+  --tuv-light-background: #ffffff;
+  --tuv-navy-blue: #003366;
+  --tuv-corporate-blue: #0066CC;
+  --tuv-orange: #FF6B35;
+  --tuv-light-orange: #FF8A5C;
+  --tuv-background: #F8F9FA;
+  --tuv-surface: #FFFFFF;
+  --tuv-border: #E0E0E0;
+  --tuv-text-primary: #333333;
+  --tuv-text-secondary: #666666;
+  --tuv-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
+  --tuv-shadow-hover: 0 8px 25px rgba(0, 51, 102, 0.15);
+}
+
+/* Main Content Wrapper */
+.tuv-main-content-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--tuv-background) 0%, #E8F4F9 100%);
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.tuv-main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: transparent;
+}
+
+/* Page Header */
+.tuv-page-header {
+  background: var(--tuv-surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--tuv-shadow);
+  border: 1px solid var(--tuv-border);
+  margin-bottom: 2rem;
+}
+
+/* Breadcrumb Container */
+.tuv-breadcrumb-container .breadcrumb {
+  background: linear-gradient(135deg, var(--tuv-navy-blue) 0%, var(--tuv-corporate-blue) 100%);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  margin: 0;
+  border: none;
+  box-shadow: var(--tuv-shadow);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.tuv-breadcrumb-container .breadcrumb-item.active {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a:hover {
+  color: #FFFFFF;
+}
+
+/* Dropdown Container */
+.tuv-dropdown-container .tuv-nav-dropdown-custom .dropdown-toggle {
+  background: var(--tuv-surface);
+  border: 2px solid var(--tuv-corporate-blue);
+  border-radius: 8px;
+  color: var(--tuv-navy-blue);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: var(--tuv-shadow);
+}
+
+.tuv-dropdown-container .tuv-nav-dropdown-custom .dropdown-toggle:hover {
+  background: var(--tuv-corporate-blue);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--tuv-shadow-hover);
+}
+
+.tuv-dropdown-container .tuv-nav-dropdown-custom .dropdown-menu {
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--tuv-shadow-hover);
+  background: var(--tuv-surface);
+  padding: 0.5rem 0;
+  z-index: 9999;
+}
+
+.tuv-dropdown-container .tuv-dropdown-item {
+  color: var(--tuv-text-primary);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.tuv-dropdown-container .tuv-dropdown-item:hover {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(77, 148, 255, 0.05) 100%);
+  color: var(--tuv-corporate-blue);
+}
+
+/* Corporate Card */
+.tuv-corporate-card {
+  background: var(--tuv-surface);
+  border-radius: 16px;
+  box-shadow: var(--tuv-shadow);
+  border: 1px solid var(--tuv-border);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.tuv-card-header {
+  background: linear-gradient(135deg, var(--tuv-navy-blue) 0%, var(--tuv-corporate-blue) 100%);
+  color: #FFFFFF;
+  padding: 2rem;
+  border: none;
+}
+
+.tuv-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+.tuv-card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.tuv-card-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  margin: 0;
+}
+
+.tuv-card-body {
+  padding: 2.5rem;
+  background: var(--tuv-surface);
+}
+
+/* TÜV SÜD Modern Form Styles with Bootstrap 5.0 Integration */
+
+/* TÜV SÜD Form Grid Layout */
+.tuv-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.tuv-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tuv-form-group-wide {
+  grid-column: 1 / -1;
+}
+
+.tuv-form-group-half {
+  grid-column: span 1;
+}
+
+/* Form Labels */
+.tuv-form-label {
+  color: var(--tuv-text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.01em;
+}
+
+.tuv-form-label i {
+  color: var(--tuv-primary);
+  font-size: 1rem;
+}
+
+.tuv-form-label.required::after {
+  content: "*";
+  color: #dc3545;
+  margin-left: 0.25rem;
+  font-weight: 700;
+}
+
+/* Form Controls */
+.tuv-form-control, 
+.tuv-form-select, 
+.tuv-form-textarea {
+  background: #ffffff;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--tuv-text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 52px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tuv-form-control:focus, 
+.tuv-form-select:focus, 
+.tuv-form-textarea:focus {
+  outline: none;
+  border-color: var(--tuv-primary);
+  box-shadow: 0 0 0 4px rgba(0, 120, 191, 0.1), 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: #fafbfc;
+  transform: translateY(-1px);
+}
+
+.tuv-form-control:hover:not(:focus), 
+.tuv-form-select:hover:not(:focus), 
+.tuv-form-textarea:hover:not(:focus) {
+  border-color: #c5d0db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tuv-form-control::placeholder, 
+.tuv-form-textarea::placeholder {
+  color: #8e9aaf;
+  font-weight: 400;
+}
+
+/* Textarea Specific */
+.tuv-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Select Specific */
+.tuv-form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 3rem;
+}
+
+/* React Select Custom Styles */
+.tuv-react-select-container .tuv-react-select__control {
+  background: #ffffff;
+  border: 2px solid #e0e6ed !important;
+  border-radius: 12px !important;
+  padding: 0.375rem 0.625rem;
+  min-height: 52px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tuv-react-select-container .tuv-react-select__control:hover {
+  border-color: #c5d0db !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.tuv-react-select-container .tuv-react-select__control--is-focused {
+  border-color: var(--tuv-primary) !important;
+  box-shadow: 0 0 0 4px rgba(0, 120, 191, 0.1), 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  background: #fafbfc !important;
+}
+
+.tuv-react-select-container .tuv-react-select__value-container {
+  padding: 0.5rem 0.75rem;
+}
+
+.tuv-react-select-container .tuv-react-select__placeholder {
+  color: #8e9aaf;
+  font-weight: 400;
+}
+
+.tuv-react-select-container .tuv-react-select__single-value {
+  color: var(--tuv-text-primary);
+  font-weight: 500;
+}
+
+.tuv-react-select-container .tuv-react-select__menu {
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e6ed;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.tuv-react-select-container .tuv-react-select__option {
+  padding: 0.875rem 1.125rem;
+  color: var(--tuv-text-primary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tuv-react-select-container .tuv-react-select__option--is-focused {
+  background: #f0f7ff;
+  color: var(--tuv-primary);
+}
+
+.tuv-react-select-container .tuv-react-select__option--is-selected {
+  background: var(--tuv-primary);
+  color: white;
+}
+
+/* Form Validation States */
+.tuv-form-control.is-valid, 
+.tuv-form-select.is-valid, 
+.tuv-form-textarea.is-valid {
+  border-color: #198754;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.94-.94 1.88-1.88.94.94L3.24 7.67 1.36 5.79z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem 1rem;
+}
+
+.tuv-form-control.is-invalid, 
+.tuv-form-select.is-invalid, 
+.tuv-form-textarea.is-invalid {
+  border-color: #dc3545;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.6.4.4.4-.4.4.4-.4.4.4.4-.4.4-.4-.4-.4.4-.4-.4.4-.4-.4-.4.4-.4z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem 1rem;
+}
+
+.valid-feedback, .invalid-feedback {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Input Group Styles */
+.tuv-input-group {
+  display: flex;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.tuv-input-group-text {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border: 2px solid #e0e6ed;
+  border-right: none;
+  padding: 0.875rem 1rem;
+  color: var(--tuv-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.tuv-input-group .tuv-form-control {
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+}
+
+.tuv-input-group:focus-within .tuv-input-group-text {
+  border-color: var(--tuv-primary);
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+}
+
+/* Checkbox and Radio Styles */
+.tuv-form-check {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.tuv-form-check:hover {
+  background: #e9ecef;
+}
+
+.tuv-form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.75rem;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.tuv-form-check-input:checked {
+  background-color: var(--tuv-primary);
+  border-color: var(--tuv-primary);
+}
+
+.tuv-form-check-input[type="radio"] {
+  border-radius: 50%;
+}
+
+.tuv-form-check-label {
+  color: var(--tuv-text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* File Upload Styles */
+.tuv-file-upload {
+  border: 2px dashed #c5d0db;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #fafbfc, #f8f9fa);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuv-file-upload:hover {
+  border-color: var(--tuv-primary);
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 120, 191, 0.1);
+}
+
+.tuv-file-upload.dragover {
+  border-color: var(--tuv-accent);
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  transform: scale(1.02);
+}
+
+.tuv-file-upload-icon {
+  font-size: 3rem;
+  color: var(--tuv-primary);
+  margin-bottom: 1rem;
+}
+
+.tuv-file-upload-text {
+  color: var(--tuv-text-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tuv-file-upload-hint {
+  color: #8e9aaf;
+  font-size: 0.9rem;
+}
+
+/* Form Actions */
+.tuv-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e0e6ed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tuv-main-container {
+    padding: 1rem;
+  }
+  
+  .tuv-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tuv-form-group-wide,
+  .tuv-form-group-full {
+    grid-column: 1;
+  }
+  
+  .tuv-radio-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .tuv-form-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .tuv-form-actions .btn {
+    width: 100%;
+  }
+  
+  .tuv-chatbot-card {
+    width: calc(100vw - 40px);
+    height: 400px;
+  }
+  
+  .tuv-page-header {
+    padding: 1rem;
+  }
+  
+  .tuv-card-header {
+    padding: 1.5rem;
+  }
+  
+  .tuv-card-body {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .tuv-main-container {
+    padding: 0.5rem;
+  }
+  
+  .tuv-dropzone {
+    padding: 2rem 1rem;
+  }
+  
+  .tuv-dropzone-icon {
+    font-size: 36px;
+  }
+  
+  .tuv-card-title {
+    font-size: 24px;
+  }
+  
+  .tuv-form-control, 
+  .tuv-form-select, 
+  .tuv-form-textarea {
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+  }
+  
+  .tuv-file-upload {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tuv-file-upload-icon {
+    font-size: 2.5rem;
+  }
+}

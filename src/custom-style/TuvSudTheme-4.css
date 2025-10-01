@@ -1,0 +1,363 @@
+/* ============================================================================
+   TÜV SÜD CORPORATE THEME SYSTEM
+   Complete styling framework for ISPortal application
+   Implementation Date: July 11, 2025
+   Status: ✅ COMPLETE - Corporate Branding Compliance
+   ============================================================================ */
+
+/* ============================================================================
+   1. TÜV SÜD CORPORATE COLOR SYSTEM
+   ============================================================================ */
+
+:root {
+  /* Primary Corporate Colors */
+  --tuv-navy-blue: #003366;
+  --tuv-corporate-blue: #0066CC;
+  --tuv-light-blue: #4D94FF;
+  --tuv-bright-blue: #66B2FF;
+  
+  /* TÜV SÜD Orange Accent */
+  --tuv-orange-primary: #FF6B35;
+  --tuv-orange-light: #FF8A5C;
+  --tuv-orange-dark: #E55A2B;
+  
+  /* Status Colors */
+  --tuv-success: #28A745;
+  --tuv-success-light: #34CE57;
+  --tuv-warning: #FFC107;
+  --tuv-warning-light: #FFD93D;
+  --tuv-error: #DC3545;
+  --tuv-error-light: #E74C3C;
+  --tuv-info: #17A2B8;
+  --tuv-info-light: #3FBDDA;
+  
+  /* Neutral Colors */
+  --tuv-white: #FFFFFF;
+  --tuv-background: #F8F9FA;
+  --tuv-surface: #FFFFFF;
+  --tuv-surface-elevated: #FDFDFD;
+  --tuv-border: #E0E0E0;
+  --tuv-border-light: #F0F0F0;
+  --tuv-border-dark: #CCCCCC;
+  
+  /* Text Colors */
+  --tuv-text-primary: #333333;
+  --tuv-text-secondary: #666666;
+  --tuv-text-muted: #999999;
+  --tuv-text-light: #CCCCCC;
+  --tuv-text-inverse: #FFFFFF;
+  
+  /* Gradients */
+  --tuv-gradient-primary: linear-gradient(135deg, var(--tuv-navy-blue) 0%, var(--tuv-corporate-blue) 100%);
+  --tuv-gradient-secondary: linear-gradient(135deg, var(--tuv-corporate-blue) 0%, var(--tuv-light-blue) 100%);
+  --tuv-gradient-orange: linear-gradient(135deg, var(--tuv-orange-primary) 0%, var(--tuv-orange-light) 100%);
+  --tuv-gradient-surface: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+  
+  /* Shadows */
+  --tuv-shadow-sm: 0 2px 4px rgba(0, 51, 102, 0.08);
+  --tuv-shadow-md: 0 4px 12px rgba(0, 51, 102, 0.12);
+  --tuv-shadow-lg: 0 8px 24px rgba(0, 51, 102, 0.16);
+  --tuv-shadow-xl: 0 12px 40px rgba(0, 51, 102, 0.20);
+  
+  /* Border Radius */
+  --tuv-radius-sm: 4px;
+  --tuv-radius-md: 8px;
+  --tuv-radius-lg: 12px;
+  --tuv-radius-xl: 16px;
+  --tuv-radius-full: 50px;
+  
+  /* Spacing (8px grid system) */
+  --tuv-space-xs: 4px;
+  --tuv-space-sm: 8px;
+  --tuv-space-md: 16px;
+  --tuv-space-lg: 24px;
+  --tuv-space-xl: 32px;
+  --tuv-space-2xl: 48px;
+  --tuv-space-3xl: 64px;
+  
+  /* Typography */
+  --tuv-font-family: 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --tuv-font-size-xs: 12px;
+  --tuv-font-size-sm: 14px;
+  --tuv-font-size-md: 16px;
+  --tuv-font-size-lg: 18px;
+  --tuv-font-size-xl: 20px;
+  --tuv-font-size-2xl: 24px;
+  --tuv-font-size-3xl: 32px;
+  --tuv-font-size-4xl: 40px;
+  
+  /* Font Weights */
+  --tuv-font-weight-light: 300;
+  --tuv-font-weight-normal: 400;
+  --tuv-font-weight-medium: 500;
+  --tuv-font-weight-semibold: 600;
+  --tuv-font-weight-bold: 700;
+  
+  /* Line Heights */
+  --tuv-line-height-tight: 1.2;
+  --tuv-line-height-normal: 1.5;
+  --tuv-line-height-relaxed: 1.7;
+  
+  /* Transitions */
+  --tuv-transition-fast: 0.15s ease-in-out;
+  --tuv-transition-normal: 0.3s ease-in-out;
+  --tuv-transition-slow: 0.5s ease-in-out;
+  
+  /* Z-Index Scale */
+  --tuv-z-dropdown: 1000;
+  --tuv-z-sticky: 1020;
+  --tuv-z-fixed: 1030;
+  --tuv-z-modal-backdrop: 1040;
+  --tuv-z-modal: 1050;
+  --tuv-z-popover: 1060;
+  --tuv-z-tooltip: 1070;
+  --tuv-z-toast: 9999;
+}
+
+/* ============================================================================
+   2. GLOBAL RESET AND BASE STYLES
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: var(--tuv-line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--tuv-font-family);
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-normal);
+  color: var(--tuv-text-primary);
+  background: var(--tuv-background);
+  line-height: var(--tuv-line-height-normal);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+}
+
+/* ============================================================================
+   3. TÜV SÜD TYPOGRAPHY SYSTEM
+   ============================================================================ */
+
+.tuv-heading-1 {
+  font-size: var(--tuv-font-size-4xl);
+  font-weight: var(--tuv-font-weight-bold);
+  line-height: var(--tuv-line-height-tight);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-lg);
+  background: var(--tuv-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tuv-heading-2 {
+  font-size: var(--tuv-font-size-3xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  line-height: var(--tuv-line-height-tight);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-heading-3 {
+  font-size: var(--tuv-font-size-2xl);
+  font-weight: var(--tuv-font-weight-semibold);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-md);
+}
+
+.tuv-heading-4 {
+  font-size: var(--tuv-font-size-xl);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-heading-5 {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-heading-6 {
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-medium);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-navy-blue);
+  margin-bottom: var(--tuv-space-sm);
+}
+
+.tuv-body-large {
+  font-size: var(--tuv-font-size-lg);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-relaxed);
+  color: var(--tuv-text-primary);
+}
+
+.tuv-body {
+  font-size: var(--tuv-font-size-md);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-primary);
+}
+
+.tuv-body-small {
+  font-size: var(--tuv-font-size-sm);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-secondary);
+}
+
+.tuv-caption {
+  font-size: var(--tuv-font-size-xs);
+  font-weight: var(--tuv-font-weight-normal);
+  line-height: var(--tuv-line-height-normal);
+  color: var(--tuv-text-muted);
+}
+ 
+
+/* Page Header */
+.tuv-page-header {
+  margin-bottom: var(--tuv-space-2xl);
+  padding: var(--tuv-space-lg);
+  background: var(--tuv-gradient-surface);
+  border-radius: var(--tuv-radius-xl);
+  box-shadow: var(--tuv-shadow-sm);
+  border: 1px solid var(--tuv-border-light);
+}
+
+/* Breadcrumb Container */
+.tuv-breadcrumb-container .breadcrumb {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--tuv-border);
+  border-radius: var(--tuv-radius-lg);
+  padding: var(--tuv-space-md) var(--tuv-space-lg);
+  margin: 0;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--tuv-shadow-sm);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item {
+  color: var(--tuv-navy-blue);
+  font-weight: var(--tuv-font-weight-medium);
+  font-size: var(--tuv-font-size-sm);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item.active {
+  color: var(--tuv-corporate-blue);
+  font-weight: var(--tuv-font-weight-semibold);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a {
+  color: var(--tuv-navy-blue);
+  text-decoration: none;
+  transition: var(--tuv-transition-fast);
+}
+
+.tuv-breadcrumb-container .breadcrumb-item a:hover {
+  color: var(--tuv-corporate-blue);
+}
+/* ============================================================================
+   4. TÜV SÜD TOAST NOTIFICATIONS
+   ============================================================================ */
+
+.tuv-toast {
+  border-radius: var(--tuv-radius-lg);
+  box-shadow: var(--tuv-shadow-lg);
+  font-family: var(--tuv-font-family);
+  font-weight: var(--tuv-font-weight-medium);
+}
+
+.Toastify__toast--success {
+  background: var(--tuv-gradient-primary);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, var(--tuv-error) 0%, var(--tuv-error-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, var(--tuv-warning) 0%, var(--tuv-warning-light) 100%);
+  color: var(--tuv-navy-blue);
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, var(--tuv-info) 0%, var(--tuv-info-light) 100%);
+  color: var(--tuv-text-inverse);
+}
+  
+.tuv-page-title {
+  margin-bottom: var(--tuv-space-2xl);
+  padding: var(--tuv-space-xl);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.8) 100%);
+  border-radius: var(--tuv-radius-xl);
+  border: 1px solid var(--tuv-border-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--tuv-shadow-sm);
+}
+
+.tuv-heading-primary {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: var(--tuv-font-weight-bold);
+  background: var(--tuv-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+}
+   
+.tuv-table-loading {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.tuv-loading-spinner {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid rgba(0, 120, 191, 0.1);
+  border-top: 3px solid var(--tuv-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tuv-loading-text {
+  color: var(--tuv-text-secondary);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+ 
