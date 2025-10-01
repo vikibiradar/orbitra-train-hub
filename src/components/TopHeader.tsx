@@ -10,16 +10,17 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
 import tuvLogo from "@/assets/tuv-logo.png";
+import "@/custom-style/CustomHeader-3.css";
 
 export function TopHeader() {
   return (
-    <header className="sticky top-0 z-50 h-[72px] border-b bg-ps-primary-dark backdrop-blur-sm px-4 flex items-center justify-between w-full">
+    <header className="tuv-header sticky top-0 z-50 px-4 flex items-center justify-between w-full">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
-        <Link to="/" className="flex items-center space-x-3 ">
-          <img src={tuvLogo} alt="TUV Logo" className="h-16 w-16" />
+        <Link to="/" className="tuv-navbar-brand">
+          <img src={tuvLogo} alt="TUV Logo" className="tuv-logo h-16 w-16" />
           <div className="flex flex-col">
-            <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
+            <h1 className="tuv-brand-text text-xl font-bold leading-tight">PS Training</h1>
             <p className="text-xs text-white leading-tight">Training Management System</p>
           </div>
         </Link>
