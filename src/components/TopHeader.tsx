@@ -8,43 +8,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "react-router-dom";
 import tuvLogo from "@/assets/tuv-logo.png";
-import "@/custom-style/CustomHeader-3.css";
 
 export function TopHeader() {
-  const navigate = useNavigate();
-  const isMobile = useIsMobile();
-
   return (
-    <header className="tuv-header sticky top-0 z-50 px-4 flex items-center justify-between w-full">
+    <header className="sticky top-0 z-50 h-[72px] border-b bg-ps-primary-dark backdrop-blur-sm px-4 flex items-center justify-between w-full">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
-        <div 
-          className="tuv-navbar-brand cursor-pointer"
-          onClick={() => navigate('/')}
-        >
-          <motion.img
-            src={tuvLogo}
-            alt="TÜV SÜD ISPortal"
-            style={{
-              width: isMobile ? 28 : 32,
-              height: isMobile ? 28 : 32,
-            }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          />
+        <Link to="/" className="flex items-center space-x-3 ">
+          <img src={tuvLogo} alt="TUV Logo" className="h-16 w-16" />
           <div className="flex flex-col">
-            <h1 className="tuv-brand-text font-bold leading-tight" style={{ fontSize: isMobile ? '1rem' : '1.1rem' }}>
-              PS Training
-            </h1>
-            <p className="text-[0.7rem] font-medium leading-tight" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              Training Management System
-            </p>
+            <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
+            <p className="text-xs text-white leading-tight">Training Management System</p>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* User Profile Dropdown */}
