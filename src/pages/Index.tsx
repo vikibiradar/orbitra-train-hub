@@ -21,7 +21,7 @@ const Index = () => {
               
               {/* KPI Summary Cards */}
               <section>
-                <h2 className="heading-secondary mb-6">Training Overview</h2>
+                <h2 className="tuv-page-title mb-6">Training Overview</h2>
                 <KPICards />
               </section>
               

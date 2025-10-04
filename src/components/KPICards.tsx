@@ -62,13 +62,13 @@ export function KPICards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
       {kpiData.map((kpi, index) => (
-        <Card key={index} className="kpi-card p-6 hover:ps-glow">
+        <Card key={index} className="tuv-corporate-card kpi-card p-6 hover:ps-glow transition-all duration-300">
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <p className="text-sm font-medium text-muted-foreground mb-2">
+              <p className="tuv-body-small font-medium text-muted-foreground mb-2">
                 {kpi.title}
               </p>
-              <p className="text-3xl font-bold text-foreground mb-1">
+              <p className="tuv-heading-1 text-foreground mb-1">
                 {kpi.value}
               </p>
               <div className="flex items-center space-x-1">
@@ -88,7 +88,7 @@ export function KPICards() {
                 >
                   {kpi.change}
                 </span>
-                <span className="text-xs text-muted-foreground">
+                <span className="tuv-caption text-muted-foreground">
                   {kpi.period}
                 </span>
               </div>
