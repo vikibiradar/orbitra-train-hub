@@ -13,14 +13,14 @@ import tuvLogo from "@/assets/tuv-logo.png";
 
 export function TopHeader() {
   return (
-    <header className="tuv-page-header sticky top-0 z-50 h-[72px] backdrop-blur-sm px-4 flex items-center justify-between w-full bg-ps-primary-dark border-b border-white/10">
+    <header className="sticky top-0 z-50 h-[72px] border-b bg-ps-primary-dark backdrop-blur-sm px-4 flex items-center justify-between w-full">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
         <Link to="/" className="flex items-center space-x-3 ">
           <img src={tuvLogo} alt="TUV Logo" className="h-16 w-16" />
           <div className="flex flex-col">
-            <h1 className="tuv-heading-3 text-white leading-tight">PS Training</h1>
-            <p className="tuv-caption text-white/80 leading-tight">Training Management System</p>
+            <h1 className="text-xl font-bold text-white leading-tight">PS Training</h1>
+            <p className="text-xs text-white leading-tight">Training Management System</p>
           </div>
         </Link>
       </div>
