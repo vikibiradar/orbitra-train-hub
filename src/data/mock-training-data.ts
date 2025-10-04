@@ -350,6 +350,238 @@ export const mockNewEmployees: Employee[] = [
   }
 ];
 
+// Annual Planners for Closure (for Close Annual Employee Planner)
+export const mockAnnualPlannersForClosure = [
+  {
+    id: "annual-planner-1",
+    employee: {
+      ...mockNewEmployees[0],
+      joiningDate: "2023-01-15",
+    },
+    applicableYear: 2024,
+    nextYearApplicable: 2025,
+    readyToClose: true,
+    topics: [
+      {
+        id: "topic-annual-1",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-02-01",
+        endDate: "2024-02-01",
+        isCompleted: true,
+        rating: 4.5,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-2",
+        topic: mockTrainingTopics[1],
+        trainer: mockTrainers[0],
+        startDate: "2024-03-15",
+        endDate: "2024-03-17",
+        isCompleted: true,
+        rating: 4.8,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-3",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[0],
+        startDate: "2024-05-10",
+        endDate: "2024-05-11",
+        isCompleted: true,
+        rating: 4.2,
+        attendanceMarked: true,
+      }
+    ]
+  },
+  {
+    id: "annual-planner-2",
+    employee: {
+      ...mockNewEmployees[1],
+      joiningDate: "2022-06-01",
+    },
+    applicableYear: 2024,
+    nextYearApplicable: 2025,
+    readyToClose: true,
+    topics: [
+      {
+        id: "topic-annual-4",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-01-20",
+        endDate: "2024-01-20",
+        isCompleted: true,
+        rating: 4.0,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-5",
+        topic: mockTrainingTopics[2],
+        trainer: mockTrainers[1],
+        startDate: "2024-04-10",
+        endDate: "2024-04-13",
+        isCompleted: true,
+        rating: 4.7,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-6",
+        topic: mockTrainingTopics[5],
+        trainer: mockTrainers[1],
+        startDate: "2024-06-05",
+        endDate: "2024-06-06",
+        isCancelled: true,
+        cancellationReason: "Employee was on medical leave",
+      }
+    ]
+  },
+  {
+    id: "annual-planner-3",
+    employee: {
+      ...mockNewEmployees[2],
+      joiningDate: "2023-03-10",
+    },
+    applicableYear: 2024,
+    nextYearApplicable: 2025,
+    readyToClose: false,
+    topics: [
+      {
+        id: "topic-annual-7",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-03-01",
+        endDate: "2024-03-01",
+        isCompleted: true,
+        rating: 4.3,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-8",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2024-05-15",
+        endDate: "2024-05-19",
+        isCompleted: false,
+        attendanceMarked: false,
+      }
+    ]
+  },
+  {
+    id: "annual-planner-4",
+    employee: {
+      ...mockNewEmployees[3],
+      joiningDate: "2021-09-15",
+    },
+    applicableYear: 2021,
+    nextYearApplicable: 2025, // Closed in 2025, so next would be 2025
+    readyToClose: true,
+    topics: [
+      {
+        id: "topic-annual-9",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2021-10-10",
+        endDate: "2021-10-10",
+        isCompleted: true,
+        rating: 4.6,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-10",
+        topic: mockTrainingTopics[6],
+        trainer: mockTrainers[3],
+        startDate: "2021-11-20",
+        endDate: "2021-11-22",
+        isCompleted: true,
+        rating: 4.4,
+        attendanceMarked: true,
+      }
+    ]
+  },
+  {
+    id: "annual-planner-5",
+    employee: {
+      ...mockNewEmployees[4],
+      joiningDate: "2022-11-25",
+    },
+    applicableYear: 2024,
+    nextYearApplicable: 2025,
+    readyToClose: true,
+    topics: [
+      {
+        id: "topic-annual-11",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-02-15",
+        endDate: "2024-02-15",
+        isCompleted: true,
+        rating: 4.9,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-12",
+        topic: mockTrainingTopics[7],
+        trainer: mockTrainers[4],
+        startDate: "2024-04-20",
+        endDate: "2024-04-23",
+        isCompleted: true,
+        rating: 4.5,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-13",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[4],
+        startDate: "2024-07-10",
+        endDate: "2024-07-11",
+        isCompleted: true,
+        rating: 4.1,
+        attendanceMarked: true,
+      }
+    ]
+  },
+  {
+    id: "annual-planner-6",
+    employee: {
+      ...mockNewEmployees[5],
+      joiningDate: "2023-07-01",
+    },
+    applicableYear: 2024,
+    nextYearApplicable: 2025,
+    readyToClose: false,
+    topics: [
+      {
+        id: "topic-annual-14",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-08-01",
+        endDate: "2024-08-01",
+        isCompleted: true,
+        rating: 4.7,
+        attendanceMarked: true,
+      },
+      {
+        id: "topic-annual-15",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2024-09-10",
+        endDate: "2024-09-14",
+        isCompleted: false,
+        attendanceMarked: false,
+      },
+      {
+        id: "topic-annual-16",
+        topic: mockTrainingTopics[5],
+        trainer: mockTrainers[2],
+        startDate: "2024-10-05",
+        endDate: "2024-10-06",
+        isCompleted: false,
+        attendanceMarked: false,
+      }
+    ]
+  }
+];
+
 // Mode of Evaluation Options
 export const modeOfEvaluationOptions = [
   { value: ModeOfEvaluation.QUESTION_PAPER, label: ModeOfEvaluation.QUESTION_PAPER },

@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import { NewEmployeePlannerPage } from "./components/training-planner/new-employee-planner/NewEmployeePlannerPage";
 import { ApproveNewEmployeePlannerPage } from "./components/training-planner/approve-new/ApproveNewEmployeePlannerPage";
 import { EditEmployeePlannerPage } from "./components/training-planner/edit-employee-planner/EditEmployeePlannerPage";
+import { CloseAnnualEmployeePlannerPage } from "./components/training-planner/close-annual-employee-planner/CloseAnnualEmployeePlannerPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/training-planner/new-employee" element={<NewEmployeePlannerPage />} />
           <Route path="/training-planner/approve-new" element={<ApproveNewEmployeePlannerPage />} />
           <Route path="/training-planner/edit" element={<EditEmployeePlannerPage />} />
+          <Route path="/training-planner/close-annual" element={<CloseAnnualEmployeePlannerPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
