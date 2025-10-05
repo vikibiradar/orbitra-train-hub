@@ -13,6 +13,7 @@ export interface Employee {
   isResigned: boolean;
   applicableYear: number;
   profilePicture?: string;
+  plannerStatus?: PlannerStatusType;
 }
 
 export interface Department {
@@ -115,6 +116,7 @@ export interface TrainingPlannerTopic {
   comments?: string;
   isNew?: boolean; // For tracking newly added topics
   isRemoved?: boolean; // For soft delete functionality
+  isCancelled?: boolean; // For cancelled topics
 }
 
 export interface TrainingPlanner {

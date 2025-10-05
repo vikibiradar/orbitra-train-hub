@@ -350,6 +350,92 @@ export const mockNewEmployees: Employee[] = [
   }
 ];
 
+// Annual Employees (for Annual Employee Planner)
+export const mockAnnualEmployees: Employee[] = [
+  {
+    id: "ann-emp-1",
+    employeeCode: "TUV2023001",
+    employeeADID: "annual.employee1",
+    firstName: "Chetan",
+    lastName: "Magar",
+    email: "chetan.magar@tuvsud.com",
+    department: mockDepartments[0],
+    location: mockLocations[0],
+    joiningDate: "2023-03-15",
+    isResigned: false,
+    applicableYear: 2025,
+    plannerStatus: PlannerStatus.DRAFT
+  },
+  {
+    id: "ann-emp-2",
+    employeeCode: "TUV2022005",
+    employeeADID: "annual.employee2",
+    firstName: "Lalit",
+    lastName: "Sinkar",
+    email: "lalit.sinkar@tuvsud.com",
+    department: mockDepartments[1],
+    location: mockLocations[1],
+    joiningDate: "2022-06-10",
+    isResigned: false,
+    applicableYear: 2025,
+    plannerStatus: PlannerStatus.SUBMITTED
+  },
+  {
+    id: "ann-emp-3",
+    employeeCode: "TUV2021008",
+    employeeADID: "annual.employee3",
+    firstName: "Rohini",
+    lastName: "Raut",
+    email: "rohini.raut@tuvsud.com",
+    department: mockDepartments[2],
+    location: mockLocations[2],
+    joiningDate: "2021-08-20",
+    isResigned: false,
+    applicableYear: 2025,
+    plannerStatus: PlannerStatus.APPROVED
+  },
+  {
+    id: "ann-emp-4",
+    employeeCode: "TUV2023010",
+    employeeADID: "annual.employee4",
+    firstName: "Suresh",
+    lastName: "Patil",
+    email: "suresh.patil@tuvsud.com",
+    department: mockDepartments[3],
+    location: mockLocations[0],
+    joiningDate: "2023-01-12",
+    isResigned: false,
+    applicableYear: 2025,
+    plannerStatus: PlannerStatus.REJECTED
+  },
+  {
+    id: "ann-emp-5",
+    employeeCode: "TUV2022015",
+    employeeADID: "annual.employee5",
+    firstName: "Priya",
+    lastName: "Deshmukh",
+    email: "priya.deshmukh@tuvsud.com",
+    department: mockDepartments[4],
+    location: mockLocations[3],
+    joiningDate: "2022-09-05",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "ann-emp-6",
+    employeeCode: "TUV2021020",
+    employeeADID: "annual.employee6",
+    firstName: "Amit",
+    lastName: "Kulkarni",
+    email: "amit.kulkarni@tuvsud.com",
+    department: mockDepartments[5],
+    location: mockLocations[4],
+    joiningDate: "2021-11-18",
+    isResigned: false,
+    applicableYear: 2025
+  }
+];
+
 // Annual Planners for Closure (for Close Annual Employee Planner)
 export const mockAnnualPlannersForClosure = [
   {
