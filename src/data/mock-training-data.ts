@@ -10,6 +10,7 @@ import {
   TrainingModule,
   TrainingScope,
   TrainingPlanner,
+  TrainingPlannerTopic,
   PlannerType,
   PlannerTypeType,
   PlannerStatus,
@@ -919,3 +920,8 @@ export const mockEnhancedPlanners = mockExistingPlanners.map((planner) => ({
     amendmentVersion: 1
   }))
 }));
+
+// Mock approved planners for Update Additional Training
+export const mockApprovedPlanners: TrainingPlanner[] = mockExistingPlanners.filter(
+  planner => planner.status === PlannerStatus.APPROVED
+);
