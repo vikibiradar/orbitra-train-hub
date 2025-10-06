@@ -716,9 +716,9 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     submittedDate: "2025-01-22",
     approvedDate: "2025-01-25"
   },
-  // Submitted planners for TI approval
   {
     id: "planner-2",
+    plannerNumber: "PLNR_TUV2024002_NEW",
     employee: mockNewEmployees[1],
     plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[1],
@@ -741,17 +741,61 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         startDate: "2025-02-20",
         endDate: "2025-02-23",
         modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
-        comments: "Food microbiology fundamentals",
-        isNew: true
+        comments: "Food microbiology fundamentals"
+      },
+      {
+        id: "topic-plan-4b",
+        topic: mockTrainingTopics[8],
+        trainer: mockTrainers[1],
+        startDate: "2025-03-01",
+        endDate: "2025-03-03",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Soft skills development"
       }
     ],
-    status: PlannerStatus.SUBMITTED,
+    status: PlannerStatus.APPROVED,
     createdBy: "TM002",
     createdDate: "2025-01-25",
-    submittedDate: "2025-01-28"
+    submittedDate: "2025-01-28",
+    approvedDate: "2025-02-01"
   },
   {
-    id: "planner-3",
+    id: "planner-2b",
+    plannerNumber: "PLNR_TUV2024006_NEW",
+    employee: mockNewEmployees[5],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2025-04-10",
+    selectedScopes: [mockTrainingScopes[0]],
+    topics: [
+      {
+        id: "topic-plan-3b",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2025-03-15",
+        endDate: "2025-03-15",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Laboratory safety protocols"
+      },
+      {
+        id: "topic-plan-4c",
+        topic: mockTrainingTopics[1],
+        trainer: mockTrainers[0],
+        startDate: "2025-03-20",
+        endDate: "2025-03-22",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Textile testing procedures"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM001",
+    createdDate: "2025-02-05",
+    submittedDate: "2025-02-08",
+    approvedDate: "2025-02-12"
+  },
+  // Submitted planners for TI approval
+  {
+    id: "planner-2c",
     employee: mockNewEmployees[2],
     plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[2],
@@ -774,7 +818,8 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         startDate: "2025-02-25",
         endDate: "2025-03-01",
         modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
-        comments: "Chemical analysis techniques training"
+        comments: "Chemical analysis techniques training",
+        isNew: true
       }
     ],
     status: PlannerStatus.SUBMITTED,
@@ -783,7 +828,8 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     submittedDate: "2025-01-26"
   },
   {
-    id: "planner-4",
+    id: "planner-3",
+    plannerNumber: "PLNR_TUV2024003_NEW",
     employee: mockNewEmployees[3],
     plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[0],
@@ -806,8 +852,7 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         startDate: "2025-03-05",
         endDate: "2025-03-07",
         modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
-        comments: "Product inspection methods",
-        isNew: true
+        comments: "Product inspection methods"
       },
       {
         id: "topic-plan-9",
@@ -816,17 +861,18 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         startDate: "2025-03-10",
         endDate: "2025-03-11",
         modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
-        comments: "Quality documentation training",
-        isNew: true
+        comments: "Quality documentation training"
       }
     ],
-    status: PlannerStatus.SUBMITTED,
+    status: PlannerStatus.APPROVED,
     createdBy: "TM001",
     createdDate: "2025-01-20",
-    submittedDate: "2025-01-30"
+    submittedDate: "2025-01-30",
+    approvedDate: "2025-02-05"
   },
   {
     id: "planner-5",
+    plannerNumber: "PLNR_TUV2024005_NEW",
     employee: mockNewEmployees[4],
     plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
     trainingIncharge: mockTrainingIncharges[0],
@@ -850,12 +896,22 @@ export const mockExistingPlanners: TrainingPlanner[] = [
         endDate: "2025-03-14",
         modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
         comments: "Energy testing protocols fundamentals"
+      },
+      {
+        id: "topic-plan-12",
+        topic: mockTrainingTopics[9],
+        trainer: mockTrainers[4],
+        startDate: "2025-03-20",
+        endDate: "2025-03-21",
+        modeOfEvaluation: ModeOfEvaluation.RETESTING,
+        comments: "Energy efficiency standards"
       }
     ],
-    status: PlannerStatus.SUBMITTED,
+    status: PlannerStatus.APPROVED,
     createdBy: "TM004",
     createdDate: "2025-01-18",
-    submittedDate: "2025-01-31"
+    submittedDate: "2025-01-31",
+    approvedDate: "2025-02-08"
   }
 ];
 
