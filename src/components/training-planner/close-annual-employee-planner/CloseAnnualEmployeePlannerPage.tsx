@@ -2,7 +2,14 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import Footer from "@/components/Footer";
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import { PlannerListView } from "./PlannerListView";
 
 export function CloseAnnualEmployeePlannerPage() {
@@ -10,7 +17,6 @@ export function CloseAnnualEmployeePlannerPage() {
     <SidebarProvider>
       <div className="min-h-screen flex flex-col w-full">
         <TopHeader />
-        
         <div className="flex flex-1 w-full">
           <AppSidebar />
           <SidebarInset className="flex flex-col">
@@ -36,16 +42,14 @@ export function CloseAnnualEmployeePlannerPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="text-3xl font-bold tracking-tight">Close Annual Employee Planner</h1>
-                  <p className="text-muted-foreground mt-2">
-                    Review and close completed annual training planners
-                  </p>
+                  <p className="text-muted-foreground mt-2">Review and close completed annual training planners</p>
                 </div>
               </div>
 
               {/* Planner List */}
               <PlannerListView />
             </main>
-            
+
             <Footer />
           </SidebarInset>
         </div>
