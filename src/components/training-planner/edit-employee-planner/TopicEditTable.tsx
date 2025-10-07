@@ -13,7 +13,7 @@ import {
   Plus, 
   Trash2, 
   CalendarIcon, 
-  FileText, 
+  FileText,
   AlertTriangle,
   CheckCircle,
   XCircle,
@@ -159,9 +159,9 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
   const allTopics = [...planner.topics, ...newTopics];
 
   return (
-    <Card>
+    <Card className="ps-card">
       <CardHeader>
-        <CardTitle className="flex items-center justify-between">
+        <CardTitle className="text-lg flex items-center justify-between">
           <span>Training Topics</span>
           {!isAmendmentMode && planner.editableState.canAmend && (
             <Badge variant="secondary">
@@ -173,12 +173,11 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
       <CardContent className="space-y-4">
         {/* Add Topic Section */}
         {(!isAmendmentMode || (isAmendmentMode && planner.editableState.canAmend)) && (
-          <div className="flex items-end gap-4 p-4 border rounded-lg bg-muted/50">
+          <div className="flex flex-col sm:flex-row gap-4 p-4 bg-muted/30 rounded-lg">
             <div className="flex-1">
-              <label className="text-sm font-medium">Add Training Topic</label>
               <Select value={selectedTopicId} onValueChange={setSelectedTopicId}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select a topic to add" />
+                  <SelectValue placeholder="Select a training topic to add" />
                 </SelectTrigger>
                 <SelectContent>
                   {lookups?.trainingTopics
@@ -186,7 +185,7 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                     .map((topic) => (
                       <SelectItem key={topic.id} value={topic.id}>
                         <div className="flex flex-col">
-                          <span>{topic.name}</span>
+                          <span className="font-medium">{topic.name}</span>
                           <span className="text-xs text-muted-foreground">
                             {topic.module.name} • {topic.defaultDuration}h
                           </span>
@@ -196,8 +195,12 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                 </SelectContent>
               </Select>
             </div>
-            <Button onClick={handleAddTopic}>
-              <Plus className="h-4 w-4 mr-2" />
+            <Button 
+              onClick={handleAddTopic}
+              disabled={!selectedTopicId}
+              className="shrink-0"
+            >
+              <Plus className="mr-2 h-4 w-4" />
               Add Topic
             </Button>
           </div>
@@ -205,38 +208,35 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
 
         {/* Validation Errors */}
         {validationErrors.length > 0 && (
-          <Alert>
-            <AlertTriangle className="h-4 w-4" />
+          <Alert variant="destructive">
             <AlertDescription>
-              <ul className="list-disc list-inside space-y-1">
-                {validationErrors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
+              {validationErrors.map((error, index) => (
+                <div key={index}>{error}</div>
+              ))}
             </AlertDescription>
           </Alert>
         )}
 
         {/* Topics Table */}
         {allTopics.length > 0 ? (
-          <div className="rounded-md border">
+          <div className="border rounded-lg overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Topic</TableHead>
-                  <TableHead>Trainer</TableHead>
-                  <TableHead>Start Date</TableHead>
-                  <TableHead>End Date</TableHead>
-                  <TableHead>Mode of Evaluation</TableHead>
-                  <TableHead>Reference Doc</TableHead>
+                <TableRow className="bg-muted/50">
+                  <TableHead className="w-[100px]">Status</TableHead>
+                  <TableHead className="w-[200px]">Topic</TableHead>
+                  <TableHead className="w-[180px]">Trainer</TableHead>
+                  <TableHead className="w-[140px]">Start Date</TableHead>
+                  <TableHead className="w-[140px]">End Date</TableHead>
+                  <TableHead className="w-[160px]">Mode of Evaluation</TableHead>
+                  <TableHead className="w-[120px]">Reference Doc</TableHead>
                   <TableHead>Comments</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead className="w-[100px] text-center">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {allTopics.map((topic) => (
-                  <TableRow key={topic.id} className={getRowClassName(topic)}>
+                  <TableRow key={topic.id} className={cn(getRowClassName(topic), "hover:bg-muted/50")}>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         {getTopicStatusIcon(topic.status)}
@@ -250,27 +250,36 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                     </TableCell>
                     <TableCell>
                       <div>
-                        <div className="font-medium">{topic.topic.name}</div>
+                        <div className="font-medium text-sm">{topic.topic.name}</div>
                         <div className="text-xs text-muted-foreground">
                           {topic.topic.module.name}
                         </div>
+                        {topic.isNew && (
+                          <Badge variant="secondary" className="text-xs mt-1">New</Badge>
+                        )}
                       </div>
                     </TableCell>
                     <TableCell>
                       {canEditTopic(topic) ? (
                         <Select 
                           value={topic.trainer?.id || ""} 
-                          onValueChange={(value) => handleTopicsUpdate(topic.id, 'trainer', value)}
+                          onValueChange={(value) => {
+                            const trainer = lookups?.trainers?.find(t => t.id === value);
+                            handleTopicsUpdate(topic.id, 'trainer', trainer);
+                          }}
                         >
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Select trainer" />
+                          <SelectTrigger className="text-xs">
+                            <SelectValue placeholder="Select Trainer" />
                           </SelectTrigger>
                           <SelectContent>
                             {lookups?.trainers
                               .filter(trainer => trainer.isActive)
                               .map((trainer) => (
                                 <SelectItem key={trainer.id} value={trainer.id}>
-                                  {trainer.name}
+                                  <div className="flex flex-col">
+                                    <span className="text-xs font-medium">{trainer.name}</span>
+                                    <span className="text-xs text-muted-foreground">{trainer.department.name}</span>
+                                  </div>
                                 </SelectItem>
                               ))}
                           </SelectContent>
@@ -285,26 +294,27 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
+                              size="sm"
                               className={cn(
-                                "w-32 justify-start text-left font-normal",
+                                "w-full justify-start text-left font-normal text-xs",
                                 !topic.startDate && "text-muted-foreground"
                               )}
                             >
-                              {topic.startDate ? (
-                                format(new Date(topic.startDate), "dd MMM yy")
-                              ) : (
-                                <span>Pick date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              <CalendarIcon className="mr-2 h-3 w-3" />
+                              {topic.startDate 
+                                ? format(new Date(topic.startDate), "dd MMM yyyy")
+                                : "Select date"
+                              }
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
+                          <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={topic.startDate ? new Date(topic.startDate) : undefined}
                               onSelect={(date) => handleTopicsUpdate(topic.id, 'startDate', date?.toISOString().split('T')[0])}
                               disabled={(date) => date < new Date()}
                               initialFocus
+                              className="pointer-events-auto"
                             />
                           </PopoverContent>
                         </Popover>
@@ -320,26 +330,27 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
+                              size="sm"
                               className={cn(
-                                "w-32 justify-start text-left font-normal",
+                                "w-full justify-start text-left font-normal text-xs",
                                 !topic.endDate && "text-muted-foreground"
                               )}
                             >
-                              {topic.endDate ? (
-                                format(new Date(topic.endDate), "dd MMM yy")
-                              ) : (
-                                <span>Pick date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              <CalendarIcon className="mr-2 h-3 w-3" />
+                              {topic.endDate 
+                                ? format(new Date(topic.endDate), "dd MMM yyyy")
+                                : "Select date"
+                              }
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
+                          <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={topic.endDate ? new Date(topic.endDate) : undefined}
                               onSelect={(date) => handleTopicsUpdate(topic.id, 'endDate', date?.toISOString().split('T')[0])}
                               disabled={(date) => date < new Date() || (topic.startDate && date <= new Date(topic.startDate))}
                               initialFocus
+                              className="pointer-events-auto"
                             />
                           </PopoverContent>
                         </Popover>
@@ -355,13 +366,13 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                           value={topic.modeOfEvaluation || ""} 
                           onValueChange={(value) => handleTopicsUpdate(topic.id, 'modeOfEvaluation', value)}
                         >
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Select mode" />
+                          <SelectTrigger className="text-xs">
+                            <SelectValue placeholder="Select Mode" />
                           </SelectTrigger>
                           <SelectContent>
                             {Object.values(ModeOfEvaluation).map((mode) => (
                               <SelectItem key={mode} value={mode}>
-                                {mode}
+                                <span className="text-xs">{mode}</span>
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -390,31 +401,34 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
                     <TableCell>
                       {canEditTopic(topic) ? (
                         <Textarea
-                          placeholder="Add comments..."
                           value={topic.comments || ""}
                           onChange={(e) => handleTopicsUpdate(topic.id, 'comments', e.target.value)}
-                          className="min-h-[60px] w-40"
+                          placeholder="Add comments..."
+                          className="text-xs min-h-[60px] resize-none"
+                          rows={2}
                         />
                       ) : (
                         <span className="text-sm">{topic.comments || "-"}</span>
                       )}
                     </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-1">
+                    <TableCell className="text-center">
+                      <div className="flex items-center justify-center gap-1">
                         {canRemoveTopic(topic) && (
                           <Button
-                            variant="destructive"
+                            variant="ghost"
                             size="sm"
                             onClick={() => handleRemoveTopic(topic.id)}
+                            className="h-8 w-8 p-0 text-destructive hover:text-destructive"
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         )}
                         {canCancelTopic(topic) && (
                           <Button
-                            variant="outline"
+                            variant="ghost"
                             size="sm"
                             onClick={() => setCancellingTopicId(topic.id)}
+                            className="h-8 w-8 p-0"
                           >
                             <Ban className="h-4 w-4" />
                           </Button>
@@ -427,10 +441,10 @@ export function TopicEditTable({ planner, isAmendmentMode, onTopicsChange }: Top
             </Table>
           </div>
         ) : (
-          <div className="text-center py-8 text-muted-foreground">
-            <AlertTriangle className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No training topics added yet</p>
-            <p className="text-sm">Add topics using the form above</p>
+          <div className="text-center py-12 text-muted-foreground border border-dashed rounded-lg">
+            <Plus className="h-8 w-8 mx-auto mb-4 opacity-50" />
+            <p>No training topics added yet.</p>
+            <p className="text-sm">Select topics from the dropdown above to get started.</p>
           </div>
         )}
 

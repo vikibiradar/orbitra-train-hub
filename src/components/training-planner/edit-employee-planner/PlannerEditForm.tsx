@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CalendarIcon, ArrowLeft, User, Building, MapPin } from "lucide-react";
+import { CalendarIcon, ArrowLeft } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { EnhancedTrainingPlanner } from "@/types/training-planner";
 import { TopicEditTable } from "./TopicEditTable";
 import { ActionButtonsContainer } from "./ActionButtonsContainer";
@@ -66,9 +67,9 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
       </Button>
 
       {/* Employee Information Card */}
-      <Card>
+      <Card className="ps-card">
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
+          <CardTitle className="text-lg flex items-center justify-between">
             <span>Employee Information</span>
             <div className="flex items-center gap-2">
               <PlannerStatusIndicator status={planner.status} />
@@ -81,66 +82,64 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center space-x-4">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                {planner.employee.profilePicture ? (
-                  <img 
-                    src={planner.employee.profilePicture} 
-                    alt={`${planner.employee.firstName} ${planner.employee.lastName}`}
-                    className="h-12 w-12 rounded-full object-cover"
-                  />
-                ) : (
-                  <span className="text-sm font-medium text-primary">
-                    {getInitials(planner.employee.firstName, planner.employee.lastName)}
-                  </span>
-                )}
+          <div className="flex items-center space-x-4 p-4 bg-muted/30 rounded-lg">
+            <Avatar className="h-16 w-16">
+              <AvatarImage 
+                src={planner.employee.profilePicture} 
+                alt={`${planner.employee.firstName} ${planner.employee.lastName}`} 
+              />
+              <AvatarFallback className="bg-ps-primary text-white text-lg">
+                {getInitials(planner.employee.firstName, planner.employee.lastName)}
+              </AvatarFallback>
+            </Avatar>
+            
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label className="text-xs font-medium text-muted-foreground">Employee Name</Label>
+                <p className="font-medium">
+                  {planner.employee.firstName} {planner.employee.lastName}
+                </p>
               </div>
               <div>
-                <div className="font-medium">
-                  {planner.employee.firstName} {planner.employee.lastName}
-                </div>
-                <div className="text-sm text-muted-foreground flex items-center gap-1">
-                  <User className="h-3 w-3" />
-                  {planner.employee.employeeCode}
-                </div>
+                <Label className="text-xs font-medium text-muted-foreground">Employee Code</Label>
+                <p className="font-mono text-sm">{planner.employee.employeeCode}</p>
               </div>
-            </div>
-            
-            <div className="space-y-1">
-              <div className="text-sm text-muted-foreground flex items-center gap-1">
-                <Building className="h-3 w-3" />
-                Department
+              <div>
+                <Label className="text-xs font-medium text-muted-foreground">Department</Label>
+                <Badge variant="outline">{planner.employee.department.name}</Badge>
               </div>
-              <div className="font-medium">{planner.employee.department.name}</div>
-            </div>
-            
-            <div className="space-y-1">
-              <div className="text-sm text-muted-foreground flex items-center gap-1">
-                <MapPin className="h-3 w-3" />
-                Location
+              <div>
+                <Label className="text-xs font-medium text-muted-foreground">Location</Label>
+                <p className="text-sm">{planner.employee.location.name}</p>
               </div>
-              <div className="font-medium">{planner.employee.location.name}</div>
+              <div>
+                <Label className="text-xs font-medium text-muted-foreground">Email</Label>
+                <p className="text-sm">{planner.employee.email}</p>
+              </div>
+              <div>
+                <Label className="text-xs font-medium text-muted-foreground">Joining Date</Label>
+                <p className="text-sm">{format(new Date(planner.employee.joiningDate), "dd MMM yyyy")}</p>
+              </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Planner Details Form */}
-      <Card>
+      <Card className="ps-card">
         <CardHeader>
-          <CardTitle>Planner Details</CardTitle>
+          <CardTitle className="text-lg">Planner Configuration</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
                   name="proposedFirstEvaluationDate"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Proposed 1st Evaluation Date</FormLabel>
+                    <FormItem className="flex flex-col">
+                      <FormLabel className="required">Proposed 1st Evaluation Date</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -151,11 +150,7 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
                                 !field.value && "text-muted-foreground"
                               )}
                             >
-                              {field.value ? (
-                                format(new Date(field.value), "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
+                              {field.value ? format(new Date(field.value), "dd MMM yyyy") : "Select date"}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
@@ -167,9 +162,13 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
                             onSelect={(date) => field.onChange(date?.toISOString().split('T')[0])}
                             disabled={(date) => date < new Date()}
                             initialFocus
+                            className="pointer-events-auto"
                           />
                         </PopoverContent>
                       </Popover>
+                      <FormDescription>
+                        Select the proposed date for the first evaluation
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -179,8 +178,8 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
                   control={form.control}
                   name="trainingIncharge"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Training In-charge</FormLabel>
+                    <FormItem className="flex flex-col">
+                      <FormLabel className="required">Training In-charge (TI)</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -189,19 +188,17 @@ export function PlannerEditForm({ planner, onBack }: PlannerEditFormProps) {
                         </FormControl>
                         <SelectContent>
                           {lookups?.trainingIncharges
-                            .filter(ti => ti.isActive)
+                            ?.filter(ti => ti.isActive)
                             .map((incharge) => (
                               <SelectItem key={incharge.id} value={incharge.id}>
-                                <div className="flex flex-col">
-                                  <span>{incharge.name}</span>
-                                  <span className="text-xs text-muted-foreground">
-                                    {incharge.department.name}
-                                  </span>
-                                </div>
+                                {incharge.name} - {incharge.department.name}
                               </SelectItem>
-                            ))}
+                            )) || []}
                         </SelectContent>
                       </Select>
+                      <FormDescription>
+                        Select the Training In-charge who will approve this planner
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
