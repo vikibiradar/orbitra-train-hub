@@ -35,55 +35,55 @@ export function AnnualEmployeePlannerPage() {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full">
-        <AppSidebar />
-        <div className="flex flex-1 flex-col">
-          <TopHeader />
-          
-          <main className="flex-1 p-6 bg-background">
-            {/* Breadcrumb */}
-            <Breadcrumb className="mb-6">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink>Training Planner</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Annual Employee Planner</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+      <div className="min-h-screen flex flex-col w-full">
+        <TopHeader />
+        <div className="flex flex-1 w-full">
+          <AppSidebar />
+          <div className="flex flex-1 flex-col">
+            <main className="flex-1 p-6 bg-background">
+              {/* Breadcrumb */}
+              <Breadcrumb className="mb-6">
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink>Training Planner</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>Annual Employee Planner</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
 
-            {/* Page Header */}
-            <Card className="mb-6 ps-card">
-              <CardHeader>
-                <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
-                <CardDescription>
-                  Generate and manage annual training planners for employees
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              {/* Page Header */}
+              <Card className="mb-6 ps-card">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
+                  <CardDescription>
+                    Generate and manage annual training planners for employees
+                  </CardDescription>
+                </CardHeader>
+              </Card>
 
-            {/* Content Area */}
-            {viewMode === 'list' ? (
-              <EmployeeListView onGeneratePlanner={handleGeneratePlanner} />
-            ) : (
-              selectedEmployee && (
-                <AnnualPlannerForm
-                  employee={selectedEmployee}
-                  onSave={handleSave}
-                  onSubmit={handleSubmit}
-                  onCancel={handleBackToList}
-                />
-              )
-            )}
-          </main>
-
-          <Footer />
+              {/* Content Area */}
+              {viewMode === 'list' ? (
+                <EmployeeListView onGeneratePlanner={handleGeneratePlanner} />
+              ) : (
+                selectedEmployee && (
+                  <AnnualPlannerForm
+                    employee={selectedEmployee}
+                    onSave={handleSave}
+                    onSubmit={handleSubmit}
+                    onCancel={handleBackToList}
+                  />
+                )
+              )}
+            </main>
+            <Footer />
+          </div>
         </div>
       </div>
     </SidebarProvider>
