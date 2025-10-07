@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import Footer from "@/components/Footer";
@@ -9,12 +8,13 @@ import { PlannerListView } from "./PlannerListView";
 export function CloseAnnualEmployeePlannerPage() {
   return (
     <SidebarProvider>
-      <div className="flex h-screen w-full overflow-hidden">
-        <AppSidebar />
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <TopHeader />
-          <main className="flex-1 overflow-y-auto bg-background">
-            <div className="container mx-auto p-6 space-y-6">
+      <div className="min-h-screen flex flex-col w-full">
+        <TopHeader />
+        
+        <div className="flex flex-1 w-full">
+          <AppSidebar />
+          <SidebarInset className="flex flex-col">
+            <main className="flex-1 w-full px-2 sm:px-4 lg:px-6 py-8 space-y-6">
               {/* Breadcrumb */}
               <Breadcrumb>
                 <BreadcrumbList>
@@ -44,9 +44,10 @@ export function CloseAnnualEmployeePlannerPage() {
 
               {/* Planner List */}
               <PlannerListView />
-            </div>
-          </main>
-          <Footer />
+            </main>
+            
+            <Footer />
+          </SidebarInset>
         </div>
       </div>
     </SidebarProvider>
