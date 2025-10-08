@@ -103,7 +103,7 @@ export function UpdateAdditionalTrainingPage() {
 
                 {/* Results Section */}
                 {hasSearched && (
-                  <Card className="ps-card">
+                  <Card>
                     <CardHeader>
                       <CardTitle>
                         Search Results
