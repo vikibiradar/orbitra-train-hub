@@ -152,9 +152,9 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? "w-16" : "w-64"} bg-sidebar border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}>
+    <Sidebar className={`${collapsed ? "w-16" : "w-64"} bg-gradient-to-br from-[#003366] to-[#0066CC] border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}>
       <ScrollArea className="h-full">
-        <SidebarContent className="py-4 bg-sidebar">
+        <SidebarContent className="py-4 bg-gradient-to-br from-[#003366] to-[#0066CC]">
           <SidebarGroup>
           <SidebarMenu>
             {menuItems.map((group) => {
