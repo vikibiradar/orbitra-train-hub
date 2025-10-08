@@ -248,7 +248,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                     <FormItem className="flex flex-col">
                       <FormLabel className="required">Training In-charge (TI)</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl classname="ps-card">
+                        <FormControl className="ps-card">
                           <SelectTrigger>
                             <SelectValue placeholder="Select Training In-charge" />
                           </SelectTrigger>
