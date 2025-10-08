@@ -7,19 +7,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TrainingPlanner } from "@/types/training-planner";
 import { TrainingType } from "./AddTrainingModal";
 import { format } from "date-fns";
-
 interface TrainingResultsTableProps {
   results: TrainingPlanner[];
   onAddTraining: (planner: TrainingPlanner, type: TrainingType) => void;
 }
-
 type SortField = "employeeName" | "employeeCode" | "department" | "plannerNumber";
 type SortOrder = "asc" | "desc";
-
-export function TrainingResultsTable({ results, onAddTraining }: TrainingResultsTableProps) {
+export function TrainingResultsTable({
+  results,
+  onAddTraining
+}: TrainingResultsTableProps) {
   const [sortField, setSortField] = useState<SortField>("employeeName");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
-
   const handleSort = (field: SortField) => {
     if (sortField === field) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -28,11 +27,9 @@ export function TrainingResultsTable({ results, onAddTraining }: TrainingResults
       setSortOrder("asc");
     }
   };
-
   const sortedResults = [...results].sort((a, b) => {
     let aValue: string;
     let bValue: string;
-
     switch (sortField) {
       case "employeeName":
         aValue = `${a.employee.firstName} ${a.employee.lastName}`;
@@ -53,67 +50,46 @@ export function TrainingResultsTable({ results, onAddTraining }: TrainingResults
       default:
         return 0;
     }
-
     const comparison = aValue.localeCompare(bValue);
     return sortOrder === "asc" ? comparison : -comparison;
   });
-
   const getInitials = (firstName: string, lastName: string) => {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
-
-  return (
-    <div className="overflow-x-auto">
+  return <div className="overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[250px]">
-              <Button
-                variant="ghost"
-                onClick={() => handleSort("employeeName")}
-                className="h-8 px-2 lg:px-3"
-              >
+            <TableHead className="w-[250px] bg-slate-200">
+              <Button variant="ghost" onClick={() => handleSort("employeeName")} className="h-8 px-2 lg:px-3">
                 Employee
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>
-              <Button
-                variant="ghost"
-                onClick={() => handleSort("employeeCode")}
-                className="h-8 px-2 lg:px-3"
-              >
+            <TableHead className="bg-slate-200">
+              <Button variant="ghost" onClick={() => handleSort("employeeCode")} className="h-8 px-2 lg:px-3">
                 Employee Code
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>
-              <Button
-                variant="ghost"
-                onClick={() => handleSort("department")}
-                className="h-8 px-2 lg:px-3"
-              >
+            <TableHead className="bg-slate-200">
+              <Button variant="ghost" onClick={() => handleSort("department")} className="h-8 px-2 lg:px-3">
                 Department
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>
-              <Button
-                variant="ghost"
-                onClick={() => handleSort("plannerNumber")}
-                className="h-8 px-2 lg:px-3"
-              >
+            <TableHead className="bg-slate-200">
+              <Button variant="ghost" onClick={() => handleSort("plannerNumber")} className="h-8 px-2 lg:px-3">
                 Planner Number
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead className="text-center">Status</TableHead>
-            <TableHead className="text-center">Actions</TableHead>
+            <TableHead className="text-center bg-slate-200">Status</TableHead>
+            <TableHead className="text-center bg-slate-200">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedResults.map((planner) => (
-            <TableRow key={planner.id} className="animate-fade-in">
+          {sortedResults.map(planner => <TableRow key={planner.id} className="animate-fade-in">
               <TableCell>
                 <div className="flex items-center gap-3">
                   <Avatar className="h-10 w-10">
@@ -155,39 +131,22 @@ export function TrainingResultsTable({ results, onAddTraining }: TrainingResults
               </TableCell>
               <TableCell>
                 <div className="flex flex-col gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => onAddTraining(planner, "Induction")}
-                    className="w-full justify-start"
-                  >
+                  <Button size="sm" variant="outline" onClick={() => onAddTraining(planner, "Induction")} className="w-full justify-start">
                     <Plus className="mr-2 h-4 w-4" />
                     Add Induction Training
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => onAddTraining(planner, "External")}
-                    className="w-full justify-start"
-                  >
+                  <Button size="sm" variant="outline" onClick={() => onAddTraining(planner, "External")} className="w-full justify-start">
                     <Plus className="mr-2 h-4 w-4" />
                     Add External Training
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => onAddTraining(planner, "Internal")}
-                    className="w-full justify-start"
-                  >
+                  <Button size="sm" variant="outline" onClick={() => onAddTraining(planner, "Internal")} className="w-full justify-start">
                     <Plus className="mr-2 h-4 w-4" />
                     Add Internal Training
                   </Button>
                 </div>
               </TableCell>
-            </TableRow>
-          ))}
+            </TableRow>)}
         </TableBody>
       </Table>
-    </div>
-  );
+    </div>;
 }
