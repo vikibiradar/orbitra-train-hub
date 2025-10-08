@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TrainingPlanner } from "@/types/training-planner";
@@ -13,7 +11,7 @@ interface SearchSectionProps {
 export function SearchSection({ onSearch }: SearchSectionProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = () => {
+  useEffect(() => {
     if (!searchTerm.trim()) {
       onSearch([]);
       return;
@@ -38,39 +36,21 @@ export function SearchSection({ onSearch }: SearchSectionProps) {
     });
 
     onSearch(results);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+  }, [searchTerm, onSearch]);
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="flex-1">
-          <Label htmlFor="search" className="text-sm font-medium mb-2">
-            Search Term
-          </Label>
-          <Input
-            id="search"
-            placeholder="Enter Employee Name, Employee ID, or Planner Number..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={handleKeyPress}
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-end">
-          <Button 
-            onClick={handleSearch}
-            className="w-full sm:w-auto"
-          >
-            <Search className="mr-2 h-4 w-4" />
-            Search
-          </Button>
-        </div>
+      <div className="flex-1">
+        <Label htmlFor="search" className="text-sm font-medium mb-2">
+          Search Term
+        </Label>
+        <Input
+          id="search"
+          placeholder="Enter Employee Name, Employee ID, or Planner Number..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full"
+        />
       </div>
       
       <p className="text-sm text-muted-foreground">
