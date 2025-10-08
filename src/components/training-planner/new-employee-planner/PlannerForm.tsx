@@ -214,7 +214,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                             <Button
                               variant="outline"
                               className={cn(
-                                "w-full pl-3 text-left font-normal",
+                                "w-full pl-3 text-left font-normal ps-card",
                                 !field.value && "text-muted-foreground",
                               )}
                             >
