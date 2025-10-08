@@ -3,18 +3,12 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { Search, MapPin, Calendar as CalendarIcon, X } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { Search, MapPin, X } from "lucide-react";
 import { mockLocations } from "@/data/mock-training-data";
 
 interface FilterState {
   searchTerm?: string;
   location?: string;
-  joiningDateFrom?: string;
-  joiningDateTo?: string;
   applicableYear?: string;
 }
 
@@ -25,18 +19,14 @@ interface SearchFiltersProps {
 export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState<string>("");
-  const [joiningDateFrom, setJoiningDateFrom] = useState<Date>();
-  const [joiningDateTo, setJoiningDateTo] = useState<Date>();
   const [applicableYear, setApplicableYear] = useState<string>("");
 
-  const hasActiveFilters = searchTerm || location || joiningDateFrom || joiningDateTo || applicableYear;
+  const hasActiveFilters = searchTerm || location || applicableYear;
 
   const handleSearch = () => {
     onFiltersChange({
       searchTerm: searchTerm || undefined,
       location: location || undefined,
-      joiningDateFrom: joiningDateFrom ? format(joiningDateFrom, "yyyy-MM-dd") : undefined,
-      joiningDateTo: joiningDateTo ? format(joiningDateTo, "yyyy-MM-dd") : undefined,
       applicableYear: applicableYear || undefined,
     });
   };
@@ -44,8 +34,6 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
   const handleClearFilters = () => {
     setSearchTerm("");
     setLocation("");
-    setJoiningDateFrom(undefined);
-    setJoiningDateTo(undefined);
     setApplicableYear("");
     onFiltersChange({});
   };
@@ -56,9 +44,9 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
 
   return (
     <Card className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+      <div className="flex flex-col md:flex-row gap-4 items-center">
         {/* Search Term */}
-        <div className="lg:col-span-2">
+        <div className="flex-1 w-full">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -72,7 +60,7 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
         </div>
 
         {/* Location Filter */}
-        <div>
+        <div className="w-full md:w-48">
           <Select value={location} onValueChange={setLocation}>
             <SelectTrigger>
               <MapPin className="h-4 w-4 mr-2" />
@@ -89,62 +77,8 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
           </Select>
         </div>
 
-        {/* Joining Date From */}
-        <div>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !joiningDateFrom && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {joiningDateFrom ? format(joiningDateFrom, "dd MMM yyyy") : "From Date"}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={joiningDateFrom}
-                onSelect={setJoiningDateFrom}
-                initialFocus
-                className="pointer-events-auto"
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        {/* Joining Date To */}
-        <div>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !joiningDateTo && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {joiningDateTo ? format(joiningDateTo, "dd MMM yyyy") : "To Date"}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={joiningDateTo}
-                onSelect={setJoiningDateTo}
-                initialFocus
-                className="pointer-events-auto"
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-
         {/* Applicable Year */}
-        <div>
+        <div className="w-full md:w-40">
           <Select value={applicableYear} onValueChange={setApplicableYear}>
             <SelectTrigger>
               <SelectValue placeholder="All Years" />
@@ -162,7 +96,7 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-end gap-2 mt-4">
+      <div className="flex justify-center md:justify-end gap-2 mt-4">
         {hasActiveFilters && (
           <Button variant="outline" size="sm" onClick={handleClearFilters}>
             <X className="h-4 w-4 mr-2" />
