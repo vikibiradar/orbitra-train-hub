@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Search, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -46,7 +53,7 @@ export function UpdateAdditionalTrainingPage() {
     <SidebarProvider>
       <div className="min-h-screen flex flex-col w-full">
         <TopHeader />
-        
+
         <div className="flex flex-1 w-full">
           <AppSidebar />
           <SidebarInset className="flex flex-col">
@@ -73,27 +80,21 @@ export function UpdateAdditionalTrainingPage() {
               {/* Page Header */}
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                    Update Additional Training
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Search and add additional training for employees
-                  </p>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">Update Additional Training</h2>
+                  <p className="text-muted-foreground">Search and add additional training for employees</p>
                 </div>
               </div>
 
               {/* Main Content */}
               <div className="space-y-6">
                 {/* Search Section */}
-                <Card className="ps-card">
+                <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Search className="h-5 w-5" />
                       Search Employee
                     </CardTitle>
-                    <CardDescription>
-                      Search by Employee Name, Employee ID, or Planner Number
-                    </CardDescription>
+                    <CardDescription>Search by Employee Name, Employee ID, or Planner Number</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <SearchSection onSearch={handleSearch} />
@@ -108,7 +109,7 @@ export function UpdateAdditionalTrainingPage() {
                         Search Results
                         {searchResults.length > 0 && (
                           <span className="ml-2 text-sm font-normal text-muted-foreground">
-                            ({searchResults.length} {searchResults.length === 1 ? 'result' : 'results'} found)
+                            ({searchResults.length} {searchResults.length === 1 ? "result" : "results"} found)
                           </span>
                         )}
                       </CardTitle>
@@ -118,16 +119,11 @@ export function UpdateAdditionalTrainingPage() {
                     </CardHeader>
                     <CardContent className="p-0">
                       {searchResults.length > 0 ? (
-                        <TrainingResultsTable 
-                          results={searchResults} 
-                          onAddTraining={handleAddTraining}
-                        />
+                        <TrainingResultsTable results={searchResults} onAddTraining={handleAddTraining} />
                       ) : (
                         <div className="flex flex-col items-center justify-center py-12 text-center">
                           <Search className="h-12 w-12 text-muted-foreground mb-4" />
-                          <h3 className="text-lg font-semibold text-foreground mb-2">
-                            No Results Found
-                          </h3>
+                          <h3 className="text-lg font-semibold text-foreground mb-2">No Results Found</h3>
                           <p className="text-sm text-muted-foreground max-w-md">
                             No matching planners found. Please try a different search term.
                           </p>
@@ -138,7 +134,7 @@ export function UpdateAdditionalTrainingPage() {
                 )}
               </div>
             </main>
-            
+
             <Footer />
           </SidebarInset>
         </div>
