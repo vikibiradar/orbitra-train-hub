@@ -191,11 +191,8 @@ export function AppSidebar() {
                                   className={({ isActive }) =>
                                     `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
                                       isActive
-                                        ? " text-sidebar-primary-foreground font-medium shadow-sm"
+                                        ? "bg-gradient-to-br from-[#003366] to-[#0066CC] text-sidebar-primary-foreground font-medium shadow-sm"
                                         : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
-                                      style={{
-    background: "linear-gradient(135deg, #003366 0%, #0066CC 100%)",
-  }}
                                     }`
                                   }
                                 >
