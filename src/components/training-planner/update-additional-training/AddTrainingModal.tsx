@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { X, Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,7 +46,7 @@ const initialFormData: FormData = {
   startDate: undefined,
   endDate: undefined,
   duration: "",
-  remark: ""
+  remark: "",
 };
 
 export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSave }: AddTrainingModalProps) {
@@ -100,7 +107,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
     toast({
       title: "Success",
       description: "Additional Training Added Successfully",
-      variant: "default"
+      variant: "default",
     });
 
     onSave();
@@ -120,7 +127,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" hideCloseButton>
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between">
             <span>Add {trainingType} Training</span>
@@ -129,7 +136,8 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
             </Button>
           </DialogTitle>
           <DialogDescription>
-            Add additional {trainingType.toLowerCase()} training for {planner.employee.firstName} {planner.employee.lastName}
+            Add additional {trainingType.toLowerCase()} training for {planner.employee.firstName}{" "}
+            {planner.employee.lastName}
           </DialogDescription>
         </DialogHeader>
 
@@ -163,10 +171,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
             <Label htmlFor="topic">
               Training Topic <span className="text-destructive">*</span>
             </Label>
-            <Select
-              value={formData.topicId}
-              onValueChange={(value) => setFormData({ ...formData, topicId: value })}
-            >
+            <Select value={formData.topicId} onValueChange={(value) => setFormData({ ...formData, topicId: value })}>
               <SelectTrigger id="topic" className={errors.topicId ? "border-destructive" : ""}>
                 <SelectValue placeholder="Select training topic" />
               </SelectTrigger>
@@ -218,7 +223,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
                     className={cn(
                       "w-full justify-start text-left font-normal",
                       !formData.startDate && "text-muted-foreground",
-                      errors.startDate && "border-destructive"
+                      errors.startDate && "border-destructive",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -250,7 +255,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
                     className={cn(
                       "w-full justify-start text-left font-normal",
                       !formData.endDate && "text-muted-foreground",
-                      errors.endDate && "border-destructive"
+                      errors.endDate && "border-destructive",
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -308,9 +313,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
           <Button variant="outline" onClick={handleCancel}>
             Cancel
           </Button>
-          <Button onClick={handleSave}>
-            Save Training
-          </Button>
+          <Button onClick={handleSave}>Save Training</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
