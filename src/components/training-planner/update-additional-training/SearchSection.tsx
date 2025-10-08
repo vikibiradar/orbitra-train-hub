@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TrainingPlanner } from "@/types/training-planner";
@@ -38,19 +40,36 @@ export function SearchSection({ onSearch }: SearchSectionProps) {
     onSearch(results);
   }, [searchTerm, onSearch]);
 
+  const handleClear = () => {
+    setSearchTerm("");
+    onSearch([]);
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex-1">
         <Label htmlFor="search" className="text-sm font-medium mb-2">
           Search Term
         </Label>
-        <Input
-          id="search"
-          placeholder="Enter Employee Name, Employee ID, or Planner Number..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full"
-        />
+        <div className="flex gap-2">
+          <Input
+            id="search"
+            placeholder="Enter Employee Name, Employee ID, or Planner Number..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full"
+          />
+          {searchTerm && (
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleClear}
+              className="shrink-0"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </div>
       
       <p className="text-sm text-muted-foreground">
