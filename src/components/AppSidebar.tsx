@@ -165,17 +165,17 @@ export function AppSidebar() {
                   <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton
-  className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+  className="w-full justify-between text-white hover:bg-white/10 hover:text-white transition-colors"
 >
 
 
                         <div className="flex items-center gap-3">
-                          <group.icon className="h-5 w-5" />
-                          {!collapsed && <span className="font-medium">{group.title}</span>}
+                          <group.icon className="h-5 w-5 text-white" />
+                          {!collapsed && <span className="font-medium text-white">{group.title}</span>}
                         </div>
                         {!collapsed && (
                           <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                            className={`h-4 w-4 text-white transition-transform ${isOpen ? "rotate-180" : ""}`}
                           />
                         )}
                       </SidebarMenuButton>
@@ -191,8 +191,8 @@ export function AppSidebar() {
                                   className={({ isActive }) =>
                                     `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
                                       isActive
-                                        ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
-                                        : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+                                        ? "bg-white/20 text-white font-medium shadow-sm"
+                                        : "text-white/80 hover:text-white hover:bg-white/10"
                                     }`
                                   }
                                 >
