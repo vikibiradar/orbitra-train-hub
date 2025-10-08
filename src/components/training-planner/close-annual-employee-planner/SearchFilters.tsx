@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,19 +23,19 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
 
   const hasActiveFilters = searchTerm || location || applicableYear;
 
-  const handleSearch = () => {
+  // Auto-search when filters change
+  useEffect(() => {
     onFiltersChange({
       searchTerm: searchTerm || undefined,
       location: location || undefined,
       applicableYear: applicableYear || undefined,
     });
-  };
+  }, [searchTerm, location, applicableYear, onFiltersChange]);
 
   const handleClearFilters = () => {
     setSearchTerm("");
     setLocation("");
     setApplicableYear("");
-    onFiltersChange({});
   };
 
   // Generate year options (current year - 5 to current year + 1)
@@ -54,7 +54,6 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
           </div>
         </div>
@@ -95,19 +94,15 @@ export function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex justify-center md:justify-end gap-2 mt-4">
-        {hasActiveFilters && (
+      {/* Clear Button */}
+      {hasActiveFilters && (
+        <div className="flex justify-center md:justify-end gap-2 mt-4">
           <Button variant="outline" size="sm" onClick={handleClearFilters}>
             <X className="h-4 w-4 mr-2" />
-            Clear
+            Clear Filters
           </Button>
-        )}
-        <Button size="sm" onClick={handleSearch}>
-          <Search className="h-4 w-4 mr-2" />
-          Search
-        </Button>
-      </div>
+        </div>
+      )}
     </Card>
   );
 }
