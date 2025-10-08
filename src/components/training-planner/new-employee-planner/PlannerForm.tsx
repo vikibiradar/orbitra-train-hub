@@ -17,25 +17,25 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { TrainingTopicsTable } from "./TrainingTopicsTable";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Employee,
-  PlannerTypeType,
-  TrainingPlannerTopic
-} from "@/types/training-planner";
+import { Employee, PlannerTypeType, TrainingPlannerTopic } from "@/types/training-planner";
 import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 
 const plannerFormSchema = z.object({
   proposedFirstEvaluationDate: z.string().min(1, "Proposed 1st Evaluation Date is required"),
   trainingIncharge: z.string().min(1, "Training In-charge selection is required"),
   selectedScopes: z.array(z.string()).optional(),
-  topics: z.array(z.object({
-    topicId: z.string(),
-    trainerId: z.string().optional(),
-    startDate: z.string().min(1, "Start date is required"),
-    endDate: z.string().min(1, "End date is required"),
-    modeOfEvaluation: z.string().optional(),
-    comments: z.string().optional()
-  })).min(1, "At least one training topic is required")
+  topics: z
+    .array(
+      z.object({
+        topicId: z.string(),
+        trainerId: z.string().optional(),
+        startDate: z.string().min(1, "Start date is required"),
+        endDate: z.string().min(1, "End date is required"),
+        modeOfEvaluation: z.string().optional(),
+        comments: z.string().optional(),
+      }),
+    )
+    .min(1, "At least one training topic is required"),
 });
 
 type PlannerFormData = z.infer<typeof plannerFormSchema>;
@@ -61,8 +61,8 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
       proposedFirstEvaluationDate: "",
       trainingIncharge: "",
       selectedScopes: [],
-      topics: []
-    }
+      topics: [],
+    },
   });
 
   // Load all available topics for general planner
@@ -73,17 +73,16 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
     }
   }, [lookups, plannerType]);
 
-
   const handleTopicsChange = (topics: TrainingPlannerTopic[]) => {
     setPlannerTopics(topics);
     // Update form data
-    const formTopics = topics.map(topic => ({
+    const formTopics = topics.map((topic) => ({
       topicId: topic.topic.id,
       trainerId: topic.trainer?.id || "",
       startDate: topic.startDate,
       endDate: topic.endDate,
       modeOfEvaluation: topic.modeOfEvaluation || "",
-      comments: topic.comments || ""
+      comments: topic.comments || "",
     }));
     form.setValue("topics", formTopics);
   };
@@ -93,21 +92,21 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
     try {
       // Validate only basic fields for draft
       const values = form.getValues();
-      
+
       // Mock save operation
       console.log("Saving as draft:", { employee, plannerType, values, topics: plannerTopics });
-      
+
       toast({
         title: "Draft Saved Successfully",
         description: "Your planner has been saved as draft.",
       });
-      
+
       onSave();
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to save draft. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
@@ -117,26 +116,26 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
     try {
       // Generate planner ID
       const plannerId = `PLNR_${employee.employeeCode}_NEW`;
-      
+
       console.log("Submitting for approval:", {
         plannerId,
         employee,
         plannerType,
         data,
-        topics: plannerTopics
+        topics: plannerTopics,
       });
-      
+
       toast({
         title: "Planner Submitted Successfully",
         description: `Planner ${plannerId} has been submitted for approval.`,
       });
-      
+
       onSubmit();
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to submit planner. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
@@ -144,7 +143,6 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
   const getInitials = (firstName: string, lastName: string) => {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
-
 
   return (
     <div className="space-y-6">
@@ -161,11 +159,13 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                 {getInitials(employee.firstName, employee.lastName)}
               </AvatarFallback>
             </Avatar>
-            
+
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label className="text-xs font-medium text-muted-foreground">Employee Name</Label>
-                <p className="font-medium">{employee.firstName} {employee.lastName}</p>
+                <p className="font-medium">
+                  {employee.firstName} {employee.lastName}
+                </p>
               </div>
               <div>
                 <Label className="text-xs font-medium text-muted-foreground">Employee Code</Label>
@@ -195,7 +195,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmitForApproval)} className="space-y-6">
           {/* Planner Configuration */}
-          <Card className="ps-card">
+          <Card>
             <CardHeader>
               <CardTitle className="text-lg">Planner Configuration</CardTitle>
             </CardHeader>
@@ -215,7 +215,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                               variant="outline"
                               className={cn(
                                 "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
+                                !field.value && "text-muted-foreground",
                               )}
                             >
                               {field.value ? format(new Date(field.value), "dd MMM yyyy") : "Select date"}
@@ -227,16 +227,14 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                           <Calendar
                             mode="single"
                             selected={field.value ? new Date(field.value) : undefined}
-                            onSelect={(date) => field.onChange(date?.toISOString().split('T')[0])}
+                            onSelect={(date) => field.onChange(date?.toISOString().split("T")[0])}
                             disabled={(date) => date < new Date()}
                             initialFocus
                             className="pointer-events-auto"
                           />
                         </PopoverContent>
                       </Popover>
-                      <FormDescription>
-                        Select the proposed date for the first evaluation
-                      </FormDescription>
+                      <FormDescription>Select the proposed date for the first evaluation</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -263,20 +261,17 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                           )) || []}
                         </SelectContent>
                       </Select>
-                      <FormDescription>
-                        Select the Training In-charge who will approve this planner
-                      </FormDescription>
+                      <FormDescription>Select the Training In-charge who will approve this planner</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-
             </CardContent>
           </Card>
 
           {/* Training Topics */}
-          <Card className="ps-card">
+          <Card>
             <CardHeader>
               <CardTitle className="text-lg">Training Topics</CardTitle>
             </CardHeader>
@@ -291,9 +286,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                 />
               ) : (
                 <Alert>
-                  <AlertDescription>
-                    No training topics available for the selected configuration.
-                  </AlertDescription>
+                  <AlertDescription>No training topics available for the selected configuration.</AlertDescription>
                 </Alert>
               )}
             </CardContent>
@@ -302,23 +295,18 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
           {/* Important Notes */}
           <Alert>
             <AlertDescription>
-              <strong>Note:</strong> Once you click 'Save As Draft' / 'Send for Approval', the topics will be 
+              <strong>Note:</strong> Once you click 'Save As Draft' / 'Send for Approval', the topics will be
               permanently saved. To remove a topic permanently from the grid, click 'Save As Draft' after removing it.
             </AlertDescription>
           </Alert>
 
           {/* Form Actions */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleSaveAsDraft}
-              className="flex-1"
-            >
+            <Button type="button" variant="outline" onClick={handleSaveAsDraft} className="flex-1">
               <Save className="mr-2 h-4 w-4" />
               Save as Draft
             </Button>
-            
+
             <Button
               type="submit"
               className="flex-1"
@@ -327,12 +315,8 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
               <Send className="mr-2 h-4 w-4" />
               Send for Approval
             </Button>
-            
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={onCancel}
-            >
+
+            <Button type="button" variant="ghost" onClick={onCancel}>
               Cancel
             </Button>
           </div>
