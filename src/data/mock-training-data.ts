@@ -912,6 +912,100 @@ export const mockExistingPlanners: TrainingPlanner[] = [
     createdDate: "2025-01-18",
     submittedDate: "2025-01-31",
     approvedDate: "2025-02-08"
+  },
+  // Additional approved planners for Update Additional Training testing
+  {
+    id: "planner-6",
+    plannerNumber: "PLNR_ANN2023001_2024",
+    employee: mockAnnualEmployees[0],
+    plannerType: PlannerType.ANNUAL_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2024-12-15",
+    selectedScopes: [mockTrainingScopes[0]],
+    topics: [
+      {
+        id: "topic-plan-13",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[0],
+        startDate: "2024-11-01",
+        endDate: "2024-11-02",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Quality documentation update training"
+      },
+      {
+        id: "topic-plan-14",
+        topic: mockTrainingTopics[5],
+        trainer: mockTrainers[0],
+        startDate: "2024-11-10",
+        endDate: "2024-11-11",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Customer communication skills"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM005",
+    createdDate: "2024-10-15",
+    submittedDate: "2024-10-20",
+    approvedDate: "2024-10-25"
+  },
+  {
+    id: "planner-7",
+    plannerNumber: "PLNR_ANN2022005_2024",
+    employee: mockAnnualEmployees[1],
+    plannerType: PlannerType.ANNUAL_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[1],
+    proposedFirstEvaluationDate: "2024-12-20",
+    selectedScopes: [mockTrainingScopes[1]],
+    topics: [
+      {
+        id: "topic-plan-15",
+        topic: mockTrainingTopics[2],
+        trainer: mockTrainers[1],
+        startDate: "2024-11-05",
+        endDate: "2024-11-08",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Advanced microbiology techniques"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM006",
+    createdDate: "2024-10-10",
+    submittedDate: "2024-10-15",
+    approvedDate: "2024-10-22"
+  },
+  {
+    id: "planner-8",
+    plannerNumber: "PLNR_ANN2021008_2024",
+    employee: mockAnnualEmployees[2],
+    plannerType: PlannerType.ANNUAL_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[2],
+    proposedFirstEvaluationDate: "2024-12-18",
+    selectedScopes: [mockTrainingScopes[2]],
+    topics: [
+      {
+        id: "topic-plan-16",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-12",
+        endDate: "2024-11-16",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Advanced chemical analysis"
+      },
+      {
+        id: "topic-plan-17",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-20",
+        endDate: "2024-11-21",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Documentation best practices"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM007",
+    createdDate: "2024-10-12",
+    submittedDate: "2024-10-18",
+    approvedDate: "2024-10-26"
   }
 ];
 
