@@ -127,7 +127,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" hideCloseButton>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between">
             <span>Add {trainingType} Training</span>
