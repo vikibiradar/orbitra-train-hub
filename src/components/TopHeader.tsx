@@ -13,10 +13,7 @@ import tuvLogo from "@/assets/tuv-logo.png";
 
 export function TopHeader() {
   return (
-    <header
-      className="sticky top-0 z-50 h-[72px] border-b bg-gradient-to-r from-ps-primary-dark via-ps-primary to-ps-primary-light
- backdrop-blur-sm px-4 flex items-center justify-between w-full"
-    >
+    <header className="sticky top-0 z-50 h-[72px] border-b bg-gradient-to-r from-ps-primary-dark to-ps-primary backdrop-blur-sm px-4 flex items-center justify-between w-full">
       <div className="flex items-center space-x-4">
         <SidebarTrigger />
         <Link to="/" className="flex items-center space-x-3 ">
