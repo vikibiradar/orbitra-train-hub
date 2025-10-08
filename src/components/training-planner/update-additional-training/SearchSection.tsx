@@ -15,7 +15,7 @@ export function SearchSection({ onSearch }: SearchSectionProps) {
 
   useEffect(() => {
     if (!searchTerm.trim()) {
-      onSearch([]);
+      onSearch(mockApprovedPlanners);
       return;
     }
 
@@ -42,7 +42,7 @@ export function SearchSection({ onSearch }: SearchSectionProps) {
 
   const handleClear = () => {
     setSearchTerm("");
-    onSearch([]);
+    onSearch(mockApprovedPlanners);
   };
 
   return (
