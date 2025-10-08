@@ -214,7 +214,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                             <Button
                               variant="outline"
                               className={cn(
-                                "w-full pl-3 text-left font-normal ps-card",
+                                "w-full pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground",
                               )}
                             >
@@ -248,7 +248,7 @@ export function PlannerForm({ employee, plannerType, onSave, onSubmit, onCancel 
                     <FormItem className="flex flex-col">
                       <FormLabel className="required">Training In-charge (TI)</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl>
+                        <FormControl classname="ps-card">
                           <SelectTrigger>
                             <SelectValue placeholder="Select Training In-charge" />
                           </SelectTrigger>
