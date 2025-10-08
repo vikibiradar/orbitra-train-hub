@@ -11,70 +11,94 @@ interface SearchSectionProps {
 }
 
 export function SearchSection({ onSearch }: SearchSectionProps) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [employeeName, setEmployeeName] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
+  const [plannerNumber, setPlannerNumber] = useState("");
+
+  const hasActiveFilters = employeeName || employeeId || plannerNumber;
 
   useEffect(() => {
-    if (!searchTerm.trim()) {
+    if (!hasActiveFilters) {
       onSearch(mockApprovedPlanners);
       return;
     }
 
-    const term = searchTerm.toLowerCase().trim();
-    
-    // Search in approved planners by:
-    // 1. Employee name (first or last)
-    // 2. Employee code
-    // 3. Planner number
     const results = mockApprovedPlanners.filter((planner) => {
-      const employeeName = `${planner.employee.firstName} ${planner.employee.lastName}`.toLowerCase();
-      const employeeCode = planner.employee.employeeCode.toLowerCase();
-      const plannerNumber = planner.plannerNumber?.toLowerCase() || "";
+      const fullName = `${planner.employee.firstName} ${planner.employee.lastName}`.toLowerCase();
+      const empCode = planner.employee.employeeCode.toLowerCase();
+      const plannerNum = planner.plannerNumber?.toLowerCase() || "";
       
-      return (
-        employeeName.includes(term) ||
-        employeeCode.includes(term) ||
-        plannerNumber.includes(term)
-      );
+      const matchesName = !employeeName || fullName.includes(employeeName.toLowerCase().trim());
+      const matchesId = !employeeId || empCode.includes(employeeId.toLowerCase().trim());
+      const matchesPlanner = !plannerNumber || plannerNum.includes(plannerNumber.toLowerCase().trim());
+      
+      return matchesName && matchesId && matchesPlanner;
     });
 
     onSearch(results);
-  }, [searchTerm, onSearch]);
+  }, [employeeName, employeeId, plannerNumber, onSearch, hasActiveFilters]);
 
   const handleClear = () => {
-    setSearchTerm("");
-    onSearch(mockApprovedPlanners);
+    setEmployeeName("");
+    setEmployeeId("");
+    setPlannerNumber("");
   };
 
   return (
     <div className="space-y-4">
-      <div className="flex-1">
-        <Label htmlFor="search" className="text-sm font-medium mb-2">
-          Search Term
-        </Label>
-        <div className="flex gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Employee Name */}
+        <div className="flex-1">
+          <Label htmlFor="employeeName" className="text-sm font-medium mb-2">
+            Employee Name
+          </Label>
           <Input
-            id="search"
-            placeholder="Enter Employee Name, Employee ID, or Planner Number..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full"
+            id="employeeName"
+            placeholder="Enter employee name..."
+            value={employeeName}
+            onChange={(e) => setEmployeeName(e.target.value)}
           />
-          {searchTerm && (
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleClear}
-              className="shrink-0"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          )}
+        </div>
+
+        {/* Employee ID */}
+        <div className="flex-1">
+          <Label htmlFor="employeeId" className="text-sm font-medium mb-2">
+            Employee ID
+          </Label>
+          <Input
+            id="employeeId"
+            placeholder="Enter employee ID..."
+            value={employeeId}
+            onChange={(e) => setEmployeeId(e.target.value)}
+          />
+        </div>
+
+        {/* Planner Number */}
+        <div className="flex-1">
+          <Label htmlFor="plannerNumber" className="text-sm font-medium mb-2">
+            Planner Number
+          </Label>
+          <Input
+            id="plannerNumber"
+            placeholder="Enter planner number..."
+            value={plannerNumber}
+            onChange={(e) => setPlannerNumber(e.target.value)}
+          />
         </div>
       </div>
-      
-      <p className="text-sm text-muted-foreground">
-        Only approved planners are available for additional training updates
-      </p>
+
+      {/* Clear Button and Info */}
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          Only approved planners are available for additional training updates
+        </p>
+        {hasActiveFilters && (
+          <Button variant="outline" size="sm" onClick={handleClear}>
+            <X className="h-4 w-4 mr-2" />
+            Clear Filters
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
