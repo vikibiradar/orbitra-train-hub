@@ -303,40 +303,48 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmitForApproval)} className="space-y-6">
+          {/* Training In-charge */}
+          <Card className="ps-card">
+            <CardHeader>
+              <CardTitle className="text-lg">Planner Configuration</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <FormField
+                control={form.control}
+                name="trainingIncharge"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel className="required">Training In-charge (TI)</FormLabel>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        setHasUnsavedChanges(true);
+                      }}
+                      value={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Training In-charge" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {lookups?.trainingIncharges?.map((ti) => (
+                          <SelectItem key={ti.id} value={ti.id}>
+                            {ti.name} - {ti.department.name}
+                          </SelectItem>
+                        )) || []}
+                      </SelectContent>
+                    </Select>
+                    <FormDescription>Select the Training In-charge who will approve this planner</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+          </Card>
+
           {/* Training Topics */}
           <Card className="ps-card">
-            {/* Training In-charge */}
-            <FormField
-              control={form.control}
-              name="trainingIncharge"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="required">Training In-charge (TI)</FormLabel>
-                  <Select
-                    onValueChange={(value) => {
-                      field.onChange(value);
-                      setHasUnsavedChanges(true);
-                    }}
-                    value={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Training In-charge" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {lookups?.trainingIncharges?.map((ti) => (
-                        <SelectItem key={ti.id} value={ti.id}>
-                          {ti.name} - {ti.department.name}
-                        </SelectItem>
-                      )) || []}
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>Select the Training In-charge who will approve this planner</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <CardHeader>
               <CardTitle className="text-lg">Training Topics</CardTitle>
             </CardHeader>
