@@ -17,13 +17,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { TrainingTopicsTable } from "../new-employee-planner/TrainingTopicsTable";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Employee,
-  TrainingPlannerTopic,
-  PlannerStatus
-} from "@/types/training-planner";
+import { Employee, TrainingPlannerTopic, PlannerStatus } from "@/types/training-planner";
 import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
-
 const plannerFormSchema = z.object({
   proposedFirstEvaluationDate: z.string().min(1, "Proposed 1st Evaluation Date is required"),
   trainingIncharge: z.string().min(1, "Training In-charge selection is required"),
@@ -36,26 +31,31 @@ const plannerFormSchema = z.object({
     comments: z.string().optional()
   })).min(1, "At least one training topic is required")
 });
-
 type PlannerFormData = z.infer<typeof plannerFormSchema>;
-
 interface AnnualPlannerFormProps {
   employee: Employee;
   onSave: () => void;
   onSubmit: () => void;
   onCancel: () => void;
 }
-
-export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: AnnualPlannerFormProps) {
-  const { toast } = useToast();
-  const { data: lookups, isLoading: lookupsLoading } = useTrainingPlannerLookups();
+export function AnnualPlannerForm({
+  employee,
+  onSave,
+  onSubmit,
+  onCancel
+}: AnnualPlannerFormProps) {
+  const {
+    toast
+  } = useToast();
+  const {
+    data: lookups,
+    isLoading: lookupsLoading
+  } = useTrainingPlannerLookups();
   const [availableTopics, setAvailableTopics] = useState<any[]>([]);
   const [plannerTopics, setPlannerTopics] = useState<TrainingPlannerTopic[]>([]);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-
   const currentYear = new Date().getFullYear();
   const plannerStatus = employee.plannerStatus;
-
   const form = useForm<PlannerFormData>({
     resolver: zodResolver(plannerFormSchema),
     defaultValues: {
@@ -82,11 +82,9 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       });
     }
   }, [employee.applicableYear, currentYear]);
-
   const handleTopicsChange = (topics: TrainingPlannerTopic[]) => {
     setPlannerTopics(topics);
     setHasUnsavedChanges(true);
-    
     const formTopics = topics.map(topic => ({
       topicId: topic.topic.id,
       trainerId: topic.trainer?.id || "",
@@ -97,11 +95,10 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
     }));
     form.setValue("topics", formTopics);
   };
-
   const handleSaveAsDraft = async () => {
     try {
       const values = form.getValues();
-      
+
       // Validate at least one topic selected
       if (plannerTopics.length === 0) {
         toast({
@@ -113,13 +110,15 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       }
 
       // Mock save operation
-      console.log("Saving as draft:", { employee, values, topics: plannerTopics });
-      
+      console.log("Saving as draft:", {
+        employee,
+        values,
+        topics: plannerTopics
+      });
       toast({
         title: "Data saved Successfully",
-        description: "Your planner has been saved as draft.",
+        description: "Your planner has been saved as draft."
       });
-      
       setHasUnsavedChanges(false);
       onSave();
     } catch (error) {
@@ -130,7 +129,6 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       });
     }
   };
-
   const validateForSubmission = (data: PlannerFormData): string[] => {
     const errors: string[] = [];
 
@@ -143,15 +141,12 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
     // Validate each topic
     plannerTopics.forEach((topic, index) => {
       const rowNum = index + 1;
-
       if (!topic.trainer) {
         errors.push(`Kindly select Trainer for Row No. ${rowNum}`);
       }
-
       if (!topic.modeOfEvaluation) {
         errors.push(`Kindly select Mode Of Evaluation for Row No. ${rowNum}`);
       }
-
       if (!topic.endDate) {
         errors.push(`Kindly select End Date for Row No. ${rowNum}`);
       }
@@ -160,7 +155,6 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       if (topic.startDate && topic.endDate) {
         const startDate = new Date(topic.startDate);
         const endDate = new Date(topic.endDate);
-        
         if (startDate > endDate) {
           errors.push(`Start date must be less than end date for Row No. ${rowNum}`);
         }
@@ -172,37 +166,23 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       }
 
       // Check for duplicate topics with same dates
-      const duplicates = plannerTopics.filter(t => 
-        t.id !== topic.id &&
-        t.topic.id === topic.topic.id &&
-        t.startDate === topic.startDate &&
-        t.endDate === topic.endDate &&
-        !t.isCancelled
-      );
-
+      const duplicates = plannerTopics.filter(t => t.id !== topic.id && t.topic.id === topic.topic.id && t.startDate === topic.startDate && t.endDate === topic.endDate && !t.isCancelled);
       if (duplicates.length > 0) {
         errors.push(`Same topic is already added with same Date duration for Row No. ${rowNum}`);
       }
     });
-
     return errors;
   };
-
   const handleSubmitForApproval = async (data: PlannerFormData) => {
     try {
       // Validate for submission
       const validationErrors = validateForSubmission(data);
-      
       if (validationErrors.length > 0) {
         toast({
           title: "Validation Errors",
-          description: (
-            <div className="space-y-1">
-              {validationErrors.map((error, index) => (
-                <div key={index}>• {error}</div>
-              ))}
-            </div>
-          ),
+          description: <div className="space-y-1">
+              {validationErrors.map((error, index) => <div key={index}>• {error}</div>)}
+            </div>,
           variant: "destructive"
         });
         return;
@@ -210,19 +190,16 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
 
       // Generate planner ID
       const plannerId = `PLNR_${employee.employeeCode}_${employee.applicableYear}`;
-      
       console.log("Submitting for approval:", {
         plannerId,
         employee,
         data,
         topics: plannerTopics
       });
-      
       toast({
         title: "Planner Submitted Successfully",
-        description: `Planner ${plannerId} has been submitted for approval.`,
+        description: `Planner ${plannerId} has been submitted for approval.`
       });
-      
       onSubmit();
     } catch (error) {
       toast({
@@ -232,11 +209,10 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       });
     }
   };
-
   const handleSave = async () => {
     try {
       const values = form.getValues();
-      
+
       // Check if any changes were made
       if (!hasUnsavedChanges) {
         toast({
@@ -246,14 +222,15 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
         });
         return;
       }
-
-      console.log("Saving changes:", { employee, values, topics: plannerTopics });
-      
+      console.log("Saving changes:", {
+        employee,
+        values,
+        topics: plannerTopics
+      });
       toast({
         title: "Data Save Successfully",
-        description: "Your changes have been saved.",
+        description: "Your changes have been saved."
       });
-      
       setHasUnsavedChanges(false);
     } catch (error) {
       toast({
@@ -263,7 +240,6 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
       });
     }
   };
-
   const getInitials = (firstName: string, lastName: string) => {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
@@ -272,9 +248,7 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
   const showSaveAsDraft = !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
   const showSave = plannerStatus === PlannerStatus.APPROVED;
   const showSendForApproval = !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Employee Information Card */}
       <Card className="ps-card">
         <CardHeader>
@@ -329,83 +303,35 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Proposed 1st Evaluation Date */}
-                <FormField
-                  control={form.control}
-                  name="proposedFirstEvaluationDate"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                      <FormLabel className="required">Proposed 1st Evaluation Date</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value ? format(new Date(field.value), "dd MMM yyyy") : "Select date"}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value ? new Date(field.value) : undefined}
-                            onSelect={(date) => {
-                              field.onChange(date?.toISOString().split('T')[0]);
-                              setHasUnsavedChanges(true);
-                            }}
-                            disabled={(date) => date < new Date()}
-                            initialFocus
-                            className="pointer-events-auto"
-                          />
-                        </PopoverContent>
-                      </Popover>
-                      <FormDescription>
-                        Select the proposed date for the first evaluation
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <FormField control={form.control} name="proposedFirstEvaluationDate" render={({
+                field
+              }) => {}} />
 
                 {/* Training In-charge */}
-                <FormField
-                  control={form.control}
-                  name="trainingIncharge"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col">
+                <FormField control={form.control} name="trainingIncharge" render={({
+                field
+              }) => <FormItem className="flex flex-col">
                       <FormLabel className="required">Training In-charge (TI)</FormLabel>
-                      <Select 
-                        onValueChange={(value) => {
-                          field.onChange(value);
-                          setHasUnsavedChanges(true);
-                        }} 
-                        value={field.value}
-                      >
+                      <Select onValueChange={value => {
+                  field.onChange(value);
+                  setHasUnsavedChanges(true);
+                }} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select Training In-charge" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {lookups?.trainingIncharges?.map((ti) => (
-                            <SelectItem key={ti.id} value={ti.id}>
+                          {lookups?.trainingIncharges?.map(ti => <SelectItem key={ti.id} value={ti.id}>
                               {ti.name} - {ti.department.name}
-                            </SelectItem>
-                          )) || []}
+                            </SelectItem>) || []}
                         </SelectContent>
                       </Select>
                       <FormDescription>
                         Select the Training In-charge who will approve this planner
                       </FormDescription>
                       <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    </FormItem>} />
               </div>
             </CardContent>
           </Card>
@@ -416,21 +342,11 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
               <CardTitle className="text-lg">Training Topics</CardTitle>
             </CardHeader>
             <CardContent>
-              {lookupsLoading ? (
-                <div className="text-center py-8 text-muted-foreground">Loading topics...</div>
-              ) : availableTopics.length > 0 ? (
-                <TrainingTopicsTable
-                  availableTopics={availableTopics}
-                  topics={plannerTopics}
-                  onTopicsChange={handleTopicsChange}
-                />
-              ) : (
-                <Alert>
+              {lookupsLoading ? <div className="text-center py-8 text-muted-foreground">Loading topics...</div> : availableTopics.length > 0 ? <TrainingTopicsTable availableTopics={availableTopics} topics={plannerTopics} onTopicsChange={handleTopicsChange} /> : <Alert>
                   <AlertDescription>
                     No training topics available for the selected configuration.
                   </AlertDescription>
-                </Alert>
-              )}
+                </Alert>}
             </CardContent>
           </Card>
 
@@ -444,52 +360,27 @@ export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: Annu
 
           {/* Form Actions */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            {showSaveAsDraft && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleSaveAsDraft}
-                className="flex-1"
-              >
+            {showSaveAsDraft && <Button type="button" variant="outline" onClick={handleSaveAsDraft} className="flex-1">
                 <Save className="mr-2 h-4 w-4" />
                 Save as Draft
-              </Button>
-            )}
+              </Button>}
             
-            {showSave && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleSave}
-                className="flex-1"
-              >
+            {showSave && <Button type="button" variant="outline" onClick={handleSave} className="flex-1">
                 <Save className="mr-2 h-4 w-4" />
                 Save
-              </Button>
-            )}
+              </Button>}
             
-            {showSendForApproval && (
-              <Button
-                type="submit"
-                className="flex-1"
-                disabled={plannerTopics.length === 0}
-              >
+            {showSendForApproval && <Button type="submit" className="flex-1" disabled={plannerTopics.length === 0}>
                 <Send className="mr-2 h-4 w-4" />
                 Send for Approval
-              </Button>
-            )}
+              </Button>}
             
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={onCancel}
-            >
+            <Button type="button" variant="ghost" onClick={onCancel}>
               <X className="mr-2 h-4 w-4" />
               Close
             </Button>
           </div>
         </form>
       </Form>
-    </div>
-  );
+    </div>;
 }
