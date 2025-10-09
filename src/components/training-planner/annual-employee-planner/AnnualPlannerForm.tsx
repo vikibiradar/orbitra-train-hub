@@ -20,16 +20,19 @@ import { useToast } from "@/hooks/use-toast";
 import { Employee, TrainingPlannerTopic, PlannerStatus } from "@/types/training-planner";
 import { useTrainingPlannerLookups } from "@/hooks/useTrainingPlannerApi";
 const plannerFormSchema = z.object({
-  proposedFirstEvaluationDate: z.string().min(1, "Proposed 1st Evaluation Date is required"),
   trainingIncharge: z.string().min(1, "Training In-charge selection is required"),
-  topics: z.array(z.object({
-    topicId: z.string(),
-    trainerId: z.string().min(1, "Trainer is required for submission"),
-    startDate: z.string().min(1, "Start date is required"),
-    endDate: z.string().min(1, "End date is required"),
-    modeOfEvaluation: z.string().min(1, "Mode of evaluation is required for submission"),
-    comments: z.string().optional()
-  })).min(1, "At least one training topic is required")
+  topics: z
+    .array(
+      z.object({
+        topicId: z.string(),
+        trainerId: z.string().min(1, "Trainer is required for submission"),
+        startDate: z.string().min(1, "Start date is required"),
+        endDate: z.string().min(1, "End date is required"),
+        modeOfEvaluation: z.string().min(1, "Mode of evaluation is required for submission"),
+        comments: z.string().optional(),
+      }),
+    )
+    .min(1, "At least one training topic is required"),
 });
 type PlannerFormData = z.infer<typeof plannerFormSchema>;
 interface AnnualPlannerFormProps {
@@ -38,19 +41,9 @@ interface AnnualPlannerFormProps {
   onSubmit: () => void;
   onCancel: () => void;
 }
-export function AnnualPlannerForm({
-  employee,
-  onSave,
-  onSubmit,
-  onCancel
-}: AnnualPlannerFormProps) {
-  const {
-    toast
-  } = useToast();
-  const {
-    data: lookups,
-    isLoading: lookupsLoading
-  } = useTrainingPlannerLookups();
+export function AnnualPlannerForm({ employee, onSave, onSubmit, onCancel }: AnnualPlannerFormProps) {
+  const { toast } = useToast();
+  const { data: lookups, isLoading: lookupsLoading } = useTrainingPlannerLookups();
   const [availableTopics, setAvailableTopics] = useState<any[]>([]);
   const [plannerTopics, setPlannerTopics] = useState<TrainingPlannerTopic[]>([]);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -59,10 +52,9 @@ export function AnnualPlannerForm({
   const form = useForm<PlannerFormData>({
     resolver: zodResolver(plannerFormSchema),
     defaultValues: {
-      proposedFirstEvaluationDate: "",
       trainingIncharge: "",
-      topics: []
-    }
+      topics: [],
+    },
   });
 
   // Load all available topics
@@ -78,20 +70,20 @@ export function AnnualPlannerForm({
       toast({
         title: "Invalid Year",
         description: "Planner can be generated for Current year Only",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   }, [employee.applicableYear, currentYear]);
   const handleTopicsChange = (topics: TrainingPlannerTopic[]) => {
     setPlannerTopics(topics);
     setHasUnsavedChanges(true);
-    const formTopics = topics.map(topic => ({
+    const formTopics = topics.map((topic) => ({
       topicId: topic.topic.id,
       trainerId: topic.trainer?.id || "",
       startDate: topic.startDate,
       endDate: topic.endDate,
       modeOfEvaluation: topic.modeOfEvaluation || "",
-      comments: topic.comments || ""
+      comments: topic.comments || "",
     }));
     form.setValue("topics", formTopics);
   };
@@ -104,7 +96,7 @@ export function AnnualPlannerForm({
         toast({
           title: "Validation Error",
           description: "Please Select Topic",
-          variant: "destructive"
+          variant: "destructive",
         });
         return;
       }
@@ -113,11 +105,11 @@ export function AnnualPlannerForm({
       console.log("Saving as draft:", {
         employee,
         values,
-        topics: plannerTopics
+        topics: plannerTopics,
       });
       toast({
         title: "Data saved Successfully",
-        description: "Your planner has been saved as draft."
+        description: "Your planner has been saved as draft.",
       });
       setHasUnsavedChanges(false);
       onSave();
@@ -125,7 +117,7 @@ export function AnnualPlannerForm({
       toast({
         title: "Error",
         description: "Failed to save draft. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
@@ -166,7 +158,14 @@ export function AnnualPlannerForm({
       }
 
       // Check for duplicate topics with same dates
-      const duplicates = plannerTopics.filter(t => t.id !== topic.id && t.topic.id === topic.topic.id && t.startDate === topic.startDate && t.endDate === topic.endDate && !t.isCancelled);
+      const duplicates = plannerTopics.filter(
+        (t) =>
+          t.id !== topic.id &&
+          t.topic.id === topic.topic.id &&
+          t.startDate === topic.startDate &&
+          t.endDate === topic.endDate &&
+          !t.isCancelled,
+      );
       if (duplicates.length > 0) {
         errors.push(`Same topic is already added with same Date duration for Row No. ${rowNum}`);
       }
@@ -180,10 +179,14 @@ export function AnnualPlannerForm({
       if (validationErrors.length > 0) {
         toast({
           title: "Validation Errors",
-          description: <div className="space-y-1">
-              {validationErrors.map((error, index) => <div key={index}>• {error}</div>)}
-            </div>,
-          variant: "destructive"
+          description: (
+            <div className="space-y-1">
+              {validationErrors.map((error, index) => (
+                <div key={index}>• {error}</div>
+              ))}
+            </div>
+          ),
+          variant: "destructive",
         });
         return;
       }
@@ -194,18 +197,18 @@ export function AnnualPlannerForm({
         plannerId,
         employee,
         data,
-        topics: plannerTopics
+        topics: plannerTopics,
       });
       toast({
         title: "Planner Submitted Successfully",
-        description: `Planner ${plannerId} has been submitted for approval.`
+        description: `Planner ${plannerId} has been submitted for approval.`,
       });
       onSubmit();
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to submit planner. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
@@ -218,25 +221,25 @@ export function AnnualPlannerForm({
         toast({
           title: "No Changes",
           description: "No changes were made to the planner.",
-          variant: "default"
+          variant: "default",
         });
         return;
       }
       console.log("Saving changes:", {
         employee,
         values,
-        topics: plannerTopics
+        topics: plannerTopics,
       });
       toast({
         title: "Data Save Successfully",
-        description: "Your changes have been saved."
+        description: "Your changes have been saved.",
       });
       setHasUnsavedChanges(false);
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to save changes. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
@@ -245,10 +248,13 @@ export function AnnualPlannerForm({
   };
 
   // Determine which buttons to show based on planner status
-  const showSaveAsDraft = !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
+  const showSaveAsDraft =
+    !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
   const showSave = plannerStatus === PlannerStatus.APPROVED;
-  const showSendForApproval = !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
-  return <div className="space-y-6">
+  const showSendForApproval =
+    !plannerStatus || plannerStatus === PlannerStatus.DRAFT || plannerStatus === PlannerStatus.REJECTED;
+  return (
+    <div className="space-y-6">
       {/* Employee Information Card */}
       <Card className="ps-card">
         <CardHeader>
@@ -262,11 +268,13 @@ export function AnnualPlannerForm({
                 {getInitials(employee.firstName, employee.lastName)}
               </AvatarFallback>
             </Avatar>
-            
+
             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label className="text-xs font-medium text-muted-foreground">Employee Name</Label>
-                <p className="font-medium">{employee.firstName} {employee.lastName}</p>
+                <p className="font-medium">
+                  {employee.firstName} {employee.lastName}
+                </p>
               </div>
               <div>
                 <Label className="text-xs font-medium text-muted-foreground">Employee Code</Label>
@@ -295,86 +303,91 @@ export function AnnualPlannerForm({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmitForApproval)} className="space-y-6">
-          {/* Planner Configuration */}
-          <Card className="ps-card">
-            <CardHeader>
-              <CardTitle className="text-lg">Planner Configuration</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Proposed 1st Evaluation Date */}
-                <FormField control={form.control} name="proposedFirstEvaluationDate" render={({
-                field
-              }) => {}} />
-
-                {/* Training In-charge */}
-                <FormField control={form.control} name="trainingIncharge" render={({
-                field
-              }) => <FormItem className="flex flex-col">
-                      <FormLabel className="required">Training In-charge (TI)</FormLabel>
-                      <Select onValueChange={value => {
-                  field.onChange(value);
-                  setHasUnsavedChanges(true);
-                }} value={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select Training In-charge" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {lookups?.trainingIncharges?.map(ti => <SelectItem key={ti.id} value={ti.id}>
-                              {ti.name} - {ti.department.name}
-                            </SelectItem>) || []}
-                        </SelectContent>
-                      </Select>
-                      <FormDescription>
-                        Select the Training In-charge who will approve this planner
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>} />
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Training Topics */}
           <Card className="ps-card">
+            {/* Training In-charge */}
+            <FormField
+              control={form.control}
+              name="trainingIncharge"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="required">Training In-charge (TI)</FormLabel>
+                  <Select
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      setHasUnsavedChanges(true);
+                    }}
+                    value={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Training In-charge" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {lookups?.trainingIncharges?.map((ti) => (
+                        <SelectItem key={ti.id} value={ti.id}>
+                          {ti.name} - {ti.department.name}
+                        </SelectItem>
+                      )) || []}
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>Select the Training In-charge who will approve this planner</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <CardHeader>
               <CardTitle className="text-lg">Training Topics</CardTitle>
             </CardHeader>
             <CardContent>
-              {lookupsLoading ? <div className="text-center py-8 text-muted-foreground">Loading topics...</div> : availableTopics.length > 0 ? <TrainingTopicsTable availableTopics={availableTopics} topics={plannerTopics} onTopicsChange={handleTopicsChange} /> : <Alert>
-                  <AlertDescription>
-                    No training topics available for the selected configuration.
-                  </AlertDescription>
-                </Alert>}
+              {lookupsLoading ? (
+                <div className="text-center py-8 text-muted-foreground">Loading topics...</div>
+              ) : availableTopics.length > 0 ? (
+                <TrainingTopicsTable
+                  availableTopics={availableTopics}
+                  topics={plannerTopics}
+                  onTopicsChange={handleTopicsChange}
+                />
+              ) : (
+                <Alert>
+                  <AlertDescription>No training topics available for the selected configuration.</AlertDescription>
+                </Alert>
+              )}
             </CardContent>
           </Card>
 
           {/* Important Notes */}
           <Alert>
             <AlertDescription>
-              <strong>Note:</strong> Topics which are "Remove" by TM should be deleted permanently from Planner. 
-              No need any action for that just click on Remove button and no need for approval of TI.
+              <strong>Note:</strong> Topics which are "Remove" by TM should be deleted permanently from Planner. No need
+              any action for that just click on Remove button and no need for approval of TI.
             </AlertDescription>
           </Alert>
 
           {/* Form Actions */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            {showSaveAsDraft && <Button type="button" variant="outline" onClick={handleSaveAsDraft} className="flex-1">
+            {showSaveAsDraft && (
+              <Button type="button" variant="outline" onClick={handleSaveAsDraft} className="flex-1">
                 <Save className="mr-2 h-4 w-4" />
                 Save as Draft
-              </Button>}
-            
-            {showSave && <Button type="button" variant="outline" onClick={handleSave} className="flex-1">
+              </Button>
+            )}
+
+            {showSave && (
+              <Button type="button" variant="outline" onClick={handleSave} className="flex-1">
                 <Save className="mr-2 h-4 w-4" />
                 Save
-              </Button>}
-            
-            {showSendForApproval && <Button type="submit" className="flex-1" disabled={plannerTopics.length === 0}>
+              </Button>
+            )}
+
+            {showSendForApproval && (
+              <Button type="submit" className="flex-1" disabled={plannerTopics.length === 0}>
                 <Send className="mr-2 h-4 w-4" />
                 Send for Approval
-              </Button>}
-            
+              </Button>
+            )}
+
             <Button type="button" variant="ghost" onClick={onCancel}>
               <X className="mr-2 h-4 w-4" />
               Close
@@ -382,5 +395,6 @@ export function AnnualPlannerForm({
           </div>
         </form>
       </Form>
-    </div>;
+    </div>
+  );
 }
