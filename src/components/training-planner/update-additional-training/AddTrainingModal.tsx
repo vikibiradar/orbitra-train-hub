@@ -38,6 +38,9 @@ interface FormData {
   endDate: Date | undefined;
   duration: string;
   remark: string;
+  venue: string;
+  referenceDocument: string;
+  rating: string;
 }
 
 const initialFormData: FormData = {
@@ -47,6 +50,9 @@ const initialFormData: FormData = {
   endDate: undefined,
   duration: "",
   remark: "",
+  venue: "",
+  referenceDocument: "",
+  rating: "",
 };
 
 export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSave }: AddTrainingModalProps) {
@@ -306,6 +312,47 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
               rows={3}
             />
             {errors.remark && <p className="text-sm text-destructive">{errors.remark}</p>}
+          </div>
+
+          {/* Venue */}
+          <div className="space-y-2">
+            <Label htmlFor="venue">Venue</Label>
+            <Input
+              id="venue"
+              type="text"
+              placeholder="Enter training venue"
+              value={formData.venue}
+              onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
+            />
+          </div>
+
+          {/* Reference Document */}
+          <div className="space-y-2">
+            <Label htmlFor="referenceDocument">Reference Document</Label>
+            <Input
+              id="referenceDocument"
+              type="text"
+              placeholder="Enter reference document"
+              value={formData.referenceDocument}
+              onChange={(e) => setFormData({ ...formData, referenceDocument: e.target.value })}
+            />
+          </div>
+
+          {/* Rating */}
+          <div className="space-y-2">
+            <Label htmlFor="rating">Rating</Label>
+            <Select value={formData.rating} onValueChange={(value) => setFormData({ ...formData, rating: value })}>
+              <SelectTrigger id="rating">
+                <SelectValue placeholder="Select rating" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5">5 - Excellent</SelectItem>
+                <SelectItem value="4">4 - Very Good</SelectItem>
+                <SelectItem value="3">3 - Good</SelectItem>
+                <SelectItem value="2">2 - Fair</SelectItem>
+                <SelectItem value="1">1 - Poor</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
