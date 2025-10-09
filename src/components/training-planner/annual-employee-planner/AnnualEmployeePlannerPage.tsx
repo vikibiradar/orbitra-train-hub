@@ -5,6 +5,8 @@ import { TopHeader } from "@/components/TopHeader";
 import Footer from "@/components/Footer";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { Employee } from "@/types/training-planner";
 import { EmployeeListView } from "./EmployeeListView";
 import { AnnualPlannerForm } from "./AnnualPlannerForm";
@@ -61,10 +63,20 @@ export function AnnualEmployeePlannerPage() {
               {/* Page Header */}
               <Card className="mb-6 ps-card">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
-                  <CardDescription>
-                    Generate and manage annual training planners for employees
-                  </CardDescription>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
+                      <CardDescription>
+                        Generate and manage annual training planners for employees
+                      </CardDescription>
+                    </div>
+                    {viewMode === 'form' && (
+                      <Button variant="outline" onClick={handleBackToList}>
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Back to List
+                      </Button>
+                    )}
+                  </div>
                 </CardHeader>
               </Card>
 
