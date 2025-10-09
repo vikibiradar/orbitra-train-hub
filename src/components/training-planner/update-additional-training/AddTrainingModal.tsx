@@ -133,7 +133,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between">
             <span>Add {trainingType} Training</span>
@@ -147,10 +147,10 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 py-4">
+        <div className="py-4">
           {/* Employee Info Card */}
-          <div className="p-4 bg-muted rounded-lg">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="p-4 bg-muted rounded-lg mb-4">
+            <div className="grid grid-cols-4 gap-4 text-sm">
               <div>
                 <span className="font-medium text-muted-foreground">Employee:</span>
                 <p className="text-foreground font-medium">
@@ -172,51 +172,51 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
             </div>
           </div>
 
-          {/* Topic Selection */}
-          <div className="space-y-2">
-            <Label htmlFor="topic">
-              Training Topic <span className="text-destructive">*</span>
-            </Label>
-            <Select value={formData.topicId} onValueChange={(value) => setFormData({ ...formData, topicId: value })}>
-              <SelectTrigger id="topic" className={errors.topicId ? "border-destructive" : ""}>
-                <SelectValue placeholder="Select training topic" />
-              </SelectTrigger>
-              <SelectContent>
-                {mockTrainingTopics.map((topic) => (
-                  <SelectItem key={topic.id} value={topic.id}>
-                    {topic.name} ({topic.code})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.topicId && <p className="text-sm text-destructive">{errors.topicId}</p>}
-          </div>
+          {/* Form Fields Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {/* Topic Selection */}
+            <div className="space-y-2">
+              <Label htmlFor="topic">
+                Training Topic <span className="text-destructive">*</span>
+              </Label>
+              <Select value={formData.topicId} onValueChange={(value) => setFormData({ ...formData, topicId: value })}>
+                <SelectTrigger id="topic" className={errors.topicId ? "border-destructive" : ""}>
+                  <SelectValue placeholder="Select training topic" />
+                </SelectTrigger>
+                <SelectContent>
+                  {mockTrainingTopics.map((topic) => (
+                    <SelectItem key={topic.id} value={topic.id}>
+                      {topic.name} ({topic.code})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.topicId && <p className="text-sm text-destructive">{errors.topicId}</p>}
+            </div>
 
-          {/* Trainer Selection */}
-          <div className="space-y-2">
-            <Label htmlFor="trainer">
-              Trainer <span className="text-destructive">*</span>
-            </Label>
-            <Select
-              value={formData.trainerId}
-              onValueChange={(value) => setFormData({ ...formData, trainerId: value })}
-            >
-              <SelectTrigger id="trainer" className={errors.trainerId ? "border-destructive" : ""}>
-                <SelectValue placeholder="Select trainer" />
-              </SelectTrigger>
-              <SelectContent>
-                {mockTrainers.map((trainer) => (
-                  <SelectItem key={trainer.id} value={trainer.id}>
-                    {trainer.name} - {trainer.department.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.trainerId && <p className="text-sm text-destructive">{errors.trainerId}</p>}
-          </div>
+            {/* Trainer Selection */}
+            <div className="space-y-2">
+              <Label htmlFor="trainer">
+                Trainer <span className="text-destructive">*</span>
+              </Label>
+              <Select
+                value={formData.trainerId}
+                onValueChange={(value) => setFormData({ ...formData, trainerId: value })}
+              >
+                <SelectTrigger id="trainer" className={errors.trainerId ? "border-destructive" : ""}>
+                  <SelectValue placeholder="Select trainer" />
+                </SelectTrigger>
+                <SelectContent>
+                  {mockTrainers.map((trainer) => (
+                    <SelectItem key={trainer.id} value={trainer.id}>
+                      {trainer.name} - {trainer.department.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.trainerId && <p className="text-sm text-destructive">{errors.trainerId}</p>}
+            </div>
 
-          {/* Date Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Start Date */}
             <div className="space-y-2">
               <Label>
@@ -243,6 +243,7 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
                     onSelect={(date) => setFormData({ ...formData, startDate: date })}
                     disabled={isDateDisabled}
                     initialFocus
+                    className="pointer-events-auto"
                   />
                 </PopoverContent>
               </Popover>
@@ -275,84 +276,85 @@ export function AddTrainingModal({ isOpen, onClose, planner, trainingType, onSav
                     onSelect={(date) => setFormData({ ...formData, endDate: date })}
                     disabled={isDateDisabled}
                     initialFocus
+                    className="pointer-events-auto"
                   />
                 </PopoverContent>
               </Popover>
               {errors.endDate && <p className="text-sm text-destructive">{errors.endDate}</p>}
             </div>
-          </div>
 
-          {/* Duration */}
-          <div className="space-y-2">
-            <Label htmlFor="duration">
-              Duration (hours) <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="duration"
-              type="text"
-              placeholder="Enter duration in hours"
-              value={formData.duration}
-              onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-              className={errors.duration ? "border-destructive" : ""}
-            />
-            {errors.duration && <p className="text-sm text-destructive">{errors.duration}</p>}
-          </div>
+            {/* Duration */}
+            <div className="space-y-2">
+              <Label htmlFor="duration">
+                Duration (hours) <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="duration"
+                type="text"
+                placeholder="Enter duration in hours"
+                value={formData.duration}
+                onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                className={errors.duration ? "border-destructive" : ""}
+              />
+              {errors.duration && <p className="text-sm text-destructive">{errors.duration}</p>}
+            </div>
 
-          {/* Remark */}
-          <div className="space-y-2">
-            <Label htmlFor="remark">
-              Remark <span className="text-destructive">*</span>
-            </Label>
-            <Textarea
-              id="remark"
-              placeholder="Enter remarks about the training"
-              value={formData.remark}
-              onChange={(e) => setFormData({ ...formData, remark: e.target.value })}
-              className={errors.remark ? "border-destructive" : ""}
-              rows={3}
-            />
-            {errors.remark && <p className="text-sm text-destructive">{errors.remark}</p>}
-          </div>
+            {/* Venue */}
+            <div className="space-y-2">
+              <Label htmlFor="venue">Venue</Label>
+              <Input
+                id="venue"
+                type="text"
+                placeholder="Enter training venue"
+                value={formData.venue}
+                onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
+              />
+            </div>
 
-          {/* Venue */}
-          <div className="space-y-2">
-            <Label htmlFor="venue">Venue</Label>
-            <Input
-              id="venue"
-              type="text"
-              placeholder="Enter training venue"
-              value={formData.venue}
-              onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
-            />
-          </div>
+            {/* Reference Document */}
+            <div className="space-y-2">
+              <Label htmlFor="referenceDocument">Reference Document</Label>
+              <Input
+                id="referenceDocument"
+                type="text"
+                placeholder="Enter reference document"
+                value={formData.referenceDocument}
+                onChange={(e) => setFormData({ ...formData, referenceDocument: e.target.value })}
+              />
+            </div>
 
-          {/* Reference Document */}
-          <div className="space-y-2">
-            <Label htmlFor="referenceDocument">Reference Document</Label>
-            <Input
-              id="referenceDocument"
-              type="text"
-              placeholder="Enter reference document"
-              value={formData.referenceDocument}
-              onChange={(e) => setFormData({ ...formData, referenceDocument: e.target.value })}
-            />
-          </div>
+            {/* Rating */}
+            <div className="space-y-2">
+              <Label htmlFor="rating">Rating</Label>
+              <Select value={formData.rating} onValueChange={(value) => setFormData({ ...formData, rating: value })}>
+                <SelectTrigger id="rating">
+                  <SelectValue placeholder="Select rating" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="5">5 - Excellent</SelectItem>
+                  <SelectItem value="4">4 - Very Good</SelectItem>
+                  <SelectItem value="3">3 - Good</SelectItem>
+                  <SelectItem value="2">2 - Fair</SelectItem>
+                  <SelectItem value="1">1 - Poor</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-          {/* Rating */}
-          <div className="space-y-2">
-            <Label htmlFor="rating">Rating</Label>
-            <Select value={formData.rating} onValueChange={(value) => setFormData({ ...formData, rating: value })}>
-              <SelectTrigger id="rating">
-                <SelectValue placeholder="Select rating" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="5">5 - Excellent</SelectItem>
-                <SelectItem value="4">4 - Very Good</SelectItem>
-                <SelectItem value="3">3 - Good</SelectItem>
-                <SelectItem value="2">2 - Fair</SelectItem>
-                <SelectItem value="1">1 - Poor</SelectItem>
-              </SelectContent>
-            </Select>
+            {/* Remark - Full Width */}
+            <div className="space-y-2 col-span-2">
+              <Label htmlFor="remark">
+                Remark <span className="text-destructive">*</span>
+              </Label>
+              <Textarea
+                id="remark"
+                placeholder="Enter remarks about the training"
+                value={formData.remark}
+                onChange={(e) => setFormData({ ...formData, remark: e.target.value })}
+                className={errors.remark ? "border-destructive" : ""}
+                rows={2}
+              />
+              {errors.remark && <p className="text-sm text-destructive">{errors.remark}</p>}
+            </div>
           </div>
         </div>
 
