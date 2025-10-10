@@ -21,12 +21,13 @@ export function PrintPlannerPage() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div className="min-h-screen flex flex-col w-full">
         <TopHeader />
-        <div className="flex-1 flex flex-col min-w-0">
-          <AppSidebar />
 
-          <main className="flex-1 overflow-auto">
+        <div className="flex flex-1 w-full">
+          <AppSidebar />
+          <SidebarInset className="flex flex-col">
+            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
             <div className="container mx-auto p-6 space-y-6 animate-fade-in">
               {/* Breadcrumb Navigation */}
               <Breadcrumb>
