@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TopHeader } from "@/components/TopHeader";
 import { AppSidebar } from "@/components/AppSidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import Footer from "@/components/Footer";
 import { EmployeeListView } from "./EmployeeListView";
 import {
@@ -69,7 +69,8 @@ export function PrintPlannerPage() {
             </div>
           </main>
 
-          <Footer />
+            <Footer />
+          </SidebarInset>
         </div>
       </div>
     </SidebarProvider>
