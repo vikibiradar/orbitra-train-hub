@@ -22,10 +22,10 @@ export function PrintPlannerPage() {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
-        <AppSidebar />
+        <TopHeader />
         <div className="flex-1 flex flex-col min-w-0">
-          <TopHeader />
-          
+          <AppSidebar />
+
           <main className="flex-1 overflow-auto">
             <div className="container mx-auto p-6 space-y-6 animate-fade-in">
               {/* Breadcrumb Navigation */}
