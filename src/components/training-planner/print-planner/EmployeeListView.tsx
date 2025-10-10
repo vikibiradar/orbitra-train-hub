@@ -20,9 +20,9 @@ export function EmployeeListView() {
 
   // Fetch only approved planners
   const { data: allPlanners = [], isLoading } = usePlanners({
-    filters: { status: ["Approved"] },
+    filters: { status: ["Approved"] }
   });
-
+  
   const { data: lookups } = useTrainingPlannerLookups();
 
   // Filter and sort planners
@@ -37,7 +37,7 @@ export function EmployeeListView() {
           planner.employee.firstName.toLowerCase().includes(term) ||
           planner.employee.lastName.toLowerCase().includes(term) ||
           planner.employee.employeeCode.toLowerCase().includes(term) ||
-          planner.id.toLowerCase().includes(term),
+          planner.id.toLowerCase().includes(term)
       );
     }
 
@@ -68,7 +68,9 @@ export function EmployeeListView() {
       }
 
       if (typeof aVal === "string") {
-        return sortDirection === "asc" ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+        return sortDirection === "asc" 
+          ? aVal.localeCompare(bVal)
+          : bVal.localeCompare(aVal);
       }
 
       return sortDirection === "asc" ? aVal - bVal : bVal - aVal;
@@ -88,22 +90,25 @@ export function EmployeeListView() {
 
   const handlePrintPlanner = async (planner: TrainingPlanner) => {
     try {
+      toast.loading("Generating print planner document...");
+      
       // Simulate document generation (In real implementation, this would call an API)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
       // Generate filename
       const filename = `PrintPlanner_${planner.id}.docx`;
-
+      
       toast.success(`Print planner generated: ${filename}`, {
         description: "Document is ready for download",
-        duration: 3000,
+        duration: 3000
       });
-
+      
       // In real implementation, trigger actual file download here
       // For now, we'll just show a success message
+      
     } catch (error) {
       toast.error("Failed to generate print planner", {
-        description: "Please try again later",
+        description: "Please try again later"
       });
     }
   };
@@ -172,7 +177,9 @@ export function EmployeeListView() {
       {/* Results Summary */}
       <div className="flex items-center justify-between">
         <div className="text-sm text-muted-foreground">
-          {isLoading ? "Loading approved planners..." : `Showing ${filteredAndSortedPlanners.length} approved planners`}
+          {isLoading
+            ? "Loading approved planners..."
+            : `Showing ${filteredAndSortedPlanners.length} approved planners`}
         </div>
         <Badge variant="secondary" className="text-xs">
           <FileText className="h-3 w-3 mr-1" />
@@ -190,14 +197,18 @@ export function EmployeeListView() {
                 onClick={() => handleSort("id")}
               >
                 Planner ID
-                {sortField === "id" && <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>}
+                {sortField === "id" && (
+                  <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
+                )}
               </TableHead>
               <TableHead
                 className="cursor-pointer hover:bg-muted/80 transition-colors"
                 onClick={() => handleSort("employee")}
               >
                 Employee
-                {sortField === "employee" && <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>}
+                {sortField === "employee" && (
+                  <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
+                )}
               </TableHead>
               <TableHead>Employee Code</TableHead>
               <TableHead>Department</TableHead>
@@ -245,12 +256,16 @@ export function EmployeeListView() {
                 <TableCell>
                   <div className="flex items-center space-x-1">
                     <Calendar className="h-3 w-3 text-muted-foreground" />
-                    <span className="text-sm">{format(new Date(planner.employee.joiningDate), "dd MMM yyyy")}</span>
+                    <span className="text-sm">
+                      {format(new Date(planner.employee.joiningDate), "dd MMM yyyy")}
+                    </span>
                   </div>
                 </TableCell>
                 <TableCell>
                   {planner.approvedDate && (
-                    <span className="text-sm">{format(new Date(planner.approvedDate), "dd MMM yyyy")}</span>
+                    <span className="text-sm">
+                      {format(new Date(planner.approvedDate), "dd MMM yyyy")}
+                    </span>
                   )}
                 </TableCell>
                 <TableCell>
