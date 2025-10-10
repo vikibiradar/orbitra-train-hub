@@ -28,7 +28,7 @@ export function PrintPlannerPage() {
           <AppSidebar />
           <SidebarInset className="flex flex-col">
             <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-              <div className="flex items-center space-x-4">
+              <div className="container mx-auto p-6 space-y-6 animate-fade-in">
                 {/* Breadcrumb Navigation */}
                 <Breadcrumb>
                   <BreadcrumbList>
