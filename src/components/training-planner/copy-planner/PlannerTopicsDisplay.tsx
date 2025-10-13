@@ -89,9 +89,9 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
                       {index + 1}
                     </TableCell>
                     <TableCell>
-                      <div className="font-medium">{topic.topic.name}</div>
+                      <div className="font-medium">{topic.topic?.name ?? "-"}</div>
                       <div className="text-xs text-muted-foreground">
-                        Duration: {topic.topic.defaultDuration}h
+                        Duration: {typeof topic.topic?.defaultDuration === "number" ? `${topic.topic.defaultDuration}h` : "-"}
                       </div>
                     </TableCell>
                     <TableCell>
