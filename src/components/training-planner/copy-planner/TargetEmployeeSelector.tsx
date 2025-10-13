@@ -1,10 +1,16 @@
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Employee } from "@/types/training-planner";
 import { useEmployees, usePlanners } from "@/hooks/useTrainingPlannerApi";
 
@@ -80,6 +86,10 @@ export function TargetEmployeeSelector({
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
 
+  const getEmployeeDisplayText = (employee: Employee) => {
+    return `${employee.firstName} ${employee.lastName} (${employee.employeeCode})`;
+  };
+
   const isLoading = employeesLoading || plannersLoading;
 
   return (
@@ -88,79 +98,73 @@ export function TargetEmployeeSelector({
         Select Employee <span className="text-destructive">*</span>
       </Label>
       
-      {/* Search Input */}
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder="Search by name, employee code, or email..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10"
-        />
-      </div>
-
-      {/* Employee Select Dropdown */}
-      <Select
-        value={selectedEmployeeId}
-        onValueChange={onEmployeeSelect}
-      >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select Employee">
-            {selectedEmployee && (
-              <div className="flex items-center gap-2">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage src={selectedEmployee.profilePicture} />
-                  <AvatarFallback className="text-xs bg-ps-primary text-white">
-                    {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
-                  </AvatarFallback>
-                </Avatar>
-                <span>
-                  {selectedEmployee.firstName} {selectedEmployee.lastName} ({selectedEmployee.employeeCode})
-                </span>
+      {/* Search Input with Dropdown */}
+      <div className="relative flex items-center gap-2">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search by name, employee code, or email..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 pr-4"
+            readOnly={!!selectedEmployee}
+          />
+        </div>
+        
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon" className="shrink-0">
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-[400px] max-h-[400px] overflow-y-auto bg-background">
+            {isLoading ? (
+              <div className="p-4 text-center text-sm text-muted-foreground">
+                Loading employees...
               </div>
-            )}
-          </SelectValue>
-        </SelectTrigger>
-        <SelectContent className="max-h-[300px]">
-          {isLoading ? (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              Loading employees...
-            </div>
-          ) : filteredEmployees.length === 0 ? (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              {searchQuery
-                ? "No employees match your search"
-                : `No ${employeeType.toLowerCase()} employees available without a planner`}
-            </div>
-          ) : (
-            filteredEmployees.map((employee) => (
-              <SelectItem key={employee.id} value={employee.id}>
-                <div className="flex items-center gap-3 py-1">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={employee.profilePicture} />
-                    <AvatarFallback className="text-xs bg-ps-primary text-white">
-                      {getInitials(employee.firstName, employee.lastName)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">
-                        {employee.firstName} {employee.lastName}
+            ) : filteredEmployees.length === 0 ? (
+              <div className="p-4 text-center text-sm text-muted-foreground">
+                {searchQuery
+                  ? "No employees match your search"
+                  : `No ${employeeType.toLowerCase()} employees available without a planner`}
+              </div>
+            ) : (
+              filteredEmployees.map((employee) => (
+                <DropdownMenuItem
+                  key={employee.id}
+                  onClick={() => {
+                    onEmployeeSelect(employee.id);
+                    setSearchQuery(getEmployeeDisplayText(employee));
+                  }}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center gap-3 py-1 w-full">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={employee.profilePicture} />
+                      <AvatarFallback className="text-xs bg-ps-primary text-white">
+                        {getInitials(employee.firstName, employee.lastName)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium">
+                          {employee.firstName} {employee.lastName}
+                        </span>
+                        <Badge variant="outline" className="text-xs">
+                          {employee.employeeCode}
+                        </Badge>
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {employee.department.name} • {employee.location.name}
                       </span>
-                      <Badge variant="outline" className="text-xs">
-                        {employee.employeeCode}
-                      </Badge>
                     </div>
-                    <span className="text-xs text-muted-foreground">
-                      {employee.department.name} • {employee.location.name}
-                    </span>
                   </div>
-                </div>
-              </SelectItem>
-            ))
-          )}
-        </SelectContent>
-      </Select>
+                </DropdownMenuItem>
+              ))
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
 
       {selectedEmployee && (
         <div className="p-4 bg-muted/30 rounded-lg space-y-2 text-sm">
