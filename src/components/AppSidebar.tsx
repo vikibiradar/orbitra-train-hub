@@ -39,6 +39,7 @@ const menuItems = [
       { title: "Annual Employee Planner", url: "/training-planner/annual" },
       { title: "Close Annual Employee Planner", url: "/training-planner/close-annual" },
       { title: "Print Planner", url: "/training-planner/print" },
+      { title: "Copy Planner", url: "/training-planner/copy-planner" },
       { title: "Update Additional Training", url: "/training-planner/update-additional" },
     ],
   },
