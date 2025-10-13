@@ -34,7 +34,5 @@ export function EmployeeTypeSelector({
           </SelectItem>
         </SelectContent>
       </Select>
-
-      {employeeType}
     </div>;
 }
