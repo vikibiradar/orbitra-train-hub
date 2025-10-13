@@ -27,9 +27,9 @@ export function TargetEmployeeSelector({
 }: TargetEmployeeSelectorProps) {
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Fetch all employees and planners
-  const { data: allEmployees, isLoading: employeesLoading } = useEmployees({});
-  const { data: allPlanners, isLoading: plannersLoading } = usePlanners({});
+  // Fetch all employees and planners with larger page size for client-side filtering
+  const { data: allEmployees, isLoading: employeesLoading } = useEmployees({ page: 1, pageSize: 1000 });
+  const { data: allPlanners, isLoading: plannersLoading } = usePlanners({ page: 1, pageSize: 1000 });
 
   const currentYear = new Date().getFullYear();
 

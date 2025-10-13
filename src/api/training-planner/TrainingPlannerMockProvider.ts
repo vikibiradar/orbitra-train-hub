@@ -24,6 +24,7 @@ import {
   mockExistingPlanners,
   mockEnhancedPlanners,
   mockNewEmployees,
+  mockAnnualEmployees,
   mockDepartments,
   mockLocations,
   mockTrainingScopes,
@@ -317,7 +318,7 @@ export class TrainingPlannerMockProvider extends MockApiProvider {
   // Get employees for planner creation
   async getEmployees(request: EmployeeListRequest): Promise<ApiResponse<Employee[]>> {
     return this.execute(async () => {
-      let employees = mockNewEmployees;
+      let employees = [...mockNewEmployees, ...mockAnnualEmployees];
       
       // Apply filters
       if (request.filters) {
