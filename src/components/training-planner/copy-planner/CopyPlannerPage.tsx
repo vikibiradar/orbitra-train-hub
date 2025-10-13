@@ -173,7 +173,7 @@ export function CopyPlannerPage() {
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button onClick={handleShowPlanner} disabled={!selectedSourcePlanner} variant="outline" className="flex-1 bg-transparent">
+                    <Button onClick={handleShowPlanner} disabled={!selectedSourcePlanner} variant="outline" className="flex-1 bg-transparent text-base text-sky-800">
                       <Eye className="mr-2 h-4 w-4" />
                       Show Planner
                     </Button>
