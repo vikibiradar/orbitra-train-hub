@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { TrainingPlanner } from "@/types/training-planner";
-import { usePlanners } from "@/hooks/useTrainingPlannerApi";
+import { mockSourcePlannersForCopy } from "@/data/mock-training-data";
 interface SourcePlannerSelectorProps {
   selectedPlanner: TrainingPlanner | null;
   onPlannerSelect: (planner: TrainingPlanner | null) => void;
@@ -22,37 +22,9 @@ export function SourcePlannerSelector({
 }: SourcePlannerSelectorProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Fetch planners - exclude "Submitted" status (pending TI approval)
-  const {
-    data: allPlanners,
-    isLoading
-  } = usePlanners({});
-
-  // Filter planners based on business rules
-  const availablePlanners = useMemo(() => {
-    if (!allPlanners) return [];
-    const currentYear = new Date().getFullYear();
-    const previousYear = currentYear - 1;
-    return allPlanners.filter(planner => {
-      // Exclude planners that are "Submitted" (waiting for TI approval)
-      if (planner.status === "Submitted") return false;
-
-      // Include New Employee Planners (approved or converted to annual)
-      if (planner.plannerType === 11) {
-        // PlannerType.GENERAL_NEW_EMPLOYEE
-        // Include if approved or if it's been converted to annual
-        return planner.status === "Approved" || planner.status === "Draft";
-      }
-
-      // Include Annual Planners from current year or previous year
-      if (planner.plannerType === 20) {
-        // PlannerType.ANNUAL_EMPLOYEE
-        const plannerYear = new Date(planner.createdDate).getFullYear();
-        return (plannerYear === currentYear || plannerYear === previousYear) && planner.status === "Approved";
-      }
-      return false;
-    });
-  }, [allPlanners]);
+  // Use dedicated source planners for copying (all approved with complete details)
+  const availablePlanners = mockSourcePlannersForCopy;
+  const isLoading = false;
 
   // Filter planners based on search query
   const filteredPlanners = useMemo(() => {

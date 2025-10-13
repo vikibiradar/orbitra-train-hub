@@ -1009,6 +1009,269 @@ export const mockExistingPlanners: TrainingPlanner[] = [
   }
 ];
 
+// Source Planners for Copy Planner Feature
+// These are approved planners with complete details that can be used as templates
+export const mockSourcePlannersForCopy: TrainingPlanner[] = [
+  {
+    id: "source-planner-1",
+    plannerNumber: "PLNR_TUV2024_SRC001_NEW",
+    employee: mockNewEmployees[0],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2024-12-15",
+    selectedScopes: [mockTrainingScopes[0], mockTrainingScopes[1]],
+    topics: [
+      {
+        id: "source-topic-1",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-11-01",
+        endDate: "2024-11-01",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "General safety orientation and protocols"
+      },
+      {
+        id: "source-topic-2",
+        topic: mockTrainingTopics[1],
+        trainer: mockTrainers[0],
+        startDate: "2024-11-05",
+        endDate: "2024-11-08",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Microbiology fundamentals and lab procedures"
+      },
+      {
+        id: "source-topic-3",
+        topic: mockTrainingTopics[2],
+        trainer: mockTrainers[1],
+        startDate: "2024-11-12",
+        endDate: "2024-11-14",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Advanced microbiology techniques"
+      },
+      {
+        id: "source-topic-4",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[0],
+        startDate: "2024-11-18",
+        endDate: "2024-11-19",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Quality system documentation and records"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM001",
+    createdDate: "2024-10-15",
+    submittedDate: "2024-10-20",
+    approvedDate: "2024-10-25"
+  },
+  {
+    id: "source-planner-2",
+    plannerNumber: "PLNR_TUV2024_SRC002_NEW",
+    employee: mockNewEmployees[2],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[2],
+    proposedFirstEvaluationDate: "2024-12-20",
+    selectedScopes: [mockTrainingScopes[2]],
+    topics: [
+      {
+        id: "source-topic-5",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-11-03",
+        endDate: "2024-11-03",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Chemical lab safety and handling procedures"
+      },
+      {
+        id: "source-topic-6",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-10",
+        endDate: "2024-11-14",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Chemical testing and analysis methods"
+      },
+      {
+        id: "source-topic-7",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-17",
+        endDate: "2024-11-18",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Documentation standards for chemical testing"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM003",
+    createdDate: "2024-10-18",
+    submittedDate: "2024-10-23",
+    approvedDate: "2024-10-28"
+  },
+  {
+    id: "source-planner-3",
+    plannerNumber: "PLNR_TUV2024_SRC003_NEW",
+    employee: mockNewEmployees[3],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2024-12-22",
+    selectedScopes: [mockTrainingScopes[3]],
+    topics: [
+      {
+        id: "source-topic-8",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-11-04",
+        endDate: "2024-11-04",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Hardlines testing safety protocols"
+      },
+      {
+        id: "source-topic-9",
+        topic: mockTrainingTopics[6],
+        trainer: mockTrainers[3],
+        startDate: "2024-11-11",
+        endDate: "2024-11-13",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Product inspection and testing procedures"
+      },
+      {
+        id: "source-topic-10",
+        topic: mockTrainingTopics[5],
+        trainer: mockTrainers[3],
+        startDate: "2024-11-15",
+        endDate: "2024-11-16",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Mechanical testing fundamentals"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM001",
+    createdDate: "2024-10-19",
+    submittedDate: "2024-10-24",
+    approvedDate: "2024-10-29"
+  },
+  {
+    id: "source-planner-4",
+    plannerNumber: "PLNR_ANN2024_SRC004_ANN",
+    employee: mockAnnualEmployees[0],
+    plannerType: PlannerType.ANNUAL_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[1],
+    proposedFirstEvaluationDate: "2024-12-28",
+    selectedScopes: [mockTrainingScopes[1]],
+    topics: [
+      {
+        id: "source-topic-11",
+        topic: mockTrainingTopics[1],
+        trainer: mockTrainers[0],
+        startDate: "2024-11-06",
+        endDate: "2024-11-09",
+        modeOfEvaluation: ModeOfEvaluation.EXTERNAL_EVALUATION,
+        comments: "Advanced microbiology refresher course"
+      },
+      {
+        id: "source-topic-12",
+        topic: mockTrainingTopics[2],
+        trainer: mockTrainers[1],
+        startDate: "2024-11-20",
+        endDate: "2024-11-22",
+        modeOfEvaluation: ModeOfEvaluation.SPIKE_RECOVERY,
+        comments: "Specialized microbiology techniques update"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM002",
+    createdDate: "2024-10-16",
+    submittedDate: "2024-10-21",
+    approvedDate: "2024-10-26"
+  },
+  {
+    id: "source-planner-5",
+    plannerNumber: "PLNR_ANN2024_SRC005_ANN",
+    employee: mockAnnualEmployees[1],
+    plannerType: PlannerType.ANNUAL_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[2],
+    proposedFirstEvaluationDate: "2024-12-30",
+    selectedScopes: [mockTrainingScopes[2]],
+    topics: [
+      {
+        id: "source-topic-13",
+        topic: mockTrainingTopics[3],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-08",
+        endDate: "2024-11-12",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Updated chemical testing standards"
+      },
+      {
+        id: "source-topic-14",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[2],
+        startDate: "2024-11-22",
+        endDate: "2024-11-23",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Quality system updates and compliance"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM004",
+    createdDate: "2024-10-17",
+    submittedDate: "2024-10-22",
+    approvedDate: "2024-10-27"
+  },
+  {
+    id: "source-planner-6",
+    plannerNumber: "PLNR_TUV2024_SRC006_NEW",
+    employee: mockNewEmployees[4],
+    plannerType: PlannerType.GENERAL_NEW_EMPLOYEE,
+    trainingIncharge: mockTrainingIncharges[0],
+    proposedFirstEvaluationDate: "2024-12-18",
+    selectedScopes: [mockTrainingScopes[4]],
+    topics: [
+      {
+        id: "source-topic-15",
+        topic: mockTrainingTopics[0],
+        trainer: mockTrainers[5],
+        startDate: "2024-11-02",
+        endDate: "2024-11-02",
+        modeOfEvaluation: ModeOfEvaluation.QUESTION_PAPER,
+        comments: "Energy department safety orientation"
+      },
+      {
+        id: "source-topic-16",
+        topic: mockTrainingTopics[7],
+        trainer: mockTrainers[4],
+        startDate: "2024-11-09",
+        endDate: "2024-11-11",
+        modeOfEvaluation: ModeOfEvaluation.REPLICATE_TESTING,
+        comments: "Energy testing procedures and protocols"
+      },
+      {
+        id: "source-topic-17",
+        topic: mockTrainingTopics[8],
+        trainer: mockTrainers[4],
+        startDate: "2024-11-16",
+        endDate: "2024-11-17",
+        modeOfEvaluation: ModeOfEvaluation.PERSONNEL_INTERVIEW,
+        comments: "Advanced energy testing techniques"
+      },
+      {
+        id: "source-topic-18",
+        topic: mockTrainingTopics[4],
+        trainer: mockTrainers[4],
+        startDate: "2024-11-21",
+        endDate: "2024-11-22",
+        modeOfEvaluation: ModeOfEvaluation.GROUP_DISCUSSION,
+        comments: "Documentation and reporting standards"
+      }
+    ],
+    status: PlannerStatus.APPROVED,
+    createdBy: "TM005",
+    createdDate: "2024-10-20",
+    submittedDate: "2024-10-25",
+    approvedDate: "2024-10-30"
+  }
+];
+
 // Utility functions for data filtering
 export const getTrainersByDepartment = (departmentId: string): Trainer[] => {
   return mockTrainers.filter(trainer => trainer.department.id === departmentId && trainer.isActive);
