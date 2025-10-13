@@ -82,7 +82,5 @@ export function SourcePlannerSelector({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
-      {selectedPlanner}
     </div>;
 }

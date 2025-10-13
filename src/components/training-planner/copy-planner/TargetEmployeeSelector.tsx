@@ -131,7 +131,5 @@ export function TargetEmployeeSelector({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
-      {selectedEmployee}
     </div>;
 }
