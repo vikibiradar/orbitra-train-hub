@@ -96,12 +96,15 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
                     </TableCell>
                     <TableCell>
                       <Badge variant="outline" className="text-xs">
-                        {topic.topic.module.name}
+                        {topic.topic.module?.name ?? "-"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-sm">
-                      {topic.topic.scopes && topic.topic.scopes.length > 0
-                        ? topic.topic.scopes.filter(s => s).map(s => s.name).join(", ")
+                      {Array.isArray(topic.topic?.scopes) && topic.topic.scopes.length > 0
+                        ? topic.topic.scopes
+                            .map((s: any) => s?.name ?? s)
+                            .filter(Boolean)
+                            .join(", ")
                         : "-"}
                     </TableCell>
                     <TableCell className="text-sm">
