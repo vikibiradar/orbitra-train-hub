@@ -22,8 +22,7 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
       <CardHeader>
         <CardTitle>Source Planner Topics</CardTitle>
         <CardDescription>
-          Review the topics from the source planner. Trainer and Training In-charge fields will not be
-          copied.
+          Review the topics from the source planner. Trainer and Training In-charge fields will not be copied.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -49,23 +48,6 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
           </div>
         </div>
 
-        {/* Important Notes */}
-        <Alert>
-          <Info className="h-4 w-4" />
-          <AlertDescription className="text-sm">
-            <strong>Note:</strong> The following fields will <strong>NOT</strong> be copied:
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Trainer assignments</li>
-              <li>Training In-charge (TI) selection</li>
-              <li>1st Evaluation Date (will be blank for new planners)</li>
-            </ul>
-            <div className="mt-2">
-              Start and End dates will be set to the date when the planner is copied. You will need to
-              update these fields when preparing the new planner.
-            </div>
-          </AlertDescription>
-        </Alert>
-
         {/* Topics Table */}
         {validTopics.length > 0 ? (
           <div className="border rounded-lg overflow-hidden">
@@ -85,13 +67,12 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
               <TableBody>
                 {validTopics.map((topic, index) => (
                   <TableRow key={topic.id} className="hover:bg-muted/50">
-                    <TableCell className="text-center font-medium text-muted-foreground">
-                      {index + 1}
-                    </TableCell>
+                    <TableCell className="text-center font-medium text-muted-foreground">{index + 1}</TableCell>
                     <TableCell>
                       <div className="font-medium">{topic.topic?.name ?? "-"}</div>
                       <div className="text-xs text-muted-foreground">
-                        Duration: {typeof topic.topic?.defaultDuration === "number" ? `${topic.topic.defaultDuration}h` : "-"}
+                        Duration:{" "}
+                        {typeof topic.topic?.defaultDuration === "number" ? `${topic.topic.defaultDuration}h` : "-"}
                       </div>
                     </TableCell>
                     <TableCell>
@@ -107,12 +88,8 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
                             .join(", ")
                         : "-"}
                     </TableCell>
-                    <TableCell className="text-sm">
-                      {format(new Date(topic.startDate), "dd MMM yyyy")}
-                    </TableCell>
-                    <TableCell className="text-sm">
-                      {format(new Date(topic.endDate), "dd MMM yyyy")}
-                    </TableCell>
+                    <TableCell className="text-sm">{format(new Date(topic.startDate), "dd MMM yyyy")}</TableCell>
+                    <TableCell className="text-sm">{format(new Date(topic.endDate), "dd MMM yyyy")}</TableCell>
                     <TableCell>
                       {topic.modeOfEvaluation ? (
                         <Badge variant="secondary" className="text-xs">
@@ -135,19 +112,6 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
             <AlertDescription>No valid topics found in the source planner.</AlertDescription>
           </Alert>
         )}
-
-        {/* Copy Instructions */}
-        <Alert className="bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-          <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-          <AlertDescription className="text-sm text-blue-900 dark:text-blue-100">
-            When you copy this planner, all topics above will be copied to the target employee with:
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Start and End dates set to today's date</li>
-              <li>Status set to "Draft"</li>
-              <li>Trainer and TI fields cleared (you'll need to select them)</li>
-            </ul>
-          </AlertDescription>
-        </Alert>
       </CardContent>
     </Card>
   );
