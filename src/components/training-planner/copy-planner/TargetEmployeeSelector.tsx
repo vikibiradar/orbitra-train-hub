@@ -5,44 +5,44 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Employee } from "@/types/training-planner";
 import { useEmployees, usePlanners } from "@/hooks/useTrainingPlannerApi";
-
 interface TargetEmployeeSelectorProps {
   employeeType: "New" | "Annual";
   selectedEmployeeId: string;
   onEmployeeSelect: (employeeId: string) => void;
 }
-
 export function TargetEmployeeSelector({
   employeeType,
   selectedEmployeeId,
-  onEmployeeSelect,
+  onEmployeeSelect
 }: TargetEmployeeSelectorProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  
-  // Fetch all employees and planners with larger page size for client-side filtering
-  const { data: allEmployees, isLoading: employeesLoading } = useEmployees({ page: 1, pageSize: 1000 });
-  const { data: allPlanners, isLoading: plannersLoading } = usePlanners({ page: 1, pageSize: 1000 });
 
+  // Fetch all employees and planners with larger page size for client-side filtering
+  const {
+    data: allEmployees,
+    isLoading: employeesLoading
+  } = useEmployees({
+    page: 1,
+    pageSize: 1000
+  });
+  const {
+    data: allPlanners,
+    isLoading: plannersLoading
+  } = usePlanners({
+    page: 1,
+    pageSize: 1000
+  });
   const currentYear = new Date().getFullYear();
 
   // Filter employees based on employee type and business rules
   const availableEmployees = useMemo(() => {
     if (!allEmployees || !allPlanners) return [];
-
-    return allEmployees.filter((employee) => {
+    return allEmployees.filter(employee => {
       // Find any planner (including drafts) for this employee
-      const employeePlanners = allPlanners.filter(
-        (planner) => planner.employee.id === employee.id
-      );
-
+      const employeePlanners = allPlanners.filter(planner => planner.employee.id === employee.id);
       if (employeeType === "New") {
         // For New employees: Show only those without ANY planner (not even draft)
         return employeePlanners.length === 0;
@@ -52,13 +52,12 @@ export function TargetEmployeeSelector({
         // Mock: Check if joining year + 1 <= current year (meaning they need annual training)
         const joiningYear = new Date(employee.joiningDate).getFullYear();
         const isEligibleForAnnual = joiningYear < currentYear;
-        
+
         // Check if they have a planner for current year
-        const hasCurrentYearPlanner = employeePlanners.some((planner) => {
+        const hasCurrentYearPlanner = employeePlanners.some(planner => {
           const plannerYear = new Date(planner.createdDate).getFullYear();
           return plannerYear === currentYear && planner.plannerType === 20; // PlannerType.ANNUAL_EMPLOYEE
         });
-
         return isEligibleForAnnual && !hasCurrentYearPlanner;
       }
     });
@@ -67,33 +66,20 @@ export function TargetEmployeeSelector({
   // Filter employees based on search query
   const filteredEmployees = useMemo(() => {
     if (!searchQuery.trim()) return availableEmployees;
-
     const query = searchQuery.toLowerCase();
-    return availableEmployees.filter(
-      (employee) =>
-        employee.firstName.toLowerCase().includes(query) ||
-        employee.lastName.toLowerCase().includes(query) ||
-        employee.employeeCode.toLowerCase().includes(query) ||
-        employee.email.toLowerCase().includes(query)
-    );
+    return availableEmployees.filter(employee => employee.firstName.toLowerCase().includes(query) || employee.lastName.toLowerCase().includes(query) || employee.employeeCode.toLowerCase().includes(query) || employee.email.toLowerCase().includes(query));
   }, [availableEmployees, searchQuery]);
-
   const selectedEmployee = useMemo(() => {
-    return availableEmployees.find((emp) => emp.id === selectedEmployeeId);
+    return availableEmployees.find(emp => emp.id === selectedEmployeeId);
   }, [availableEmployees, selectedEmployeeId]);
-
   const getInitials = (firstName: string, lastName: string) => {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
-
   const getEmployeeDisplayText = (employee: Employee) => {
     return `${employee.firstName} ${employee.lastName} (${employee.employeeCode})`;
   };
-
   const isLoading = employeesLoading || plannersLoading;
-
-  return (
-    <div className="space-y-3">
+  return <div className="space-y-3">
       <Label className="text-base font-semibold">
         Select Employee <span className="text-destructive">*</span>
       </Label>
@@ -102,13 +88,7 @@ export function TargetEmployeeSelector({
       <div className="relative flex items-center gap-2">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search by name, employee code, or email..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-4"
-            readOnly={!!selectedEmployee}
-          />
+          <Input placeholder="Search by name, employee code, or email..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-4" readOnly={!!selectedEmployee} />
         </div>
         
         <DropdownMenu>
@@ -118,26 +98,14 @@ export function TargetEmployeeSelector({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[400px] max-h-[400px] overflow-y-auto bg-background">
-            {isLoading ? (
-              <div className="p-4 text-center text-sm text-muted-foreground">
+            {isLoading ? <div className="p-4 text-center text-sm text-muted-foreground">
                 Loading employees...
-              </div>
-            ) : filteredEmployees.length === 0 ? (
-              <div className="p-4 text-center text-sm text-muted-foreground">
-                {searchQuery
-                  ? "No employees match your search"
-                  : `No ${employeeType.toLowerCase()} employees available without a planner`}
-              </div>
-            ) : (
-              filteredEmployees.map((employee) => (
-                <DropdownMenuItem
-                  key={employee.id}
-                  onClick={() => {
-                    onEmployeeSelect(employee.id);
-                    setSearchQuery(getEmployeeDisplayText(employee));
-                  }}
-                  className="cursor-pointer"
-                >
+              </div> : filteredEmployees.length === 0 ? <div className="p-4 text-center text-sm text-muted-foreground">
+                {searchQuery ? "No employees match your search" : `No ${employeeType.toLowerCase()} employees available without a planner`}
+              </div> : filteredEmployees.map(employee => <DropdownMenuItem key={employee.id} onClick={() => {
+            onEmployeeSelect(employee.id);
+            setSearchQuery(getEmployeeDisplayText(employee));
+          }} className="cursor-pointer">
                   <div className="flex items-center gap-3 py-1 w-full">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={employee.profilePicture} />
@@ -159,41 +127,11 @@ export function TargetEmployeeSelector({
                       </span>
                     </div>
                   </div>
-                </DropdownMenuItem>
-              ))
-            )}
+                </DropdownMenuItem>)}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      {selectedEmployee && (
-        <div className="p-4 bg-muted/30 rounded-lg space-y-2 text-sm">
-          <div className="flex items-center gap-3">
-            <Avatar className="h-12 w-12">
-              <AvatarImage src={selectedEmployee.profilePicture} />
-              <AvatarFallback className="bg-ps-primary text-white">
-                {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1">
-              <div className="font-medium">
-                {selectedEmployee.firstName} {selectedEmployee.lastName}
-              </div>
-              <div className="text-xs text-muted-foreground">{selectedEmployee.email}</div>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t">
-            <div>
-              <span className="text-muted-foreground">Department:</span>
-              <div className="font-medium">{selectedEmployee.department.name}</div>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Location:</span>
-              <div className="font-medium">{selectedEmployee.location.name}</div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+      {selectedEmployee}
+    </div>;
 }

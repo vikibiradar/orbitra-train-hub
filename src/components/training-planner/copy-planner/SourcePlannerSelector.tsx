@@ -4,12 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { TrainingPlanner } from "@/types/training-planner";
 import { mockSourcePlannersForCopy } from "@/data/mock-training-data";
 interface SourcePlannerSelectorProps {
@@ -48,13 +43,7 @@ export function SourcePlannerSelector({
       <div className="relative flex items-center gap-2">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search by planner number, employee name, or code..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-4"
-            readOnly={!!selectedPlanner}
-          />
+          <Input placeholder="Search by planner number, employee name, or code..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-4" readOnly={!!selectedPlanner} />
         </div>
         
         <DropdownMenu>
@@ -64,24 +53,14 @@ export function SourcePlannerSelector({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[400px] max-h-[400px] overflow-y-auto bg-background">
-            {isLoading ? (
-              <div className="p-4 text-center text-sm text-muted-foreground">
+            {isLoading ? <div className="p-4 text-center text-sm text-muted-foreground">
                 Loading planners...
-              </div>
-            ) : filteredPlanners.length === 0 ? (
-              <div className="p-4 text-center text-sm text-muted-foreground">
+              </div> : filteredPlanners.length === 0 ? <div className="p-4 text-center text-sm text-muted-foreground">
                 {searchQuery ? "No planners match your search" : "No planners available"}
-              </div>
-            ) : (
-              filteredPlanners.map(planner => (
-                <DropdownMenuItem
-                  key={planner.id}
-                  onClick={() => {
-                    onPlannerSelect(planner);
-                    setSearchQuery(getPlannerDisplayText(planner));
-                  }}
-                  className="cursor-pointer"
-                >
+              </div> : filteredPlanners.map(planner => <DropdownMenuItem key={planner.id} onClick={() => {
+            onPlannerSelect(planner);
+            setSearchQuery(getPlannerDisplayText(planner));
+          }} className="cursor-pointer">
                   <div className="flex flex-col gap-1 py-1 w-full">
                     <div className="flex items-center gap-2">
                       <span className="font-medium">{planner.plannerNumber}</span>
@@ -99,24 +78,11 @@ export function SourcePlannerSelector({
                       {planner.employee.department.name} • {planner.employee.location.name}
                     </span>
                   </div>
-                </DropdownMenuItem>
-              ))
-            )}
+                </DropdownMenuItem>)}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      {selectedPlanner && <div className="p-3 bg-muted/30 rounded-lg text-sm space-y-1">
-          <div className="flex items-center justify-between">
-            <span className="text-muted-foreground">Status:</span>
-            <Badge variant={selectedPlanner.status === "Approved" ? "default" : "secondary"}>
-              {selectedPlanner.status}
-            </Badge>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-muted-foreground">Total Topics:</span>
-            <span className="font-medium">{selectedPlanner.topics.length}</span>
-          </div>
-        </div>}
+      {selectedPlanner}
     </div>;
 }
