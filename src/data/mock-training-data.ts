@@ -348,6 +348,59 @@ export const mockNewEmployees: Employee[] = [
     joiningDate: "2025-02-15",
     isResigned: false,
     applicableYear: 2024
+  },
+  // Additional new employees WITHOUT planners (for Copy Planner)
+  {
+    id: "emp-new-7",
+    employeeCode: "TUV2025007",
+    employeeADID: "new.employee7",
+    firstName: "Rajesh",
+    lastName: "Kumar",
+    email: "rajesh.kumar@tuvsud.com",
+    department: mockDepartments[0], // PS-Softlines
+    location: mockLocations[0], // Mumbai
+    joiningDate: "2025-03-01",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "emp-new-8",
+    employeeCode: "TUV2025008",
+    employeeADID: "new.employee8",
+    firstName: "Priya",
+    lastName: "Sharma",
+    email: "priya.sharma@tuvsud.com",
+    department: mockDepartments[1], // PS-Food
+    location: mockLocations[1], // Delhi
+    joiningDate: "2025-03-05",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "emp-new-9",
+    employeeCode: "TUV2025009",
+    employeeADID: "new.employee9",
+    firstName: "Anil",
+    lastName: "Deshmukh",
+    email: "anil.deshmukh@tuvsud.com",
+    department: mockDepartments[2], // PS-Chem
+    location: mockLocations[2], // Bangalore
+    joiningDate: "2025-03-10",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "emp-new-10",
+    employeeCode: "TUV2025010",
+    employeeADID: "new.employee10",
+    firstName: "Sneha",
+    lastName: "Patil",
+    email: "sneha.patil@tuvsud.com",
+    department: mockDepartments[3], // PS-Hardlines
+    location: mockLocations[0], // Mumbai
+    joiningDate: "2025-03-15",
+    isResigned: false,
+    applicableYear: 2025
   }
 ];
 
@@ -432,6 +485,59 @@ export const mockAnnualEmployees: Employee[] = [
     department: mockDepartments[5],
     location: mockLocations[4],
     joiningDate: "2021-11-18",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  // Additional annual employees WITHOUT current year planners (for Copy Planner)
+  {
+    id: "ann-emp-7",
+    employeeCode: "TUV2023020",
+    employeeADID: "annual.employee7",
+    firstName: "Kiran",
+    lastName: "Joshi",
+    email: "kiran.joshi@tuvsud.com",
+    department: mockDepartments[0],
+    location: mockLocations[0],
+    joiningDate: "2023-05-20",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "ann-emp-8",
+    employeeCode: "TUV2022025",
+    employeeADID: "annual.employee8",
+    firstName: "Neha",
+    lastName: "Rao",
+    email: "neha.rao@tuvsud.com",
+    department: mockDepartments[1],
+    location: mockLocations[1],
+    joiningDate: "2022-07-15",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "ann-emp-9",
+    employeeCode: "TUV2021030",
+    employeeADID: "annual.employee9",
+    firstName: "Vijay",
+    lastName: "Mehta",
+    email: "vijay.mehta@tuvsud.com",
+    department: mockDepartments[2],
+    location: mockLocations[2],
+    joiningDate: "2021-10-05",
+    isResigned: false,
+    applicableYear: 2025
+  },
+  {
+    id: "ann-emp-10",
+    employeeCode: "TUV2023035",
+    employeeADID: "annual.employee10",
+    firstName: "Pooja",
+    lastName: "Iyer",
+    email: "pooja.iyer@tuvsud.com",
+    department: mockDepartments[3],
+    location: mockLocations[3],
+    joiningDate: "2023-09-10",
     isResigned: false,
     applicableYear: 2025
   }
