@@ -101,7 +101,7 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
                     </TableCell>
                     <TableCell className="text-sm">
                       {topic.topic.scopes && topic.topic.scopes.length > 0
-                        ? topic.topic.scopes.map(s => s.name).join(", ")
+                        ? topic.topic.scopes.filter(s => s).map(s => s.name).join(", ")
                         : "-"}
                     </TableCell>
                     <TableCell className="text-sm">
