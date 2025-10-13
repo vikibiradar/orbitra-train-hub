@@ -161,30 +161,33 @@ export function CopyPlannerPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* Source Planner Selection */}
-                  <SourcePlannerSelector
-                    selectedPlanner={selectedSourcePlanner}
-                    onPlannerSelect={setSelectedSourcePlanner}
-                  />
-
-                  {/* Employee Type Selection */}
-                  <EmployeeTypeSelector
-                    employeeType={employeeType}
-                    onEmployeeTypeChange={(type) => {
-                      setEmployeeType(type);
-                      setSelectedEmployeeId(""); // Reset employee selection when type changes
-                      setShowPlannerDetails(false); // Hide planner details
-                    }}
-                  />
-
-                  {/* Target Employee Selection - Only show if employee type is selected */}
-                  {employeeType && (
-                    <TargetEmployeeSelector
-                      employeeType={employeeType}
-                      selectedEmployeeId={selectedEmployeeId}
-                      onEmployeeSelect={setSelectedEmployeeId}
+                  {/* Horizontal Grid Layout for Selectors */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {/* Source Planner Selection */}
+                    <SourcePlannerSelector
+                      selectedPlanner={selectedSourcePlanner}
+                      onPlannerSelect={setSelectedSourcePlanner}
                     />
-                  )}
+
+                    {/* Employee Type Selection */}
+                    <EmployeeTypeSelector
+                      employeeType={employeeType}
+                      onEmployeeTypeChange={(type) => {
+                        setEmployeeType(type);
+                        setSelectedEmployeeId(""); // Reset employee selection when type changes
+                        setShowPlannerDetails(false); // Hide planner details
+                      }}
+                    />
+
+                    {/* Target Employee Selection - Only show if employee type is selected */}
+                    {employeeType && (
+                      <TargetEmployeeSelector
+                        employeeType={employeeType}
+                        selectedEmployeeId={selectedEmployeeId}
+                        onEmployeeSelect={setSelectedEmployeeId}
+                      />
+                    )}
+                  </div>
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
