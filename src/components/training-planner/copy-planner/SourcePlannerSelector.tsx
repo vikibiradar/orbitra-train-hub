@@ -16,6 +16,7 @@ export function SourcePlannerSelector({
   onPlannerSelect
 }: SourcePlannerSelectorProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Use dedicated source planners for copying (all approved with complete details)
   const availablePlanners = mockSourcePlannersForCopy;
@@ -48,10 +49,15 @@ export function SourcePlannerSelector({
             if (selectedPlanner) {
               onPlannerSelect(null);
             }
+          }} onKeyDown={e => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              setDropdownOpen(true);
+            }
           }} className="pl-10 pr-4" />
         </div>
         
-        <DropdownMenu>
+        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0">
               <ChevronDown className="h-4 w-4" />
@@ -61,10 +67,11 @@ export function SourcePlannerSelector({
             {isLoading ? <div className="p-4 text-center text-sm text-muted-foreground">
                 Loading planners...
               </div> : filteredPlanners.length === 0 ? <div className="p-4 text-center text-sm text-muted-foreground">
-                {searchQuery ? "No planners match your search" : "No planners available"}
+              {searchQuery ? "No planners match your search" : "No planners available"}
               </div> : filteredPlanners.map(planner => <DropdownMenuItem key={planner.id} onClick={() => {
             onPlannerSelect(planner);
             setSearchQuery(getPlannerDisplayText(planner));
+            setDropdownOpen(false);
           }} className="cursor-pointer">
                   <div className="flex flex-col gap-1 py-1 w-full">
                     <div className="flex items-center gap-2">

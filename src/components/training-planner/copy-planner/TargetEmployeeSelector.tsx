@@ -19,6 +19,7 @@ export function TargetEmployeeSelector({
   onEmployeeSelect
 }: TargetEmployeeSelectorProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Fetch all employees and planners with larger page size for client-side filtering
   const {
@@ -93,10 +94,15 @@ export function TargetEmployeeSelector({
             if (selectedEmployee) {
               onEmployeeSelect("");
             }
+          }} onKeyDown={e => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              setDropdownOpen(true);
+            }
           }} className="pl-10 pr-4" />
         </div>
         
-        <DropdownMenu>
+        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0">
               <ChevronDown className="h-4 w-4" />
@@ -110,6 +116,7 @@ export function TargetEmployeeSelector({
               </div> : filteredEmployees.map(employee => <DropdownMenuItem key={employee.id} onClick={() => {
             onEmployeeSelect(employee.id);
             setSearchQuery(getEmployeeDisplayText(employee));
+            setDropdownOpen(false);
           }} className="cursor-pointer">
                   <div className="flex items-center gap-3 py-1 w-full">
                     <Avatar className="h-8 w-8">
