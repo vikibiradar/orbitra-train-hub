@@ -195,121 +195,119 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
   const allTopicsRated = areAllTopicsRated(planner);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Planner Information */}
-      <div className="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
+      <div className="grid grid-cols-4 gap-4 p-3 bg-muted/50 rounded-lg">
         <div>
-          <Label className="text-sm text-muted-foreground">Employee</Label>
-          <p className="font-medium">{planner.employee.firstName} {planner.employee.lastName}</p>
+          <Label className="text-xs text-muted-foreground">Employee</Label>
+          <p className="font-medium text-sm">{planner.employee.firstName} {planner.employee.lastName}</p>
         </div>
         <div>
-          <Label className="text-sm text-muted-foreground">Employee Code</Label>
-          <p className="font-medium">{planner.employee.employeeCode}</p>
+          <Label className="text-xs text-muted-foreground">Employee Code</Label>
+          <p className="font-medium text-sm">{planner.employee.employeeCode}</p>
         </div>
         <div>
-          <Label className="text-sm text-muted-foreground">Department</Label>
-          <p className="font-medium">{planner.employee.department.name}</p>
+          <Label className="text-xs text-muted-foreground">Department</Label>
+          <p className="font-medium text-sm">{planner.employee.department.name}</p>
         </div>
         <div>
-          <Label className="text-sm text-muted-foreground">Planner Number</Label>
-          <p className="font-medium">{planner.plannerNumber}</p>
+          <Label className="text-xs text-muted-foreground">Planner Number</Label>
+          <p className="font-medium text-sm">{planner.plannerNumber}</p>
         </div>
       </div>
 
-      <Separator />
-
-      {/* Current Stage */}
-      <div>
-        <Label className="text-lg font-semibold">Current Evaluation Stage</Label>
-        <div className="mt-2">
-          <Badge variant="outline" className="text-base px-4 py-2 bg-blue-100 text-blue-800 border-blue-200">
+      {/* Current Stage and Evaluation Date */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label className="font-semibold">Current Evaluation Stage</Label>
+          <Badge variant="outline" className="px-4 py-1.5 bg-blue-100 text-blue-800 border-blue-200">
             {planner.currentEvaluationStage}
           </Badge>
         </div>
-      </div>
-
-      {/* Evaluation Date */}
-      <div className="space-y-2">
-        <Label htmlFor="evaluation-date" className="required">
-          {planner.currentEvaluationStage} Date *
-        </Label>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className={cn(
-                "w-full justify-start text-left font-normal",
-                !evaluationDate && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {evaluationDate ? format(evaluationDate, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={evaluationDate}
-              onSelect={(date) => date && setEvaluationDate(date)}
-              disabled={(date) => date > new Date()}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
+        <div className="space-y-2">
+          <Label htmlFor="evaluation-date" className="required font-semibold">
+            {planner.currentEvaluationStage} Date *
+          </Label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !evaluationDate && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {evaluationDate ? format(evaluationDate, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={evaluationDate}
+                onSelect={(date) => date && setEvaluationDate(date)}
+                disabled={(date) => date > new Date()}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
 
       {/* Topics Training Status */}
       <div className="space-y-2">
-        <Label className="text-lg font-semibold">Training Topics Status</Label>
-        <div className="border rounded-lg">
+        <Label className="font-semibold">Training Topics Status</Label>
+        <div className="border rounded-lg max-h-[200px] overflow-y-auto">
           <Table>
-            <TableHeader>
+            <TableHeader className="sticky top-0 bg-background z-10">
               <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold">Topic</TableHead>
-                <TableHead className="font-semibold">Trainer</TableHead>
-                <TableHead className="font-semibold">Attendance</TableHead>
-                <TableHead className="font-semibold">Rating</TableHead>
-                <TableHead className="font-semibold">Deviation</TableHead>
+                <TableHead className="font-semibold py-2">Topic</TableHead>
+                <TableHead className="font-semibold py-2">Trainer</TableHead>
+                <TableHead className="font-semibold py-2">Attendance</TableHead>
+                <TableHead className="font-semibold py-2">Rating</TableHead>
+                <TableHead className="font-semibold py-2">Deviation</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {planner.topicsEvaluationData.map((topic) => (
                 <TableRow key={topic.topicId}>
-                  <TableCell className="font-medium">{topic.topicName}</TableCell>
-                  <TableCell>{topic.trainer}</TableCell>
-                  <TableCell>
+                  <TableCell className="font-medium py-2 text-sm">{topic.topicName}</TableCell>
+                  <TableCell className="py-2 text-sm">{topic.trainer}</TableCell>
+                  <TableCell className="py-2">
                     <Badge
                       variant="outline"
-                      className={
+                      className={cn(
+                        "text-xs",
                         topic.attendance === "Yes"
                           ? "bg-green-100 text-green-800"
                           : topic.attendance === "No"
                           ? "bg-red-100 text-red-800"
                           : "bg-yellow-100 text-yellow-800"
-                      }
+                      )}
                     >
                       {topic.attendance || "Pending"}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="py-2">
                     <Badge
                       variant="outline"
-                      className={
+                      className={cn(
+                        "text-xs",
                         topic.rating && topic.rating !== "Not Rated"
                           ? "bg-blue-100 text-blue-800"
                           : "bg-gray-100 text-gray-800"
-                      }
+                      )}
                     >
                       {topic.rating || "Not Rated"}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="py-2">
                     {topic.deviation ? (
-                      <Badge variant="outline" className="bg-orange-100 text-orange-800">
+                      <Badge variant="outline" className="bg-orange-100 text-orange-800 text-xs">
                         Yes
                       </Badge>
                     ) : (
-                      <span className="text-muted-foreground">No</span>
+                      <span className="text-muted-foreground text-sm">No</span>
                     )}
                   </TableCell>
                 </TableRow>
@@ -320,103 +318,103 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       </div>
 
       {!allTopicsRated && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" className="py-2">
           <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Incomplete Training</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm">Incomplete Training</AlertTitle>
+          <AlertDescription className="text-xs">
             This employee planner cannot be taken directly for final evaluation as one or more of the planned trainings are still incomplete.
           </AlertDescription>
         </Alert>
       )}
 
-      <Separator />
+      <div className="grid grid-cols-2 gap-6">
+        {/* Panel Members Selection */}
+        <div className="space-y-3">
+          <Label className="font-semibold required">Panel Members *</Label>
+          <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+            {mockPanelMembers.map((member) => (
+              <div key={member.id} className="space-y-2 p-3 border rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id={member.id}
+                    checked={selectedPanelMembers.includes(member.id)}
+                    onCheckedChange={() => handlePanelMemberToggle(member.id)}
+                  />
+                  <Label htmlFor={member.id} className="font-medium cursor-pointer text-sm">
+                    {member.name} - {member.department}
+                  </Label>
+                </div>
+                {selectedPanelMembers.includes(member.id) && (
+                  <Textarea
+                    placeholder={`Enter comments from ${member.name}...`}
+                    value={comments[member.id] || ""}
+                    onChange={(e) =>
+                      setComments((prev) => ({ ...prev, [member.id]: e.target.value }))
+                    }
+                    rows={2}
+                    className="mt-2 text-sm"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
 
-      {/* Panel Members Selection */}
-      <div className="space-y-4">
-        <Label className="text-lg font-semibold required">Panel Members *</Label>
-        <div className="space-y-4">
-          {mockPanelMembers.map((member) => (
-            <div key={member.id} className="space-y-2 p-4 border rounded-lg">
+        {/* Next Evaluation Planning */}
+        <div className="space-y-3">
+          {planner.currentEvaluationStage !== EvaluationStage.THIRD && (
+            <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Checkbox
-                  id={member.id}
-                  checked={selectedPanelMembers.includes(member.id)}
-                  onCheckedChange={() => handlePanelMemberToggle(member.id)}
+                  id="plan-next-eval"
+                  checked={planNextEvaluation}
+                  onCheckedChange={(checked) => setPlanNextEvaluation(checked as boolean)}
                 />
-                <Label htmlFor={member.id} className="font-medium cursor-pointer">
-                  {member.name} - {member.department}
+                <Label htmlFor="plan-next-eval" className="font-semibold cursor-pointer">
+                  Plan {planner.currentEvaluationStage === EvaluationStage.FIRST ? "2nd" : "3rd"} Evaluation
                 </Label>
               </div>
-              {selectedPanelMembers.includes(member.id) && (
-                <Textarea
-                  placeholder={`Enter comments from ${member.name}...`}
-                  value={comments[member.id] || ""}
-                  onChange={(e) =>
-                    setComments((prev) => ({ ...prev, [member.id]: e.target.value }))
-                  }
-                  rows={3}
-                  className="mt-2"
-                />
+
+              {planNextEvaluation && (
+                <div className="space-y-2 ml-6">
+                  <Label htmlFor="next-evaluation-date" className="required text-sm">
+                    {planner.currentEvaluationStage === EvaluationStage.FIRST ? "2nd" : "3rd"} Evaluation Date *
+                  </Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !nextEvaluationDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {nextEvaluationDate ? format(nextEvaluationDate, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={nextEvaluationDate}
+                        onSelect={setNextEvaluationDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
               )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      {/* Next Evaluation Planning */}
-      {planner.currentEvaluationStage !== EvaluationStage.THIRD && (
-        <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="plan-next-eval"
-              checked={planNextEvaluation}
-              onCheckedChange={(checked) => setPlanNextEvaluation(checked as boolean)}
-            />
-            <Label htmlFor="plan-next-eval" className="font-medium cursor-pointer">
-              Plan {planner.currentEvaluationStage === EvaluationStage.FIRST ? "2nd" : "3rd"} Evaluation
-            </Label>
-          </div>
-
-          {planNextEvaluation && (
-            <div className="space-y-2 ml-6">
-              <Label htmlFor="next-evaluation-date" className="required">
-                {planner.currentEvaluationStage === EvaluationStage.FIRST ? "2nd" : "3rd"} Evaluation Date *
-              </Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !nextEvaluationDate && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {nextEvaluationDate ? format(nextEvaluationDate, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={nextEvaluationDate}
-                    onSelect={setNextEvaluationDate}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
             </div>
           )}
         </div>
-      )}
+      </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-end gap-4 pt-4">
-        <Button variant="outline" onClick={onCancel}>
+      <div className="flex justify-end gap-4 pt-2 border-t">
+        <Button variant="outline" onClick={onCancel} className="mt-3">
           Cancel
         </Button>
-        <Button onClick={handleSaveResult} className="bg-ps-primary hover:bg-ps-primary/90">
+        <Button onClick={handleSaveResult} className="bg-ps-primary hover:bg-ps-primary/90 mt-3">
           <Save className="mr-2 h-4 w-4" />
           Save Result
         </Button>
