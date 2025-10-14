@@ -65,18 +65,20 @@ export const mockEvaluationPlanners: EvaluationPlanner[] = approvedPlanners.map(
   const today = new Date();
   const canEvaluate = firstTrainingDate <= today && firstEvalDate <= today;
 
-  // Mock topics evaluation data
-  const topicsEvaluationData: TopicEvaluationData[] = planner.topics.map((topic, idx) => ({
-    topicId: topic.id,
-    topicName: topic.topic.name,
-    trainer: topic.trainer?.name || "Not Assigned",
-    startDate: topic.startDate,
-    endDate: topic.endDate,
-    attendance: idx % 3 === 0 ? AttendanceStatus.YES : idx % 3 === 1 ? AttendanceStatus.NO : AttendanceStatus.PENDING,
-    rating: idx % 4 === 0 ? RatingType.A : idx % 4 === 1 ? RatingType.B : idx % 4 === 2 ? RatingType.SATISFACTORY : RatingType.NOT_RATED,
-    deviation: idx % 5 === 0,
-    trainerApproved: true
-  }));
+  // Mock topics evaluation data - with defensive checks
+  const topicsEvaluationData: TopicEvaluationData[] = planner.topics
+    .filter(topic => topic && topic.topic) // Filter out any invalid topics
+    .map((topic, idx) => ({
+      topicId: topic.id,
+      topicName: topic.topic?.name || "Unknown Topic",
+      trainer: topic.trainer?.name || "Not Assigned",
+      startDate: topic.startDate,
+      endDate: topic.endDate,
+      attendance: idx % 3 === 0 ? AttendanceStatus.YES : idx % 3 === 1 ? AttendanceStatus.NO : AttendanceStatus.PENDING,
+      rating: idx % 4 === 0 ? RatingType.A : idx % 4 === 1 ? RatingType.B : idx % 4 === 2 ? RatingType.SATISFACTORY : RatingType.NOT_RATED,
+      deviation: idx % 5 === 0,
+      trainerApproved: true
+    }));
 
   // Check if at least one topic has attendance as YES
   const hasAttendance = topicsEvaluationData.some(
