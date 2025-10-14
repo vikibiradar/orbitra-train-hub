@@ -47,9 +47,9 @@ const menuItems = [
     title: "Evaluations",
     icon: ClipboardCheck,
     items: [
-      { title: "Internal Evaluation Update", url: "/evaluations/internal-update" },
-      { title: "Plan Final Evaluation", url: "/evaluations/plan-final" },
-      { title: "Final Evaluation Update", url: "/evaluations/final-update" },
+      { title: "Internal Evaluation Update", url: "/evaluations/internal-evaluation" },
+      { title: "Plan Final Evaluation", url: "/evaluations/plan-final-evaluation" },
+      { title: "Final Evaluation Update", url: "/evaluations/final-evaluation" },
     ],
   },
   {
@@ -136,7 +136,7 @@ export function AppSidebar() {
     }
     setOpenGroups(activeGroups);
   }, [currentPath]);
-  const isGroupActive = (group: typeof menuItems[0]) => {
+  const isGroupActive = (group: (typeof menuItems)[0]) => {
     return group.items.some((item) => currentPath === item.url || currentPath.startsWith(item.url));
   };
 
@@ -153,65 +153,61 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? "w-16" : "w-64"} bg-sidebar border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}>
+    <Sidebar
+      className={`${collapsed ? "w-16" : "w-64"} bg-sidebar border-sidebar-border top-[72px] h-[calc(100svh-72px)]`}
+    >
       <ScrollArea className="h-full">
         <SidebarContent className="py-4 bg-sidebar">
           <SidebarGroup>
-          <SidebarMenu>
-            {menuItems.map((group) => {
-              const isOpen = openGroups.has(group.title);
+            <SidebarMenu>
+              {menuItems.map((group) => {
+                const isOpen = openGroups.has(group.title);
 
-              return (
-                <SidebarMenuItem key={group.title}>
-                  <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-  className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
->
-
-
-                        <div className="flex items-center gap-3">
-                          <group.icon className="h-5 w-5" />
-                          {!collapsed && <span className="font-medium">{group.title}</span>}
-                        </div>
-                        {!collapsed && (
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                          />
-                        )}
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    {!collapsed && (
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {group.items.map((item) => (
-                            <SidebarMenuSubItem key={item.url}>
-                              <SidebarMenuSubButton asChild>
-                                <NavLink
-                                  to={item.url}
-                                  className={({ isActive }) =>
-                                    `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
-                                      isActive
-                                        ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
-                                        : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
-                                    }`
-                                  }
-                                >
-                                  {item.title}
-                                </NavLink>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    )}
-                  </Collapsible>
-                </SidebarMenuItem>
-              );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
+                return (
+                  <SidebarMenuItem key={group.title}>
+                    <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.title)}>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton className="w-full justify-between text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors">
+                          <div className="flex items-center gap-3">
+                            <group.icon className="h-5 w-5" />
+                            {!collapsed && <span className="font-medium">{group.title}</span>}
+                          </div>
+                          {!collapsed && (
+                            <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                          )}
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      {!collapsed && (
+                        <CollapsibleContent>
+                          <SidebarMenuSub>
+                            {group.items.map((item) => (
+                              <SidebarMenuSubItem key={item.url}>
+                                <SidebarMenuSubButton asChild>
+                                  <NavLink
+                                    to={item.url}
+                                    className={({ isActive }) =>
+                                      `block w-full text-sm py-2 px-3 rounded-md transition-colors ${
+                                        isActive
+                                          ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm"
+                                          : "text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+                                      }`
+                                    }
+                                  >
+                                    {item.title}
+                                  </NavLink>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </SidebarMenuSub>
+                        </CollapsibleContent>
+                      )}
+                    </Collapsible>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
       </ScrollArea>
     </Sidebar>
   );
