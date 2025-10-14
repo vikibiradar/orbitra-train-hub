@@ -4,6 +4,7 @@ import {
   EvaluationPlanner,
   EvaluationRecord,
   EvaluationStage,
+  EvaluationStageType,
   EvaluationStatus,
   PanelMember,
   TopicEvaluationData,
@@ -92,13 +93,124 @@ export const mockEvaluationPlanners: EvaluationPlanner[] = approvedPlanners.map(
     evaluationMessage = "At least one topic must have attendance as YES. 1st evaluation cannot be conducted now.";
   }
 
+  // Determine evaluation stage based on index
+  let currentStage: EvaluationStageType = EvaluationStage.FIRST;
+  let evaluationRecords: EvaluationRecord[] = [];
+  let secondEvalDate: string | undefined;
+  let thirdEvalDate: string | undefined;
+
+  // Create planners for different stages
+  if (index % 5 === 1 || index % 5 === 2) {
+    // Second evaluation planners (20% of data - indices 1, 2, 6, 7, 11, 12...)
+    currentStage = EvaluationStage.SECOND;
+    secondEvalDate = new Date(firstEvalDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    
+    // Add completed first evaluation record
+    const firstEvalDateStr = firstEvalDate.toISOString().split('T')[0];
+    evaluationRecords.push({
+      id: `eval-${planner.id}-1st`,
+      plannerId: planner.id,
+      stage: EvaluationStage.FIRST,
+      evaluationDate: firstEvalDateStr,
+      panelMembers: [mockPanelMembers[0], mockPanelMembers[1]],
+      comments: [
+        {
+          panelMemberId: mockPanelMembers[0].id,
+          panelMemberName: mockPanelMembers[0].name,
+          comment: "Employee shows good understanding of basic concepts. Needs more practical exposure."
+        },
+        {
+          panelMemberId: mockPanelMembers[1].id,
+          panelMemberName: mockPanelMembers[1].name,
+          comment: "Satisfactory performance in first evaluation. Continue training as planned."
+        }
+      ],
+      topicsData: topicsEvaluationData.map(t => ({ ...t })),
+      status: EvaluationStatus.COMPLETED,
+      planNextEvaluation: true,
+      nextEvaluationDate: secondEvalDate,
+      createdBy: "TM-001",
+      createdDate: firstEvalDate.toISOString(),
+      completedDate: firstEvalDate.toISOString()
+    });
+  } else if (index % 5 === 3) {
+    // Third evaluation planners (20% of data - indices 3, 8, 13...)
+    currentStage = EvaluationStage.THIRD;
+    secondEvalDate = new Date(firstEvalDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    thirdEvalDate = new Date(firstEvalDate.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    
+    // Add completed first evaluation record
+    const firstEvalDateStr = firstEvalDate.toISOString().split('T')[0];
+    evaluationRecords.push({
+      id: `eval-${planner.id}-1st`,
+      plannerId: planner.id,
+      stage: EvaluationStage.FIRST,
+      evaluationDate: firstEvalDateStr,
+      panelMembers: [mockPanelMembers[0], mockPanelMembers[1]],
+      comments: [
+        {
+          panelMemberId: mockPanelMembers[0].id,
+          panelMemberName: mockPanelMembers[0].name,
+          comment: "Good progress in first evaluation phase."
+        },
+        {
+          panelMemberId: mockPanelMembers[1].id,
+          panelMemberName: mockPanelMembers[1].name,
+          comment: "Employee demonstrates competency. Ready for next phase."
+        }
+      ],
+      topicsData: topicsEvaluationData.map(t => ({ ...t })),
+      status: EvaluationStatus.COMPLETED,
+      planNextEvaluation: true,
+      nextEvaluationDate: secondEvalDate,
+      createdBy: "TM-001",
+      createdDate: firstEvalDate.toISOString(),
+      completedDate: firstEvalDate.toISOString()
+    });
+
+    // Add completed second evaluation record
+    evaluationRecords.push({
+      id: `eval-${planner.id}-2nd`,
+      plannerId: planner.id,
+      stage: EvaluationStage.SECOND,
+      evaluationDate: secondEvalDate,
+      panelMembers: [mockPanelMembers[2], mockPanelMembers[3]],
+      comments: [
+        {
+          panelMemberId: mockPanelMembers[2].id,
+          panelMemberName: mockPanelMembers[2].name,
+          comment: "Significant improvement observed. Employee is applying knowledge effectively."
+        },
+        {
+          panelMemberId: mockPanelMembers[3].id,
+          panelMemberName: mockPanelMembers[3].name,
+          comment: "Performance meets expectations. Recommend proceeding to third evaluation."
+        }
+      ],
+      topicsData: topicsEvaluationData.map(t => ({ 
+        ...t, 
+        rating: t.rating === RatingType.NOT_RATED ? RatingType.B : t.rating 
+      })),
+      status: EvaluationStatus.COMPLETED,
+      planNextEvaluation: true,
+      nextEvaluationDate: thirdEvalDate,
+      createdBy: "TM-001",
+      createdDate: new Date(secondEvalDate).toISOString(),
+      completedDate: new Date(secondEvalDate).toISOString()
+    });
+  } else {
+    // First evaluation planners (60% of data)
+    secondEvalDate = index % 2 === 0 ? new Date(firstEvalDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined;
+    thirdEvalDate = index % 3 === 0 ? new Date(firstEvalDate.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined;
+  }
+
   return {
     ...planner,
-    currentEvaluationStage: EvaluationStage.FIRST,
+    currentEvaluationStage: currentStage,
     firstEvaluationDate: firstEvalDate.toISOString().split('T')[0],
-    secondEvaluationDate: index % 2 === 0 ? new Date(firstEvalDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined,
-    thirdEvaluationDate: index % 3 === 0 ? new Date(firstEvalDate.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined,
-    evaluationRecords: [],
+    secondEvaluationDate: secondEvalDate,
+    thirdEvaluationDate: thirdEvalDate,
+    evaluationRecords,
     canEvaluate: canEvaluate && hasAttendance,
     evaluationMessage,
     topicsEvaluationData
