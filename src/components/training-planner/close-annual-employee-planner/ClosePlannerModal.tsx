@@ -103,11 +103,11 @@ export function ClosePlannerModal({ planner, open, onClose, onConfirm }: ClosePl
             <div className="border rounded-lg overflow-hidden">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-muted/50">
-                    <TableHead>Topic</TableHead>
-                    <TableHead>Trainer</TableHead>
-                    <TableHead>Duration</TableHead>
-                    <TableHead className="text-center">Status</TableHead>
+                  <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                    <TableHead className="text-white font-semibold">Topic</TableHead>
+                    <TableHead className="text-white font-semibold">Trainer</TableHead>
+                    <TableHead className="text-white font-semibold">Duration</TableHead>
+                    <TableHead className="text-center text-white font-semibold">Status</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

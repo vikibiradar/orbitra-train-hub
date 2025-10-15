@@ -102,14 +102,14 @@ export function RecentEvents() {
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="border-b">
-                <TableHead className="font-semibold text-foreground">Date</TableHead>
-                <TableHead className="font-semibold text-foreground">Employee</TableHead>
-                <TableHead className="font-semibold text-foreground">Topic</TableHead>
-                <TableHead className="font-semibold text-foreground">Trainer</TableHead>
-                <TableHead className="font-semibold text-foreground">Mode</TableHead>
-                <TableHead className="font-semibold text-foreground">Status</TableHead>
-                <TableHead className="font-semibold text-foreground text-right">Actions</TableHead>
+              <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                <TableHead className="text-white font-semibold">Date</TableHead>
+                <TableHead className="text-white font-semibold">Employee</TableHead>
+                <TableHead className="text-white font-semibold">Topic</TableHead>
+                <TableHead className="text-white font-semibold">Trainer</TableHead>
+                <TableHead className="text-white font-semibold">Mode</TableHead>
+                <TableHead className="text-white font-semibold">Status</TableHead>
+                <TableHead className="text-white font-semibold text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

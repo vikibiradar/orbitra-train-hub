@@ -75,38 +75,38 @@ export function PlannerListView({ onPlannerSelect }: PlannerListViewProps) {
       <CardContent>
         <div className="rounded-md border">
           <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("plannerNumber")}
-                >
-                  Planner Number
-                </TableHead>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("employee")}
-                >
-                  Employee
-                </TableHead>
-                <TableHead>Department</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("status")}
-                >
-                  Status
-                </TableHead>
-                <TableHead 
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleSort("createdDate")}
-                >
-                  Created Date
-                </TableHead>
-                <TableHead>Amendment Ver.</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
+          <TableHeader>
+            <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+              <TableHead 
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
+                onClick={() => handleSort("plannerNumber")}
+              >
+                Planner Number
+              </TableHead>
+              <TableHead 
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
+                onClick={() => handleSort("employee")}
+              >
+                Employee
+              </TableHead>
+              <TableHead className="text-white font-semibold">Department</TableHead>
+              <TableHead className="text-white font-semibold">Location</TableHead>
+              <TableHead 
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
+                onClick={() => handleSort("status")}
+              >
+                Status
+              </TableHead>
+              <TableHead 
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
+                onClick={() => handleSort("createdDate")}
+              >
+                Created Date
+              </TableHead>
+              <TableHead className="text-white font-semibold">Amendment Ver.</TableHead>
+              <TableHead className="text-white font-semibold">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
             <TableBody>
               {planners.length === 0 ? (
                 <TableRow>

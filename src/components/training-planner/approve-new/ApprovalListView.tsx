@@ -158,32 +158,32 @@ export const ApprovalListView = ({ onBackToDashboard }: ApprovalListViewProps) =
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
                   <TableHead
-                    className="cursor-pointer hover:bg-muted/50"
+                    className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                     onClick={() => handleSort('employeeCode')}
                   >
                     Employee Code
                   </TableHead>
                   <TableHead
-                    className="cursor-pointer hover:bg-muted/50"
+                    className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                     onClick={() => handleSort('employeeName')}
                   >
                     Employee Name
                   </TableHead>
                   <TableHead
-                    className="cursor-pointer hover:bg-muted/50"
+                    className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                     onClick={() => handleSort('location')}
                   >
                     Location
                   </TableHead>
                   <TableHead
-                    className="cursor-pointer hover:bg-muted/50 text-right"
+                    className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-right text-white font-semibold"
                     onClick={() => handleSort('joiningDate')}
                   >
                     Joining Date
                   </TableHead>
-                  <TableHead className="text-center">Actions</TableHead>
+                  <TableHead className="text-center text-white font-semibold">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

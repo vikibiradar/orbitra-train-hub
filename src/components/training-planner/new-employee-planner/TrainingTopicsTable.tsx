@@ -195,14 +195,14 @@ export function TrainingTopicsTable({
         <div className="border rounded-lg overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/50">
-                <TableHead className="w-[200px]">Topic</TableHead>
-                <TableHead className="w-[180px]">Trainer</TableHead>
-                <TableHead className="w-[140px]">Start Date</TableHead>
-                <TableHead className="w-[140px]">End Date</TableHead>
-                <TableHead className="w-[160px]">Mode of Evaluation</TableHead>
-                <TableHead>Comments</TableHead>
-                <TableHead className="w-[80px] text-center">Actions</TableHead>
+              <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                <TableHead className="w-[200px] text-white font-semibold">Topic</TableHead>
+                <TableHead className="w-[180px] text-white font-semibold">Trainer</TableHead>
+                <TableHead className="w-[140px] text-white font-semibold">Start Date</TableHead>
+                <TableHead className="w-[140px] text-white font-semibold">End Date</TableHead>
+                <TableHead className="w-[160px] text-white font-semibold">Mode of Evaluation</TableHead>
+                <TableHead className="text-white font-semibold">Comments</TableHead>
+                <TableHead className="w-[80px] text-center text-white font-semibold">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

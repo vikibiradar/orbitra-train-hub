@@ -90,15 +90,15 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
       <div className="border rounded-lg">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50">
-              <TableHead className="font-semibold">Planner No.</TableHead>
-              <TableHead className="font-semibold">Employee</TableHead>
-              <TableHead className="font-semibold">Department</TableHead>
-              <TableHead className="font-semibold">Current Stage</TableHead>
-              <TableHead className="font-semibold">Evaluation Date</TableHead>
-              <TableHead className="font-semibold">Topics</TableHead>
-              <TableHead className="font-semibold">Status</TableHead>
-              <TableHead className="text-right font-semibold">Actions</TableHead>
+            <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+              <TableHead className="text-white font-semibold">Planner No.</TableHead>
+              <TableHead className="text-white font-semibold">Employee</TableHead>
+              <TableHead className="text-white font-semibold">Department</TableHead>
+              <TableHead className="text-white font-semibold">Current Stage</TableHead>
+              <TableHead className="text-white font-semibold">Evaluation Date</TableHead>
+              <TableHead className="text-white font-semibold">Topics</TableHead>
+              <TableHead className="text-white font-semibold">Status</TableHead>
+              <TableHead className="text-right text-white font-semibold">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

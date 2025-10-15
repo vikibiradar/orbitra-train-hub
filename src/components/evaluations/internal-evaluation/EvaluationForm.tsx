@@ -260,12 +260,12 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
         <div className="border rounded-lg max-h-[200px] overflow-y-auto">
           <Table>
             <TableHeader className="sticky top-0 bg-background z-10">
-              <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold py-2">Topic</TableHead>
-                <TableHead className="font-semibold py-2">Trainer</TableHead>
-                <TableHead className="font-semibold py-2">Attendance</TableHead>
-                <TableHead className="font-semibold py-2">Rating</TableHead>
-                <TableHead className="font-semibold py-2">Deviation</TableHead>
+              <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                <TableHead className="text-white font-semibold py-2">Topic</TableHead>
+                <TableHead className="text-white font-semibold py-2">Trainer</TableHead>
+                <TableHead className="text-white font-semibold py-2">Attendance</TableHead>
+                <TableHead className="text-white font-semibold py-2">Rating</TableHead>
+                <TableHead className="text-white font-semibold py-2">Deviation</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

@@ -207,45 +207,45 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
         <div className="border rounded-lg overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/50">
-                <TableHead>
+              <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                <TableHead className="text-white font-semibold">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleSort('employeeCode')}
-                    className="flex items-center space-x-1"
+                    className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Employee Code</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </Button>
                 </TableHead>
-                <TableHead>
+                <TableHead className="text-white font-semibold">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleSort('firstName')}
-                    className="flex items-center space-x-1"
+                    className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Employee Name</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </Button>
                 </TableHead>
-                <TableHead>Department</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead>
+                <TableHead className="text-white font-semibold">Department</TableHead>
+                <TableHead className="text-white font-semibold">Location</TableHead>
+                <TableHead className="text-white font-semibold">
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleSort('joiningDate')}
-                    className="flex items-center space-x-1"
+                    className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Joining Date</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </Button>
                 </TableHead>
-                <TableHead>Applicable Year</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-center">Actions</TableHead>
+                <TableHead className="text-white font-semibold">Applicable Year</TableHead>
+                <TableHead className="text-white font-semibold">Status</TableHead>
+                <TableHead className="text-center text-white font-semibold">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

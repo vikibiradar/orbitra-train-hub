@@ -53,15 +53,15 @@ export function PlannerTopicsDisplay({ planner }: PlannerTopicsDisplayProps) {
           <div className="border rounded-lg overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-muted/50">
-                  <TableHead className="w-[50px]">#</TableHead>
-                  <TableHead>Topic Name</TableHead>
-                  <TableHead>Module</TableHead>
-                  <TableHead>Scope</TableHead>
-                  <TableHead className="w-[120px]">Start Date</TableHead>
-                  <TableHead className="w-[120px]">End Date</TableHead>
-                  <TableHead>Mode</TableHead>
-                  <TableHead>Comments</TableHead>
+                <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                  <TableHead className="w-[50px] text-white font-semibold">#</TableHead>
+                  <TableHead className="text-white font-semibold">Topic Name</TableHead>
+                  <TableHead className="text-white font-semibold">Module</TableHead>
+                  <TableHead className="text-white font-semibold">Scope</TableHead>
+                  <TableHead className="w-[120px] text-white font-semibold">Start Date</TableHead>
+                  <TableHead className="w-[120px] text-white font-semibold">End Date</TableHead>
+                  <TableHead className="text-white font-semibold">Mode</TableHead>
+                  <TableHead className="text-white font-semibold">Comments</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

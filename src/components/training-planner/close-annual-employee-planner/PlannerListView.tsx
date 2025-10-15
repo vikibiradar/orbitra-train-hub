@@ -161,9 +161,9 @@ export function PlannerListView() {
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50">
+            <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("employeeCode")}
               >
                 Employee Code
@@ -172,7 +172,7 @@ export function PlannerListView() {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("employeeName")}
               >
                 Employee Name
@@ -181,7 +181,7 @@ export function PlannerListView() {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("location")}
               >
                 Location
@@ -190,7 +190,7 @@ export function PlannerListView() {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("joiningDate")}
               >
                 Joining Date
@@ -199,7 +199,7 @@ export function PlannerListView() {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("applicableYear")}
               >
                 Applicable Year
@@ -207,8 +207,8 @@ export function PlannerListView() {
                   <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
                 )}
               </TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-center">Actions</TableHead>
+              <TableHead className="text-white font-semibold">Status</TableHead>
+              <TableHead className="text-center text-white font-semibold">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

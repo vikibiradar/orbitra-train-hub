@@ -59,33 +59,33 @@ export function TrainingResultsTable({
   return <div className="overflow-x-auto">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[250px] bg-slate-200">
-              <Button variant="ghost" onClick={() => handleSort("employeeName")} className="h-8 px-2 lg:px-3">
+          <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+            <TableHead className="w-[250px] text-white font-semibold">
+              <Button variant="ghost" onClick={() => handleSort("employeeName")} className="h-8 px-2 lg:px-3 text-white hover:bg-ps-primary-dark/80">
                 Employee
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead className="bg-slate-200">
-              <Button variant="ghost" onClick={() => handleSort("employeeCode")} className="h-8 px-2 lg:px-3">
+            <TableHead className="text-white font-semibold">
+              <Button variant="ghost" onClick={() => handleSort("employeeCode")} className="h-8 px-2 lg:px-3 text-white hover:bg-ps-primary-dark/80">
                 Employee Code
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead className="bg-slate-200">
-              <Button variant="ghost" onClick={() => handleSort("department")} className="h-8 px-2 lg:px-3">
+            <TableHead className="text-white font-semibold">
+              <Button variant="ghost" onClick={() => handleSort("department")} className="h-8 px-2 lg:px-3 text-white hover:bg-ps-primary-dark/80">
                 Department
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead className="bg-slate-200">
-              <Button variant="ghost" onClick={() => handleSort("plannerNumber")} className="h-8 px-2 lg:px-3">
+            <TableHead className="text-white font-semibold">
+              <Button variant="ghost" onClick={() => handleSort("plannerNumber")} className="h-8 px-2 lg:px-3 text-white hover:bg-ps-primary-dark/80">
                 Planner Number
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead className="text-center bg-slate-200">Status</TableHead>
-            <TableHead className="text-center bg-slate-200">Actions</TableHead>
+            <TableHead className="text-center text-white font-semibold">Status</TableHead>
+            <TableHead className="text-center text-white font-semibold">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

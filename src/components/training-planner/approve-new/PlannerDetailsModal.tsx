@@ -135,13 +135,13 @@ export const PlannerDetailsModal = ({
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Topic</TableHead>
-                      <TableHead>Trainer</TableHead>
-                      <TableHead className="text-right">Start Date</TableHead>
-                      <TableHead className="text-right">End Date</TableHead>
-                      <TableHead>Mode of Evaluation</TableHead>
-                      <TableHead>Comments</TableHead>
+                    <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                      <TableHead className="text-white font-semibold">Topic</TableHead>
+                      <TableHead className="text-white font-semibold">Trainer</TableHead>
+                      <TableHead className="text-right text-white font-semibold">Start Date</TableHead>
+                      <TableHead className="text-right text-white font-semibold">End Date</TableHead>
+                      <TableHead className="text-white font-semibold">Mode of Evaluation</TableHead>
+                      <TableHead className="text-white font-semibold">Comments</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>

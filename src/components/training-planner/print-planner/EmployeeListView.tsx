@@ -184,27 +184,27 @@ export function EmployeeListView() {
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50">
+            <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
               <TableHead
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("id")}
               >
                 Planner ID
                 {sortField === "id" && <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>}
               </TableHead>
               <TableHead
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("employee")}
               >
                 Employee
                 {sortField === "employee" && <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>}
               </TableHead>
-              <TableHead>Employee Code</TableHead>
-              <TableHead>Department</TableHead>
-              <TableHead>Location</TableHead>
-              <TableHead>Joining Date</TableHead>
-              <TableHead>Approved Date</TableHead>
-              <TableHead className="text-center">Actions</TableHead>
+              <TableHead className="text-white font-semibold">Employee Code</TableHead>
+              <TableHead className="text-white font-semibold">Department</TableHead>
+              <TableHead className="text-white font-semibold">Location</TableHead>
+              <TableHead className="text-white font-semibold">Joining Date</TableHead>
+              <TableHead className="text-white font-semibold">Approved Date</TableHead>
+              <TableHead className="text-center text-white font-semibold">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
