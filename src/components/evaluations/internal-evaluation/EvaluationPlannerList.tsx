@@ -73,7 +73,7 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg">
+      <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
