@@ -48,8 +48,8 @@ export function AnnualEmployeePlannerPage() {
         <TopHeader />
         <div className="flex flex-1 w-full">
           <AppSidebar />
-          <div className="flex flex-1 flex-col">
-            <main className="flex-1 p-6 bg-background">
+          <SidebarInset className="flex flex-col">
+            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
               {/* Breadcrumb */}
               <Breadcrumb className="mb-6">
                 <BreadcrumbList>
@@ -97,7 +97,7 @@ export function AnnualEmployeePlannerPage() {
               )}
             </main>
             <Footer />
-          </div>
+          </SidebarInset>
         </div>
       </div>
     </SidebarProvider>
