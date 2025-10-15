@@ -98,9 +98,9 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50">
+            <TableRow className="bg-ps-primary hover:bg-ps-primary/90">
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("firstName")}
               >
                 Employee
@@ -109,7 +109,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("employeeCode")}
               >
                 Employee Code
@@ -118,7 +118,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("location" as keyof Employee)}
               >
                 Location
@@ -127,7 +127,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-muted/80 transition-colors"
+                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("joiningDate")}
               >
                 Joining Date
@@ -135,8 +135,8 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                   <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>
                 )}
               </TableHead>
-              <TableHead>Days Since Joining</TableHead>
-              <TableHead className="text-center">Actions</TableHead>
+              <TableHead className="text-white font-semibold">Days Since Joining</TableHead>
+              <TableHead className="text-center text-white font-semibold">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
