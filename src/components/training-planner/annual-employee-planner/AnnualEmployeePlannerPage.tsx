@@ -61,10 +61,10 @@ export function AnnualEmployeePlannerPage() {
               </Breadcrumb>
 
               {/* Page Header */}
-              <Card className="mb-6 ps-card">
-                <CardHeader>
+
                   <div className="flex items-center justify-between">
-                    <div>
+                    <div className="space-y-1">
+                      <h2 className="text-2xl font-bold tracking-tight text-foreground">
                       <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
                       <CardDescription>
                         Generate and manage annual training planners for employees
@@ -77,8 +77,24 @@ export function AnnualEmployeePlannerPage() {
                       </Button>
                     )}
                   </div>
-                </CardHeader>
-              </Card>
+             {/* Page Header */}
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                     "New Employee Planner"
+                  </h2>
+                  <p className="text-muted-foreground">
+                    "Manage training planners for new employees"
+                  </p>
+                </div>
+
+                {viewMode !== "list" && (
+                  <Button variant="outline" onClick={handleBackToList}>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to List
+                  </Button>
+                )}
+              </div>
 
               {/* Content Area */}
               {viewMode === 'list' ? (
