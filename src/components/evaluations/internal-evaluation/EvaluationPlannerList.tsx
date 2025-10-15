@@ -3,21 +3,8 @@ import { Search, ClipboardCheck, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { EvaluationPlanner, EvaluationStage } from "@/types/evaluation";
 import { mockEvaluationPlanners } from "@/data/mock-evaluation-data";
@@ -32,15 +19,14 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
   const [stageFilter, setStageFilter] = useState<string>("all");
 
   // Filter planners
-  const filteredPlanners = mockEvaluationPlanners.filter(planner => {
+  const filteredPlanners = mockEvaluationPlanners.filter((planner) => {
     const matchesSearch =
       planner.employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       planner.employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       planner.employee.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
       planner.plannerNumber?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesStage =
-      stageFilter === "all" || planner.currentEvaluationStage === stageFilter;
+    const matchesStage = stageFilter === "all" || planner.currentEvaluationStage === stageFilter;
 
     return matchesSearch && matchesStage;
   });
@@ -61,7 +47,7 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-4">
       {/* Search and Filter */}
       <div className="flex flex-col sm:flex-row gap-4 p-4">
         <div className="relative flex-1">
@@ -117,9 +103,7 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
                       <span className="font-medium">
                         {planner.employee.firstName} {planner.employee.lastName}
                       </span>
-                      <span className="text-sm text-muted-foreground">
-                        {planner.employee.employeeCode}
-                      </span>
+                      <span className="text-sm text-muted-foreground">{planner.employee.employeeCode}</span>
                     </div>
                   </TableCell>
                   <TableCell>{planner.employee.department.name}</TableCell>
@@ -128,9 +112,7 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
                       {planner.currentEvaluationStage}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    {format(new Date(planner.firstEvaluationDate), "dd MMM yyyy")}
-                  </TableCell>
+                  <TableCell>{format(new Date(planner.firstEvaluationDate), "dd MMM yyyy")}</TableCell>
                   <TableCell className="text-right">{planner.topics.length}</TableCell>
                   <TableCell>
                     {planner.canEvaluate ? (
@@ -167,12 +149,12 @@ export function EvaluationPlannerList({ onEvaluate }: EvaluationPlannerListProps
       </div>
 
       {/* Info Alert */}
-      {filteredPlanners.some(p => !p.canEvaluate) && (
+      {filteredPlanners.some((p) => !p.canEvaluate) && (
         <Alert>
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            Some planners are not ready for evaluation. This may be because the first training date has not passed, 
-            or no topics have attendance marked as "Yes" yet.
+            Some planners are not ready for evaluation. This may be because the first training date has not passed, or
+            no topics have attendance marked as "Yes" yet.
           </AlertDescription>
         </Alert>
       )}
