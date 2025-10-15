@@ -80,12 +80,6 @@ export function AnnualEmployeePlannerPage() {
                     Back to List
                   </Button>
                 )}
-                {viewMode !== "form" && (
-                  <Button variant="outline" onClick={handleBackToList}>
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to List
-                  </Button>
-                )}
               </div>
 
               {/* Content Area */}
