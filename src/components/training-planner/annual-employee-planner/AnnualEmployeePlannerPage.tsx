@@ -3,7 +3,14 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopHeader } from "@/components/TopHeader";
 import Footer from "@/components/Footer";
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -13,16 +20,16 @@ import { AnnualPlannerForm } from "./AnnualPlannerForm";
 
 export function AnnualEmployeePlannerPage() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
-  const [viewMode, setViewMode] = useState<'list' | 'form'>('list');
+  const [viewMode, setViewMode] = useState<"list" | "form">("list");
 
   const handleGeneratePlanner = (employee: Employee) => {
     setSelectedEmployee(employee);
-    setViewMode('form');
+    setViewMode("form");
   };
 
   const handleBackToList = () => {
     setSelectedEmployee(null);
-    setViewMode('list');
+    setViewMode("list");
   };
 
   const handleSave = () => {
@@ -62,33 +69,18 @@ export function AnnualEmployeePlannerPage() {
 
               {/* Page Header */}
 
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-1">
-                      <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                      <CardTitle className="text-2xl">Annual Employee Planner</CardTitle>
-                      <CardDescription>
-                        Generate and manage annual training planners for employees
-                      </CardDescription>
-                    </div>
-                    {viewMode === 'form' && (
-                      <Button variant="outline" onClick={handleBackToList}>
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Back to List
-                      </Button>
-                    )}
-                  </div>
-             {/* Page Header */}
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                     "New Employee Planner"
-                  </h2>
-                  <p className="text-muted-foreground">
-                    "Manage training planners for new employees"
-                  </p>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">Annual Employee Planner</h2>
+                  <p className="text-muted-foreground">Generate and manage annual training planners for employees</p>
                 </div>
-
-                {viewMode !== "list" && (
+                {viewMode === "form" && (
+                  <Button variant="outline" onClick={handleBackToList}>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to List
+                  </Button>
+                )}
+                {viewMode !== "form" && (
                   <Button variant="outline" onClick={handleBackToList}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to List
@@ -97,7 +89,7 @@ export function AnnualEmployeePlannerPage() {
               </div>
 
               {/* Content Area */}
-              {viewMode === 'list' ? (
+              {viewMode === "list" ? (
                 <EmployeeListView onGeneratePlanner={handleGeneratePlanner} />
               ) : (
                 selectedEmployee && (
