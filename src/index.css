@@ -478,4 +478,25 @@
   .text-shadow {
     text-shadow: 0 2px 4px hsl(var(--ps-primary) / 0.2);
   }
+
+  /* ============================================================================
+     TÜV SÜD THEME PAGE BACKGROUND
+     ============================================================================ */
+  
+  /* Page Background Gradient - TÜV SÜD Style */
+  .ps-page-background {
+    background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+    min-height: 100vh;
+  }
+
+  /* Apply background to main content areas globally */
+  .sidebar-inset,
+  main {
+    background: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+  }
+
+  /* Ensure main content extends properly */
+  main {
+    min-height: calc(100vh - 4rem);
+  }
 }
