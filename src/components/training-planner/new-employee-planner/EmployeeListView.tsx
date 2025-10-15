@@ -98,9 +98,9 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-ps-primary hover:bg-ps-primary/90">
+            <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
               <TableHead 
-                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("firstName")}
               >
                 Employee
@@ -109,7 +109,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("employeeCode")}
               >
                 Employee Code
@@ -118,7 +118,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("location" as keyof Employee)}
               >
                 Location
@@ -127,7 +127,7 @@ export function EmployeeListView({ onCreatePlanner }: EmployeeListViewProps) {
                 )}
               </TableHead>
               <TableHead 
-                className="cursor-pointer hover:bg-ps-primary/80 transition-colors text-white font-semibold"
+                className="cursor-pointer hover:bg-ps-primary-dark/80 transition-colors text-white font-semibold"
                 onClick={() => handleSort("joiningDate")}
               >
                 Joining Date
