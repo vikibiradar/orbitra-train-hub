@@ -211,7 +211,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       {/* Topics Training Status */}
       <div className="space-y-2">
         <Label className="font-semibold">Training Topics Status</Label>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg overflow-hidden">
           <ScrollArea className="h-[200px]">
             <Table>
               <TableHeader className="sticky top-0 bg-background z-10">
