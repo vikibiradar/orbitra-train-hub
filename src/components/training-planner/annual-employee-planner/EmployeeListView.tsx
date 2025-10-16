@@ -19,27 +19,28 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
   const [locationFilter, setLocationFilter] = useState<string>("all");
   const [departmentFilter, setDepartmentFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [sortField, setSortField] = useState<'employeeCode' | 'firstName' | 'joiningDate'>('employeeCode');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [sortField, setSortField] = useState<"employeeCode" | "firstName" | "joiningDate">("employeeCode");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   // Get unique locations and departments for filters
   const locations = useMemo(() => {
-    const uniqueLocations = new Set(mockAnnualEmployees.map(emp => emp.location.name));
+    const uniqueLocations = new Set(mockAnnualEmployees.map((emp) => emp.location.name));
     return Array.from(uniqueLocations);
   }, []);
 
   const departments = useMemo(() => {
-    const uniqueDepts = new Set(mockAnnualEmployees.map(emp => emp.department.name));
+    const uniqueDepts = new Set(mockAnnualEmployees.map((emp) => emp.department.name));
     return Array.from(uniqueDepts);
   }, []);
 
   // Filter and sort employees
   const filteredEmployees = useMemo(() => {
-    let filtered = mockAnnualEmployees.filter(emp => {
-      const matchesSearch = searchTerm === "" ||
+    let filtered = mockAnnualEmployees.filter((emp) => {
+      const matchesSearch =
+        searchTerm === "" ||
         emp.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
         `${emp.firstName} ${emp.lastName}`.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       const matchesLocation = locationFilter === "all" || emp.location.name === locationFilter;
       const matchesDepartment = departmentFilter === "all" || emp.department.name === departmentFilter;
       const matchesStatus = statusFilter === "all" || emp.plannerStatus === statusFilter;
@@ -52,40 +53,60 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
       let aValue: any = a[sortField];
       let bValue: any = b[sortField];
 
-      if (sortField === 'firstName') {
+      if (sortField === "firstName") {
         aValue = `${a.firstName} ${a.lastName}`;
         bValue = `${b.firstName} ${b.lastName}`;
       }
 
-      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      if (aValue < bValue) return sortDirection === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortDirection === "asc" ? 1 : -1;
       return 0;
     });
 
     return filtered;
   }, [searchTerm, locationFilter, departmentFilter, statusFilter, sortField, sortDirection]);
 
-  const handleSort = (field: 'employeeCode' | 'firstName' | 'joiningDate') => {
+  const handleSort = (field: "employeeCode" | "firstName" | "joiningDate") => {
     if (sortField === field) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {
       setSortField(field);
-      setSortDirection('asc');
+      setSortDirection("asc");
     }
   };
 
   const getStatusBadge = (status?: string) => {
     switch (status) {
       case PlannerStatus.DRAFT:
-        return <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-300">Draft</Badge>;
+        return (
+          <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-300">
+            Draft
+          </Badge>
+        );
       case PlannerStatus.SUBMITTED:
-        return <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">Approval Awaited</Badge>;
+        return (
+          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">
+            Approval Awaited
+          </Badge>
+        );
       case PlannerStatus.APPROVED:
-        return <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300">Approved</Badge>;
+        return (
+          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300">
+            Approved
+          </Badge>
+        );
       case PlannerStatus.REJECTED:
-        return <Badge variant="outline" className="bg-red-50 text-red-700 border-red-300">Rejected</Badge>;
+        return (
+          <Badge variant="outline" className="bg-red-50 text-red-700 border-red-300">
+            Rejected
+          </Badge>
+        );
       default:
-        return <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">Not Scheduled</Badge>;
+        return (
+          <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+            Not Scheduled
+          </Badge>
+        );
     }
   };
 
@@ -94,11 +115,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
 
     if (!status || status === PlannerStatus.REJECTED) {
       return (
-        <Button
-          size="sm"
-          onClick={() => onGeneratePlanner(employee)}
-          className="flex items-center space-x-2"
-        >
+        <Button size="sm" onClick={() => onGeneratePlanner(employee)} className="flex items-center space-x-2">
           <FileText className="h-4 w-4" />
           <span>Generate Planner</span>
         </Button>
@@ -121,12 +138,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
 
     if (status === PlannerStatus.SUBMITTED) {
       return (
-        <Button
-          size="sm"
-          variant="outline"
-          disabled
-          className="flex items-center space-x-2"
-        >
+        <Button size="sm" variant="outline" disabled className="flex items-center space-x-2">
           <Clock className="h-4 w-4" />
           <span>Approval Awaited</span>
         </Button>
@@ -171,8 +183,10 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Locations</SelectItem>
-              {locations.map(location => (
-                <SelectItem key={location} value={location}>{location}</SelectItem>
+              {locations.map((location) => (
+                <SelectItem key={location} value={location}>
+                  {location}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -183,8 +197,10 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Departments</SelectItem>
-              {departments.map(dept => (
-                <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+              {departments.map((dept) => (
+                <SelectItem key={dept} value={dept}>
+                  {dept}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -212,7 +228,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleSort('employeeCode')}
+                    onClick={() => handleSort("employeeCode")}
                     className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Employee Code</span>
@@ -223,7 +239,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleSort('firstName')}
+                    onClick={() => handleSort("firstName")}
                     className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Employee Name</span>
@@ -236,7 +252,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleSort('joiningDate')}
+                    onClick={() => handleSort("joiningDate")}
                     className="flex items-center space-x-1 text-white hover:bg-ps-primary-dark/80"
                   >
                     <span>Joining Date</span>
@@ -263,9 +279,7 @@ export function EmployeeListView({ onGeneratePlanner }: EmployeeListViewProps) {
                     <TableCell>{format(new Date(employee.joiningDate), "dd MMM yyyy")}</TableCell>
                     <TableCell className="text-right font-mono">{employee.applicableYear}</TableCell>
                     <TableCell>{getStatusBadge(employee.plannerStatus)}</TableCell>
-                    <TableCell className="text-center">
-                      {getActionButton(employee)}
-                    </TableCell>
+                    <TableCell className="text-center">{getActionButton(employee)}</TableCell>
                   </TableRow>
                 ))
               ) : (

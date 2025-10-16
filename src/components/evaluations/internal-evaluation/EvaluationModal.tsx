@@ -1,14 +1,10 @@
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { EvaluationForm } from "./EvaluationForm";
 import { EvaluationPlanner } from "@/types/evaluation";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface EvaluationModalProps {
   isOpen: boolean;
@@ -20,23 +16,25 @@ interface EvaluationModalProps {
 export function EvaluationModal({ isOpen, onClose, planner, onSave }: EvaluationModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[90vw] max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 overflow-hidden">
+        <DialogHeader className="p-4 border-b">
           <DialogTitle className="flex items-center justify-between">
-            <span>Conduct Evaluation - {planner.currentEvaluationStage} Evaluation</span>
+            <span className="flex items-center gap-2 text-base font-semibold text-center">
+              Conduct Evaluation -
+              <Badge variant="outline" className="px-4 py-1.5 bg-blue-100 text-blue-800 border-blue-200">
+                {planner.currentEvaluationStage}
+              </Badge>
+            </span>
+
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X className="h-4 w-4" />
             </Button>
           </DialogTitle>
-          <DialogDescription>
-            Enter evaluation details and panel member comments for {planner.employee.firstName}{" "}
-            {planner.employee.lastName} (Planner #{planner.plannerNumber})
-          </DialogDescription>
         </DialogHeader>
 
-        <div className="py-4">
+        <ScrollArea className="h-[calc(90vh-80px)] p-4">
           <EvaluationForm planner={planner} onSave={onSave} onCancel={onClose} />
-        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

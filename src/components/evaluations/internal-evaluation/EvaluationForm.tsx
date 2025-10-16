@@ -9,14 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { EvaluationPlanner, EvaluationStage, PanelMemberComment } from "@/types/evaluation";
 import { mockPanelMembers, canMoveToFinalEvaluation, areAllTopicsRated } from "@/data/mock-evaluation-data";
 import { format } from "date-fns";
@@ -46,11 +39,9 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
 
     const evalDate = new Date(evaluationDate);
     const today = new Date();
-    
+
     // Get first training start date
-    const firstTrainingDate = planner.topics.length > 0 
-      ? new Date(planner.topics[0].startDate) 
-      : today;
+    const firstTrainingDate = planner.topics.length > 0 ? new Date(planner.topics[0].startDate) : today;
 
     if (evalDate > today) {
       return "Evaluation date cannot be in the future";
@@ -120,10 +111,8 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
   };
 
   const handlePanelMemberToggle = (memberId: string) => {
-    setSelectedPanelMembers(prev =>
-      prev.includes(memberId)
-        ? prev.filter(id => id !== memberId)
-        : [...prev, memberId]
+    setSelectedPanelMembers((prev) =>
+      prev.includes(memberId) ? prev.filter((id) => id !== memberId) : [...prev, memberId],
     );
   };
 
@@ -134,7 +123,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       toast({
         title: "Validation Error",
         description: dateError,
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -144,7 +133,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       toast({
         title: "Validation Error",
         description: panelError,
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -154,7 +143,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       toast({
         title: "Validation Error",
         description: nextDateError,
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -163,12 +152,12 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
     if (!planNextEvaluation) {
       const evalDateStr = format(evaluationDate, "yyyy-MM-dd");
       const canMove = canMoveToFinalEvaluation(planner, evalDateStr);
-      
+
       if (!canMove.canMove) {
         toast({
           title: "Cannot Move to Final Evaluation",
           description: canMove.reason,
-          variant: "destructive"
+          variant: "destructive",
         });
         return;
       }
@@ -176,7 +165,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       // Confirm moving to final evaluation
       const employeeName = `${planner.employee.firstName} ${planner.employee.lastName}`;
       const confirmed = window.confirm(
-        `${employeeName} is selected for final evaluation, click OK to proceed or CANCEL to plan next evaluation.`
+        `${employeeName} is selected for final evaluation, click OK to proceed or CANCEL to plan next evaluation.`,
       );
 
       if (!confirmed) {
@@ -200,7 +189,9 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       <div className="grid grid-cols-4 gap-4 p-3 bg-muted/50 rounded-lg">
         <div>
           <Label className="text-xs text-muted-foreground">Employee</Label>
-          <p className="font-medium text-sm">{planner.employee.firstName} {planner.employee.lastName}</p>
+          <p className="font-medium text-sm">
+            {planner.employee.firstName} {planner.employee.lastName}
+          </p>
         </div>
         <div>
           <Label className="text-xs text-muted-foreground">Employee Code</Label>
@@ -213,44 +204,6 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
         <div>
           <Label className="text-xs text-muted-foreground">Planner Number</Label>
           <p className="font-medium text-sm">{planner.plannerNumber}</p>
-        </div>
-      </div>
-
-      {/* Current Stage and Evaluation Date */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label className="font-semibold">Current Evaluation Stage</Label>
-          <Badge variant="outline" className="px-4 py-1.5 bg-blue-100 text-blue-800 border-blue-200">
-            {planner.currentEvaluationStage}
-          </Badge>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="evaluation-date" className="required font-semibold">
-            {planner.currentEvaluationStage} Date *
-          </Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !evaluationDate && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {evaluationDate ? format(evaluationDate, "PPP") : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={evaluationDate}
-                onSelect={(date) => date && setEvaluationDate(date)}
-                disabled={(date) => date > new Date()}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
         </div>
       </div>
 
@@ -281,8 +234,8 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
                         topic.attendance === "Yes"
                           ? "bg-green-100 text-green-800"
                           : topic.attendance === "No"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-yellow-100 text-yellow-800"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-yellow-100 text-yellow-800",
                       )}
                     >
                       {topic.attendance || "Pending"}
@@ -295,7 +248,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
                         "text-xs",
                         topic.rating && topic.rating !== "Not Rated"
                           ? "bg-blue-100 text-blue-800"
-                          : "bg-gray-100 text-gray-800"
+                          : "bg-gray-100 text-gray-800",
                       )}
                     >
                       {topic.rating || "Not Rated"}
@@ -322,7 +275,8 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle className="text-sm">Incomplete Training</AlertTitle>
           <AlertDescription className="text-xs">
-            This employee planner cannot be taken directly for final evaluation as one or more of the planned trainings are still incomplete.
+            This employee planner cannot be taken directly for final evaluation as one or more of the planned trainings
+            are still incomplete.
           </AlertDescription>
         </Alert>
       )}
@@ -348,9 +302,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
                   <Textarea
                     placeholder={`Enter comments from ${member.name}...`}
                     value={comments[member.id] || ""}
-                    onChange={(e) =>
-                      setComments((prev) => ({ ...prev, [member.id]: e.target.value }))
-                    }
+                    onChange={(e) => setComments((prev) => ({ ...prev, [member.id]: e.target.value }))}
                     rows={2}
                     className="mt-2 text-sm"
                   />
@@ -359,9 +311,40 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
             ))}
           </div>
         </div>
-
-        {/* Next Evaluation Planning */}
         <div className="space-y-3">
+          {/* Current Stage and Evaluation Date */}
+          <div className="space-y-3">
+            <div className="space-y-2">
+              <Label htmlFor="evaluation-date" className="required font-semibold">
+                {planner.currentEvaluationStage} Date *
+              </Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !evaluationDate && "text-muted-foreground",
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {evaluationDate ? format(evaluationDate, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={evaluationDate}
+                    onSelect={(date) => date && setEvaluationDate(date)}
+                    disabled={(date) => date > new Date()}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
+          {/* Plan Next Evaluation Section */}
           {planner.currentEvaluationStage !== EvaluationStage.THIRD && (
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
@@ -386,7 +369,7 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
                         variant="outline"
                         className={cn(
                           "w-full justify-start text-left font-normal",
-                          !nextEvaluationDate && "text-muted-foreground"
+                          !nextEvaluationDate && "text-muted-foreground",
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />

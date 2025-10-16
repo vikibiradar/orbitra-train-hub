@@ -26,15 +26,15 @@ export function InternalEvaluationUpdatePage() {
   // Get statistics
   const stats = {
     pending1st: mockEvaluationPlanners.filter(
-      p => p.currentEvaluationStage === EvaluationStage.FIRST && p.canEvaluate
+      (p) => p.currentEvaluationStage === EvaluationStage.FIRST && p.canEvaluate,
     ).length,
     pending2nd: mockEvaluationPlanners.filter(
-      p => p.currentEvaluationStage === EvaluationStage.SECOND && p.canEvaluate
+      (p) => p.currentEvaluationStage === EvaluationStage.SECOND && p.canEvaluate,
     ).length,
     pending3rd: mockEvaluationPlanners.filter(
-      p => p.currentEvaluationStage === EvaluationStage.THIRD && p.canEvaluate
+      (p) => p.currentEvaluationStage === EvaluationStage.THIRD && p.canEvaluate,
     ).length,
-    total: mockEvaluationPlanners.filter(p => p.canEvaluate).length
+    total: mockEvaluationPlanners.filter((p) => p.canEvaluate).length,
   };
 
   const handleEvaluate = (planner: EvaluationPlanner) => {
@@ -83,9 +83,7 @@ export function InternalEvaluationUpdatePage() {
               {/* Page Header */}
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                    Internal Evaluation Update
-                  </h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">Internal Evaluation Update</h2>
                   <p className="text-muted-foreground">
                     Manage and conduct internal evaluations for approved training planners
                   </p>
@@ -145,9 +143,7 @@ export function InternalEvaluationUpdatePage() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Training Planners for Evaluation</CardTitle>
-                    <CardDescription>
-                      Select a planner to conduct internal evaluation
-                    </CardDescription>
+                    <CardDescription>Select a planner to conduct internal evaluation</CardDescription>
                   </CardHeader>
                   <CardContent className="p-0">
                     <EvaluationPlannerList onEvaluate={handleEvaluate} />
