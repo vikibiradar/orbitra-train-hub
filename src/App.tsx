@@ -14,6 +14,7 @@ import { UpdateAdditionalTrainingPage } from "./components/training-planner/upda
 import { PrintPlannerPage } from "./components/training-planner/print-planner/PrintPlannerPage";
 import { CopyPlannerPage } from "./components/training-planner/copy-planner/CopyPlannerPage";
 import { InternalEvaluationUpdatePage } from "./components/evaluations/internal-evaluation/InternalEvaluationUpdatePage";
+import { PlanFinalEvaluationPage } from "./components/evaluations/plan-final-evaluation/PlanFinalEvaluationPage";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/training-planner/copy-planner" element={<CopyPlannerPage />} />
           <Route path="/training-planner/update-additional" element={<UpdateAdditionalTrainingPage />} />
           <Route path="/evaluations/internal-evaluation" element={<InternalEvaluationUpdatePage />} />
+          <Route path="/evaluations/plan-final-evaluation" element={<PlanFinalEvaluationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
