@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { EvaluationPlanner, EvaluationStage, PanelMemberComment } from "@/types/evaluation";
 import { mockPanelMembers, canMoveToFinalEvaluation, areAllTopicsRated } from "@/data/mock-evaluation-data";
 import { format } from "date-fns";
@@ -210,63 +211,65 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
       {/* Topics Training Status */}
       <div className="space-y-2">
         <Label className="font-semibold">Training Topics Status</Label>
-        <div className="border rounded-lg max-h-[200px] overflow-y-auto">
-          <Table>
-            <TableHeader className="sticky top-0 bg-background z-10">
-              <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
-                <TableHead className="text-white font-semibold py-2">Topic</TableHead>
-                <TableHead className="text-white font-semibold py-2">Trainer</TableHead>
-                <TableHead className="text-white font-semibold py-2">Attendance</TableHead>
-                <TableHead className="text-white font-semibold py-2">Rating</TableHead>
-                <TableHead className="text-white font-semibold py-2">Deviation</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {planner.topicsEvaluationData.map((topic) => (
-                <TableRow key={topic.topicId}>
-                  <TableCell className="font-medium py-2 text-sm">{topic.topicName}</TableCell>
-                  <TableCell className="py-2 text-sm">{topic.trainer}</TableCell>
-                  <TableCell className="py-2">
-                    <Badge
-                      variant="outline"
-                      className={cn(
-                        "text-xs",
-                        topic.attendance === "Yes"
-                          ? "bg-green-100 text-green-800"
-                          : topic.attendance === "No"
-                            ? "bg-red-100 text-red-800"
-                            : "bg-yellow-100 text-yellow-800",
-                      )}
-                    >
-                      {topic.attendance || "Pending"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="py-2">
-                    <Badge
-                      variant="outline"
-                      className={cn(
-                        "text-xs",
-                        topic.rating && topic.rating !== "Not Rated"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-gray-100 text-gray-800",
-                      )}
-                    >
-                      {topic.rating || "Not Rated"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="py-2">
-                    {topic.deviation ? (
-                      <Badge variant="outline" className="bg-orange-100 text-orange-800 text-xs">
-                        Yes
-                      </Badge>
-                    ) : (
-                      <span className="text-muted-foreground text-sm">No</span>
-                    )}
-                  </TableCell>
+        <div className="border rounded-lg">
+          <ScrollArea className="h-[200px]">
+            <Table>
+              <TableHeader className="sticky top-0 bg-background z-10">
+                <TableRow className="bg-ps-primary-dark hover:bg-ps-primary-dark/90">
+                  <TableHead className="text-white font-semibold py-2">Topic</TableHead>
+                  <TableHead className="text-white font-semibold py-2">Trainer</TableHead>
+                  <TableHead className="text-white font-semibold py-2">Attendance</TableHead>
+                  <TableHead className="text-white font-semibold py-2">Rating</TableHead>
+                  <TableHead className="text-white font-semibold py-2">Deviation</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {planner.topicsEvaluationData.map((topic) => (
+                  <TableRow key={topic.topicId}>
+                    <TableCell className="font-medium py-2 text-sm">{topic.topicName}</TableCell>
+                    <TableCell className="py-2 text-sm">{topic.trainer}</TableCell>
+                    <TableCell className="py-2">
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          "text-xs",
+                          topic.attendance === "Yes"
+                            ? "bg-green-100 text-green-800"
+                            : topic.attendance === "No"
+                              ? "bg-red-100 text-red-800"
+                              : "bg-yellow-100 text-yellow-800",
+                        )}
+                      >
+                        {topic.attendance || "Pending"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-2">
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          "text-xs",
+                          topic.rating && topic.rating !== "Not Rated"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-gray-100 text-gray-800",
+                        )}
+                      >
+                        {topic.rating || "Not Rated"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-2">
+                      {topic.deviation ? (
+                        <Badge variant="outline" className="bg-orange-100 text-orange-800 text-xs">
+                          Yes
+                        </Badge>
+                      ) : (
+                        <span className="text-muted-foreground text-sm">No</span>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </ScrollArea>
         </div>
       </div>
 
@@ -285,30 +288,34 @@ export function EvaluationForm({ planner, onSave, onCancel }: EvaluationFormProp
         {/* Panel Members Selection */}
         <div className="space-y-3">
           <Label className="font-semibold required">Panel Members *</Label>
-          <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
-            {mockPanelMembers.map((member) => (
-              <div key={member.id} className="space-y-2 p-3 border rounded-lg">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id={member.id}
-                    checked={selectedPanelMembers.includes(member.id)}
-                    onCheckedChange={() => handlePanelMemberToggle(member.id)}
-                  />
-                  <Label htmlFor={member.id} className="font-medium cursor-pointer text-sm">
-                    {member.name} - {member.department}
-                  </Label>
-                </div>
-                {selectedPanelMembers.includes(member.id) && (
-                  <Textarea
-                    placeholder={`Enter comments from ${member.name}...`}
-                    value={comments[member.id] || ""}
-                    onChange={(e) => setComments((prev) => ({ ...prev, [member.id]: e.target.value }))}
-                    rows={2}
-                    className="mt-2 text-sm"
-                  />
-                )}
+          <div className="border rounded-lg p-2">
+            <ScrollArea className="h-[300px]">
+              <div className="space-y-3 pr-3">
+                {mockPanelMembers.map((member) => (
+                  <div key={member.id} className="space-y-2 p-3 border rounded-lg">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id={member.id}
+                        checked={selectedPanelMembers.includes(member.id)}
+                        onCheckedChange={() => handlePanelMemberToggle(member.id)}
+                      />
+                      <Label htmlFor={member.id} className="font-medium cursor-pointer text-sm">
+                        {member.name} - {member.department}
+                      </Label>
+                    </div>
+                    {selectedPanelMembers.includes(member.id) && (
+                      <Textarea
+                        placeholder={`Enter comments from ${member.name}...`}
+                        value={comments[member.id] || ""}
+                        onChange={(e) => setComments((prev) => ({ ...prev, [member.id]: e.target.value }))}
+                        rows={2}
+                        className="mt-2 text-sm"
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
         </div>
         <div className="space-y-3">
