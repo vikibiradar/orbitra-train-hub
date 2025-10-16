@@ -324,11 +324,10 @@ export function PlanFinalEvaluationModal({
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder={`Panel Member ${index + 1}`} />
+                                <SelectValue placeholder={`Panel Member ${index + 1} (Optional)`} />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="">None</SelectItem>
                               {getAvailablePanelMembers(field.value as string).map((member) => (
                                 <SelectItem key={member.id} value={member.id}>
                                   {member.name} - {member.department}
