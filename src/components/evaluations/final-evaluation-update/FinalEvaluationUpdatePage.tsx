@@ -17,7 +17,6 @@ import Footer from "@/components/Footer";
 import { FinalEvaluationList } from "./FinalEvaluationList";
 import { EvaluationCommentsModal } from "./EvaluationCommentsModal";
 import { FinalResultModal } from "./FinalResultModal";
-import { SearchFilters } from "./SearchFilters";
 import { FinalEvaluationRecord } from "@/types/final-evaluation";
 import { mockFinalEvaluationRecords } from "@/data/mock-final-evaluation-records";
 
@@ -40,11 +39,22 @@ export function FinalEvaluationUpdatePage() {
     satisfactory: filteredRecords.filter(r => r.result === "Satisfactory").length,
   };
 
-  const handleFilter = (filters: { location?: string; month?: Date }) => {
+  const handleFilter = (filters: { location?: string; month?: Date; searchTerm?: string }) => {
     let filtered = [...evaluationRecords];
 
+    // Filter by search term
+    if (filters.searchTerm) {
+      const term = filters.searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        r =>
+          r.employeeCode.toLowerCase().includes(term) ||
+          r.employeeName.toLowerCase().includes(term) ||
+          r.department.toLowerCase().includes(term)
+      );
+    }
+
     // Filter by location
-    if (filters.location && filters.location !== "all") {
+    if (filters.location) {
       filtered = filtered.filter(r => r.location === filters.location);
     }
 
@@ -129,9 +139,6 @@ export function FinalEvaluationUpdatePage() {
 
               {/* Main Content */}
               <div className="space-y-6">
-                {/* Search Filters */}
-                <SearchFilters onFilter={handleFilter} />
-
                 {/* Statistics Cards */}
                 <div className="grid gap-4 md:grid-cols-4">
                   <Card className="ps-card">
@@ -192,6 +199,7 @@ export function FinalEvaluationUpdatePage() {
                       records={filteredRecords}
                       onOpenComments={handleOpenCommentsModal}
                       onOpenResult={handleOpenResultModal}
+                      onFilter={handleFilter}
                     />
                   </CardContent>
                 </Card>
