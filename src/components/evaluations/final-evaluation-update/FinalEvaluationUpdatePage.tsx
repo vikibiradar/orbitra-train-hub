@@ -17,6 +17,7 @@ import Footer from "@/components/Footer";
 import { FinalEvaluationList } from "./FinalEvaluationList";
 import { EvaluationCommentsModal } from "./EvaluationCommentsModal";
 import { FinalResultModal } from "./FinalResultModal";
+import { SearchFilters } from "./SearchFilters";
 import { FinalEvaluationRecord } from "@/types/final-evaluation";
 import { mockFinalEvaluationRecords } from "@/data/mock-final-evaluation-records";
 
@@ -27,13 +28,37 @@ export function FinalEvaluationUpdatePage() {
   const [evaluationRecords, setEvaluationRecords] = useState<FinalEvaluationRecord[]>(
     mockFinalEvaluationRecords
   );
+  const [filteredRecords, setFilteredRecords] = useState<FinalEvaluationRecord[]>(
+    mockFinalEvaluationRecords
+  );
 
-  // Get statistics
+  // Get statistics (based on filtered records)
   const stats = {
-    total: evaluationRecords.length,
-    pending: evaluationRecords.filter(r => !r.isCompleted).length,
-    completed: evaluationRecords.filter(r => r.isCompleted).length,
-    satisfactory: evaluationRecords.filter(r => r.result === "Satisfactory").length,
+    total: filteredRecords.length,
+    pending: filteredRecords.filter(r => !r.isCompleted).length,
+    completed: filteredRecords.filter(r => r.isCompleted).length,
+    satisfactory: filteredRecords.filter(r => r.result === "Satisfactory").length,
+  };
+
+  const handleFilter = (filters: { location?: string; month?: Date }) => {
+    let filtered = [...evaluationRecords];
+
+    // Filter by location
+    if (filters.location && filters.location !== "all") {
+      filtered = filtered.filter(r => r.location === filters.location);
+    }
+
+    // Filter by month (evaluation date month)
+    if (filters.month) {
+      const filterMonth = filters.month.getMonth();
+      const filterYear = filters.month.getFullYear();
+      filtered = filtered.filter(r => {
+        const evalDate = new Date(r.evaluationDate);
+        return evalDate.getMonth() === filterMonth && evalDate.getFullYear() === filterYear;
+      });
+    }
+
+    setFilteredRecords(filtered);
   };
 
   const handleOpenCommentsModal = (record: FinalEvaluationRecord) => {
@@ -47,17 +72,17 @@ export function FinalEvaluationUpdatePage() {
   };
 
   const handleCommentsSaved = (updatedRecord: FinalEvaluationRecord) => {
-    setEvaluationRecords(records =>
-      records.map(r => (r.id === updatedRecord.id ? updatedRecord : r))
-    );
+    const updatedRecords = evaluationRecords.map(r => (r.id === updatedRecord.id ? updatedRecord : r));
+    setEvaluationRecords(updatedRecords);
+    setFilteredRecords(filteredRecords.map(r => (r.id === updatedRecord.id ? updatedRecord : r)));
     setIsCommentsModalOpen(false);
     setSelectedRecord(null);
   };
 
   const handleResultSaved = (updatedRecord: FinalEvaluationRecord) => {
-    setEvaluationRecords(records =>
-      records.map(r => (r.id === updatedRecord.id ? updatedRecord : r))
-    );
+    const updatedRecords = evaluationRecords.map(r => (r.id === updatedRecord.id ? updatedRecord : r));
+    setEvaluationRecords(updatedRecords);
+    setFilteredRecords(filteredRecords.map(r => (r.id === updatedRecord.id ? updatedRecord : r)));
     setIsResultModalOpen(false);
     setSelectedRecord(null);
   };
@@ -104,6 +129,9 @@ export function FinalEvaluationUpdatePage() {
 
               {/* Main Content */}
               <div className="space-y-6">
+                {/* Search Filters */}
+                <SearchFilters onFilter={handleFilter} />
+
                 {/* Statistics Cards */}
                 <div className="grid gap-4 md:grid-cols-4">
                   <Card className="ps-card">
@@ -161,7 +189,7 @@ export function FinalEvaluationUpdatePage() {
                   </CardHeader>
                   <CardContent className="p-0">
                     <FinalEvaluationList
-                      records={evaluationRecords}
+                      records={filteredRecords}
                       onOpenComments={handleOpenCommentsModal}
                       onOpenResult={handleOpenResultModal}
                     />
