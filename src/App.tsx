@@ -15,6 +15,7 @@ import { PrintPlannerPage } from "./components/training-planner/print-planner/Pr
 import { CopyPlannerPage } from "./components/training-planner/copy-planner/CopyPlannerPage";
 import { InternalEvaluationUpdatePage } from "./components/evaluations/internal-evaluation/InternalEvaluationUpdatePage";
 import { PlanFinalEvaluationPage } from "./components/evaluations/plan-final-evaluation/PlanFinalEvaluationPage";
+import { FinalEvaluationUpdatePage } from "./components/evaluations/final-evaluation-update/FinalEvaluationUpdatePage";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/training-planner/update-additional" element={<UpdateAdditionalTrainingPage />} />
           <Route path="/evaluations/internal-evaluation" element={<InternalEvaluationUpdatePage />} />
           <Route path="/evaluations/plan-final-evaluation" element={<PlanFinalEvaluationPage />} />
+          <Route path="/evaluations/final-evaluation" element={<FinalEvaluationUpdatePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
