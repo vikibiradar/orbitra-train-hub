@@ -16,6 +16,7 @@ import { CopyPlannerPage } from "./components/training-planner/copy-planner/Copy
 import { InternalEvaluationUpdatePage } from "./components/evaluations/internal-evaluation/InternalEvaluationUpdatePage";
 import { PlanFinalEvaluationPage } from "./components/evaluations/plan-final-evaluation/PlanFinalEvaluationPage";
 import { FinalEvaluationUpdatePage } from "./components/evaluations/final-evaluation-update/FinalEvaluationUpdatePage";
+import { ScopePage } from "./components/master/scope/ScopePage";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/evaluations/internal-evaluation" element={<InternalEvaluationUpdatePage />} />
           <Route path="/evaluations/plan-final-evaluation" element={<PlanFinalEvaluationPage />} />
           <Route path="/evaluations/final-evaluation" element={<FinalEvaluationUpdatePage />} />
+          <Route path="/master/scope" element={<ScopePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
